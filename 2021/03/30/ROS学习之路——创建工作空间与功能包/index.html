@@ -6,22 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://StriveBoy-12138.github.io">
-  <title>Ubuntu打不开Software解决办法,亲测有效！ | Hexo</title>
+  <title>ROS学习之路——创建工作空间与功能包 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Ubuntu20.04软件中心打不开 尝试了很多方法  Ubuntu 20.04 默认把软件中心换成 snapd, 感觉 snapd 应用老出状况, snapd 应用不但体积大, 安装好的应用还不时就崩溃, 以及会遇到点击软件中心直转圈但打不开的问题，可以尝试卸载 snapd ，并重新安装 gnoem-software">
+  <meta name="description" content="在配置了ROS之后，下一步是在ROS中创建工作空间。在最新的ROS发行版中，我们使用基于catkin的工作空间构建和安装ROS功能包。catkin系统是ROS的官方构建系统，能够帮助用户在工作空间中将源代码便以为可执行文件或链接库。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Ubuntu打不开Software解决办法,亲测有效！">
-<meta property="og:url" content="http://striveboy-12138.github.io/2021/03/29/Ubuntu%E6%89%93%E4%B8%8D%E5%BC%80Software%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/index.html">
+<meta property="og:title" content="ROS学习之路——创建工作空间与功能包">
+<meta property="og:url" content="http://striveboy-12138.github.io/2021/03/30/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E5%88%9B%E5%BB%BA%E5%B7%A5%E4%BD%9C%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%8A%9F%E8%83%BD%E5%8C%85/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Ubuntu20.04软件中心打不开 尝试了很多方法  Ubuntu 20.04 默认把软件中心换成 snapd, 感觉 snapd 应用老出状况, snapd 应用不但体积大, 安装好的应用还不时就崩溃, 以及会遇到点击软件中心直转圈但打不开的问题，可以尝试卸载 snapd ，并重新安装 gnoem-software">
+<meta property="og:description" content="在配置了ROS之后，下一步是在ROS中创建工作空间。在最新的ROS发行版中，我们使用基于catkin的工作空间构建和安装ROS功能包。catkin系统是ROS的官方构建系统，能够帮助用户在工作空间中将源代码便以为可执行文件或链接库。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://striveboy-12138.github.io/2021/03/29/Ubuntu%E6%89%93%E4%B8%8D%E5%BC%80Software%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/%E6%95%88%E6%9E%9C%E5%9B%BE.png">
-<meta property="article:published_time" content="2021-03-29T08:38:34.000Z">
-<meta property="article:modified_time" content="2021-03-29T10:57:06.839Z">
+<meta property="og:image" content="http://striveboy-12138.github.io/2021/03/30/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E5%88%9B%E5%BB%BA%E5%B7%A5%E4%BD%9C%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%8A%9F%E8%83%BD%E5%8C%85/1.png">
+<meta property="og:image" content="http://striveboy-12138.github.io/2021/03/30/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E5%88%9B%E5%BB%BA%E5%B7%A5%E4%BD%9C%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%8A%9F%E8%83%BD%E5%8C%85/2.png">
+<meta property="og:image" content="http://striveboy-12138.github.io/2021/03/30/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E5%88%9B%E5%BB%BA%E5%B7%A5%E4%BD%9C%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%8A%9F%E8%83%BD%E5%8C%85/3.png">
+<meta property="og:image" content="http://striveboy-12138.github.io/2021/03/30/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E5%88%9B%E5%BB%BA%E5%B7%A5%E4%BD%9C%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%8A%9F%E8%83%BD%E5%8C%85/4.png">
+<meta property="og:image" content="http://striveboy-12138.github.io/2021/03/30/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E5%88%9B%E5%BB%BA%E5%B7%A5%E4%BD%9C%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%8A%9F%E8%83%BD%E5%8C%85/5.png">
+<meta property="article:published_time" content="2021-03-30T11:32:15.000Z">
+<meta property="article:modified_time" content="2021-03-30T12:42:35.584Z">
 <meta property="article:author" content="小褚同学">
-<meta property="article:tag" content="linux">
+<meta property="article:tag" content="ROS">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://striveboy-12138.github.io/2021/03/29/Ubuntu%E6%89%93%E4%B8%8D%E5%BC%80Software%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/%E6%95%88%E6%9E%9C%E5%9B%BE.png">
+<meta name="twitter:image" content="http://striveboy-12138.github.io/2021/03/30/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E5%88%9B%E5%BB%BA%E5%B7%A5%E4%BD%9C%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%8A%9F%E8%83%BD%E5%8C%85/1.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -166,37 +170,80 @@
           </div>
           <div id="js-content" class="content-ll">
             
-<article id="post-Ubuntu打不开Software解决办法" class="article article-type-post " itemscope itemprop="blogPost">
+<article id="w-ROS学习之路——创建工作空间与功能包" class="article article-type-w " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Ubuntu打不开Software解决办法,亲测有效！
+      ROS学习之路——创建工作空间与功能包
     </h1>
   
 
         
-        <a href="/2021/03/29/Ubuntu%E6%89%93%E4%B8%8D%E5%BC%80Software%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2021-03-29T08:38:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-29</time>
+        <a href="/2021/03/30/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E5%88%9B%E5%BB%BA%E5%B7%A5%E4%BD%9C%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%8A%9F%E8%83%BD%E5%8C%85/" class="archive-article-date">
+  	<time datetime="2021-03-30T11:32:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-30</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Ubuntu20.04软件中心打不开 尝试了很多方法 </p>
-<p>Ubuntu 20.04 默认把软件中心换成 snapd, 感觉 snapd 应用老出状况, snapd 应用不但体积大, 安装好的应用还不时就崩溃, 以及会遇到点击软件中心直转圈但打不开的问题，可以尝试卸载 snapd ，并重新安装 gnoem-software</p>
+        <p>在配置了ROS之后，下一步是在ROS中创建工作空间。在最新的ROS发行版中，我们使用基于catkin的工作空间构建和安装ROS功能包。<a href="https://wiki.ros.org/catkin" target="_blank" rel="noopener">catkin系统</a>是ROS的官方构建系统，能够帮助用户在工作空间中将源代码便以为可执行文件或链接库。</p>
 <a id="more"></a>  
 
+<h3 id="创建工作空间"><a href="#创建工作空间" class="headerlink" title="创建工作空间"></a>创建工作空间</h3><p>工作空间（workspace）是一个存放工程开发相关文件的文件夹，相当于Windows中在IDE中新建的一个工程文件。在ROS工作空间中包含src（代码空间）、build（编译空间）、devel（开发空间）、install（安装空间）四个主要文件夹。catkin编译系统系下的工作空间机构如下图：<br><img src="1.png" alt="工作空间结构"><br>构建ROS工作空间并不难，只需要在终端中执行以下步骤：   </p>
+<ul>
+<li><p>创建一个空的工作空间文件夹和另一个名为src的文件夹老存储ROS功能包。此处工作空间文件夹名为catkin_ws  </p>
 <blockquote>
-<p>1、卸载snapd商店<br>sudo apt autoremove –purge snapd  </p>
+<p>mkdir -p catkin_wc/src    </p>
 </blockquote>
+</li>
+<li><p>切换至src文件夹，并执行catkin_init_workspace命令，该命令将在当前src文件夹下楚世家catkin工作空间，至此我们已经可以在src文件夹下创建功能包了  </p>
 <blockquote>
-<p>2、安装gnome-software<br>sudo apt install gnome-software</p>
+<p>cd ~/catkin_wc/src<br>catkin_init_workspace  </p>
 </blockquote>
-<p>效果图如下：<br><img src="%E6%95%88%E6%9E%9C%E5%9B%BE.png" alt="效果图"></p>
+</li>
+</ul>
+<p><img src="2.png" alt="工作空间">  </p>
+<ul>
+<li>初始化catkin工作空间后，就可以使用catkin_make命令构建工作空间下的功能包了，工作空间为空时也可以创建：  <blockquote>
+<p>cd ~/catkin<br>catkin_make<br>catkin_make instll  </p>
+</blockquote>
+</li>
+</ul>
+<p>执行上述命令，将在ROS空间内穿件三个新的文件夹，分别是build、devel以及install，如下图所示：<br><img src="3.png" alt="make"></p>
+<ul>
+<li>构建工作空间之后，为了获取对工作空间内功能包的访问权限，需要将工作空间的的环境变量添加至 .bashrc 文件中去，具体命令如下：  <blockquote>
+<p>echo “source ~/catkin_ws/devel/setuo.bash” &gt;&gt; ~/.bashrc<br>source ~/.bashrc</p>
+</blockquote>
+</li>
+</ul>
+<p>完成上述步骤后，可以使用以下命令确定配置过程是否正确：  </p>
+<blockquote>
+<p>echo $ROS_PACKAGE_PATH  </p>
+</blockquote>
+<p>上述命令将会输出ROS的完整路径，如一切正常，输出结果如下图：<br><img src="4.png" alt="结果">  </p>
+<h3 id="创建功能包"><a href="#创建功能包" class="headerlink" title="创建功能包"></a>创建功能包</h3><p>ROS中的软件主要被组织为功能包，可以说ROS功能包是ROS的原子构建单元，功能包可以有ROS节点/进程、数据集和配置文件组成，所有这些内容都被组织在这模块中<br>同一个工作空间中不予续存在同名的功能包，不同的工作空间允许存在同名的功能包  </p>
+<ul>
+<li>创建功能包格式：  <blockquote>
+<p>catkin_create_pkg &lt; pacvage_name &gt;[ depend1 ][ depend2 ][ depend3 ]  </p>
+</blockquote>
+</li>
+</ul>
+<p>实例：  </p>
+<blockquote>
+<p>catkin_create_pkg &lt; test_pkg &gt; roscpp rospy std_msg  </p>
+</blockquote>
+<ul>
+<li>编译功能包  <blockquote>
+<p>cd ~/catkin_wc<br>catkin_make  </p>
+</blockquote>
+</li>
+</ul>
+<p><img src="5.png" alt="成功如下图"></p>
+<p>到这里工作空间的创建以及功能包的创建以及编译工作就完成了。</p>
 
       
 
@@ -231,7 +278,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ROS</a>
         		</li>
       		
 		</ul>
@@ -287,7 +334,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://striveboy-12138.github.io/38.github.io/2021/03/29/Ubuntu%E6%89%93%E4%B8%8D%E5%BC%80Software%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://striveboy-12138.github.io/38.github.io/2021/03/30/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E5%88%9B%E5%BB%BA%E5%B7%A5%E4%BD%9C%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%8A%9F%E8%83%BD%E5%8C%85/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -301,18 +348,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2021/03/29/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0Ubuntu%E5%AE%89%E8%A3%85ROS/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          手把手教你Ubuntu安装ROS
-        
-      </div>
-    </a>
   
-  
-    <a href="/2021/03/13/2021%E5%8D%8E%E4%B8%BA%E8%BD%AF%E6%8C%91%E8%B5%9B%E6%8F%90%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">2021华为软挑赛提需求分析</div>
+    <a href="/2021/03/29/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0Ubuntu%E5%AE%89%E8%A3%85ROS/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">手把手教你Ubuntu安装ROS</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -339,7 +377,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建工作空间"><span class="toc-number">1.</span> <span class="toc-text">创建工作空间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建功能包"><span class="toc-number">2.</span> <span class="toc-text">创建功能包</span></a></li></ol>
                     </div>
                 </span>
             </div>
