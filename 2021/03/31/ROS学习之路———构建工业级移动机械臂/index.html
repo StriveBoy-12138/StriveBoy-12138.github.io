@@ -6,15 +6,27 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://StriveBoy-12138.github.io">
-  <title>Archives: 2020/8 | Hexo</title>
+  <title>ROS学习之路———构建工业级移动机械臂 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://striveboy-12138.github.io/archives/2020/08/index.html">
+  <meta name="description" content="机器人学是一个跨多个学科的工程领域，在当今有着广泛的应用，与移动机器人和不移动机器的标准分类不同，机器人还根据应用场景、工作介质等进行分类，如地上移动机器人、空中机器人、海洋机器人和空间一起人等。其中最常见的是移动机器人，另一类常用的静态机器人是机械别，它在工业中有着广泛的应用。它最初应用于起重，这了任务通常能够自动完成且具有重复性，但目前机械臂已经变得足够聪明，能够理解环境和感兴趣的物体，并与人">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ROS学习之路———构建工业级移动机械臂">
+<meta property="og:url" content="http://striveboy-12138.github.io/2021/03/31/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E2%80%94%E6%9E%84%E5%BB%BA%E5%B7%A5%E4%B8%9A%E7%BA%A7%E7%A7%BB%E5%8A%A8%E6%9C%BA%E6%A2%B0%E8%87%82/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="机器人学是一个跨多个学科的工程领域，在当今有着广泛的应用，与移动机器人和不移动机器的标准分类不同，机器人还根据应用场景、工作介质等进行分类，如地上移动机器人、空中机器人、海洋机器人和空间一起人等。其中最常见的是移动机器人，另一类常用的静态机器人是机械别，它在工业中有着广泛的应用。它最初应用于起重，这了任务通常能够自动完成且具有重复性，但目前机械臂已经变得足够聪明，能够理解环境和感兴趣的物体，并与人">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://striveboy-12138.github.io/2021/03/31/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E2%80%94%E6%9E%84%E5%BB%BA%E5%B7%A5%E4%B8%9A%E7%BA%A7%E7%A7%BB%E5%8A%A8%E6%9C%BA%E6%A2%B0%E8%87%82/PR2.png">
+<meta property="og:image" content="http://striveboy-12138.github.io/2021/03/31/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E2%80%94%E6%9E%84%E5%BB%BA%E5%B7%A5%E4%B8%9A%E7%BA%A7%E7%A7%BB%E5%8A%A8%E6%9C%BA%E6%A2%B0%E8%87%82/Fetch.png">
+<meta property="og:image" content="http://striveboy-12138.github.io/2021/03/31/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E2%80%94%E6%9E%84%E5%BB%BA%E5%B7%A5%E4%B8%9A%E7%BA%A7%E7%A7%BB%E5%8A%A8%E6%9C%BA%E6%A2%B0%E8%87%82/Tiago.png">
+<meta property="og:image" content="http://striveboy-12138.github.io/2021/03/31/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E2%80%94%E6%9E%84%E5%BB%BA%E5%B7%A5%E4%B8%9A%E7%BA%A7%E7%A7%BB%E5%8A%A8%E6%9C%BA%E6%A2%B0%E8%87%82/4.png">
+<meta property="og:image" content="http://striveboy-12138.github.io/2021/03/31/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E2%80%94%E6%9E%84%E5%BB%BA%E5%B7%A5%E4%B8%9A%E7%BA%A7%E7%A7%BB%E5%8A%A8%E6%9C%BA%E6%A2%B0%E8%87%82/5.png">
+<meta property="og:image" content="http://striveboy-12138.github.io/2021/03/31/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E2%80%94%E6%9E%84%E5%BB%BA%E5%B7%A5%E4%B8%9A%E7%BA%A7%E7%A7%BB%E5%8A%A8%E6%9C%BA%E6%A2%B0%E8%87%82/6.png">
+<meta property="article:published_time" content="2021-03-31T06:26:02.000Z">
+<meta property="article:modified_time" content="2021-04-01T08:24:54.174Z">
 <meta property="article:author" content="小褚同学">
+<meta property="article:tag" content="ROS 机械臂">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://striveboy-12138.github.io/2021/03/31/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E2%80%94%E6%9E%84%E5%BB%BA%E5%B7%A5%E4%B8%9A%E7%BA%A7%E7%A7%BB%E5%8A%A8%E6%9C%BA%E6%A2%B0%E8%87%82/PR2.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -159,86 +171,294 @@
           </div>
           <div id="js-content" class="content-ll">
             
-  
-  
+<article id="w-ROS学习之路———构建工业级移动机械臂" class="article article-type-w " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/08/26/TCP%E9%80%9A%E4%BF%A1socket%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E4%BF%9D%E5%AD%98%E8%87%B3MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/" class="archive-article-date">
-  	<time datetime="2020-08-26T01:22:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-26</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/08/26/TCP%E9%80%9A%E4%BF%A1socket%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E4%BF%9D%E5%AD%98%E8%87%B3MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/">TCP通信socket服务端数据采集保存至MySQL数据库</a>
+    <h1 class="article-title" itemprop="name">
+      ROS学习之路———构建工业级移动机械臂
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/08/25/%E8%B6%85%E8%AF%A6%E7%BB%86%E7%9A%84-MySQL-%E5%AE%89%E8%A3%85%E5%8F%8A%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/" class="archive-article-date">
-  	<time datetime="2020-08-25T06:23:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-25</time>
+        
+        <a href="/2021/03/31/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E2%80%94%E6%9E%84%E5%BB%BA%E5%B7%A5%E4%B8%9A%E7%BA%A7%E7%A7%BB%E5%8A%A8%E6%9C%BA%E6%A2%B0%E8%87%82/" class="archive-article-date">
+  	<time datetime="2021-03-31T06:26:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-31</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/08/25/%E8%B6%85%E8%AF%A6%E7%BB%86%E7%9A%84-MySQL-%E5%AE%89%E8%A3%85%E5%8F%8A%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/">超详细的 MySQL 安装及基本使用教程</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>机器人学是一个跨多个学科的工程领域，在当今有着广泛的应用，与移动机器人和不移动机器的标准分类不同，机器人还根据应用场景、工作介质等进行分类，如地上移动机器人、空中机器人、海洋机器人和空间一起人等。其中最常见的是移动机器人，另一类常用的静态机器人是机械别，它在工业中有着广泛的应用。它最初应用于起重，这了任务通常能够自动完成且具有重复性，但目前机械臂已经变得足够聪明，能够理解环境和感兴趣的物体，并与人类一起执行任务。这类机械臂现在叫cobot，就时移动机械臂。<br>本次教程主要介绍常见的移动机械臂，以便更好的了解和使用他们。在此基础上，我们将探讨构建移动机械臂项目先决条件和方法。通过本次学习，我门可以分别对机器人底座和机械臂进行建模和模拟，然后将他们组合在一起，并能够查看运行情况。</p>
+<a id="more"></a>
 
-        <div class="article-info info-on-right">
-          
+<p>本次学习过程主要涵盖的主题包括：  </p>
+<ul>
+<li>常见的移动机械臂  </li>
+<li>移动机械臂的构建入门  </li>
+<li>单位极坐标系  </li>
+<li>机器人底座构建  </li>
+<li>机器臂构建  </li>
+<li>系统集成  </li>
+</ul>
+<p>那让我们一步一步的学习下去吧！！！！</p>
+<h2 id="技术要求"><a href="#技术要求" class="headerlink" title="技术要求"></a>技术要求</h2><p>学习本次内容的相关要求如下：  </p>
+<ul>
+<li>Ubuntu 18.04 及以上系统，（我这里是用的是Ubuntu 20.04系统），预先安装ROS Melodic Morenia 和Gazebo 9  </li>
+<li>Ros 功能包：ros_control、ros_controllers、gazebo_ros_control  </li>
+<li>时间线和测试平台：  </li>
+</ul>
+<p>本章代码可以从一下网址下载：<strong><a href="https://github.com/PacktPublishing/ROS-Robotics-Projects-SecondEdition/tree/master/chapter_3_ws/src/robot_description" target="_blank" rel="noopener">https://github.com/PacktPublishing/ROS-Robotics-Projects-SecondEdition/tree/master/chapter_3_ws/src/robot_description</a></strong>  </p>
+<h2 id="常见的移动机械臂"><a href="#常见的移动机械臂" class="headerlink" title="常见的移动机械臂"></a>常见的移动机械臂</h2><p>移动机械臂已经在市场中存在很长一段时间了。最初为了提高移动机器人和机械臂的灵活性，开始组合使用移动机器人和机械臂。</p>
+<ul>
+<li><p>来之Willow Garage 的移动机械臂<strong>PR2</strong><br>PR2(<a href="http://wiki.ros.org/Robots/PR2)像人类一样具有理性导航的机动性和在环境中操纵物体的灵巧性。然而因为购置一台的价格需要40万美元的高昂价格，并不收到工业界的喜爱，但ROS在2007年出开始流行时，PR2是测试各种ROS功能包的试验台。但很快，移动机器人制造商开始在现有的移动机器人底座上建造机械臂，因为与PR2相比这样的方式成本更低。" target="_blank" rel="noopener">http://wiki.ros.org/Robots/PR2)像人类一样具有理性导航的机动性和在环境中操纵物体的灵巧性。然而因为购置一台的价格需要40万美元的高昂价格，并不收到工业界的喜爱，但ROS在2007年出开始流行时，PR2是测试各种ROS功能包的试验台。但很快，移动机器人制造商开始在现有的移动机器人底座上建造机械臂，因为与PR2相比这样的方式成本更低。</a><br><img src="PR2.png" alt="PR2">   </p>
+</li>
+<li><p>Fetch Robotics公司的<strong>Fetch</strong>移动机械臂<br>Fetch(<a href="https://robots.ros.org/fetch/)是一个&amp;自由度机械臂和一个附加自由度（源自移动底座）的组合，躯干提升装置安装在一个移动机器人底座上，目标是承载100千克的有效载荷。Fetch有5英尺高，可以通过深度摄像头和激光扫描仪等传感器感知环境。" target="_blank" rel="noopener">https://robots.ros.org/fetch/)是一个&amp;自由度机械臂和一个附加自由度（源自移动底座）的组合，躯干提升装置安装在一个移动机器人底座上，目标是承载100千克的有效载荷。Fetch有5英尺高，可以通过深度摄像头和激光扫描仪等传感器感知环境。</a><br><img src="Fetch.png" alt="Fetch">  </p>
+</li>
+<li><p>Pal Robotics公司的<strong>Tiago</strong>移动机械臂<br><img src="Tiago.png" alt="Tiago"><br>其设计与Fetch相类似，相比于Fetch，Tiago(<a href="https://robots.ros.org/tiago/)有一些优点。它有一个7自由度的机械臂，但他的手腕上还有一个力扭矩传感器，能够细致监测相关操作。Tiago还有许多内置软件功能，如NLP系统和人脸识别软件包等都可以随时部署。同时相比于Fetch，其手臂的有限载荷能力只有3千克，底座智能承载50千克。" target="_blank" rel="noopener">https://robots.ros.org/tiago/)有一些优点。它有一个7自由度的机械臂，但他的手腕上还有一个力扭矩传感器，能够细致监测相关操作。Tiago还有许多内置软件功能，如NLP系统和人脸识别软件包等都可以随时部署。同时相比于Fetch，其手臂的有限载荷能力只有3千克，底座智能承载50千克。</a>  </p>
+</li>
+<li><p>Kinova Robotics公司的<strong>MOVA</strong>移动机械臂<br>该机械臂具有两条手臂，与PR2类似。不同的是这一款机械臂的动作复杂、缓慢且平滑。   </p>
+</li>
+</ul>
+<p>至此我们大致了解了移动机械臂的基本情况。</p>
+<h2 id="移动机械臂的构建入门"><a href="#移动机械臂的构建入门" class="headerlink" title="移动机械臂的构建入门"></a>移动机械臂的构建入门</h2><p>下面将通过模拟的方式构建一台移动机械臂。以为一个移动机械臂需要一个良好的在中移动机器人底座和一个机械臂，所以这里将分别构建移动机器人底座和机械臂，然后将二者结合起来构成一个完整的移动机械臂。<br>对于移动机器人底座，我们的需求是:    </p>
+<ul>
+<li>能够在平坦的平面上移动，但不能再不规则的平面上移动  </li>
+<li>可以是差动驱动机器人，具有固定的方向盘和全轮驱动  </li>
+<li>目标载荷为50千克  </li>
+</ul>
+<p>对于机械臂，我们的需求是:   </p>
+<ul>
+<li>5个自由度  </li>
+<li>目标载荷为5千克  </li>
+</ul>
+<h2 id="单位以及坐标系"><a href="#单位以及坐标系" class="headerlink" title="单位以及坐标系"></a>单位以及坐标系</h2><p>在开始使用Gazebo和ROS中构建机械臂之前，我们需要记住ROS遵循的测量单位和坐标系。<br>就我们需要的而言，以下信息足够我们完成构建移动机械臂<br>测量单位：  </p>
+<ul>
+<li>底座单位：长度以米为单位；质量以千克为单位；时间以秒为单位。  </li>
+<li>推导单位：角度以弧度为单位；频率以赫兹为单位；力以牛顿为单位。  </li>
+<li>运动学推导单位：线速度以米每秒为单位；角速度以弧度每秒为单位；</li>
+</ul>
+<p>坐标系约定：  </p>
+<ul>
+<li>使用右手坐标系：拇指为z轴，中指为y轴，食指为x轴。</li>
+<li>绕z轴逆时针旋转为正，顺时针旋转为负  </li>
+</ul>
+<h3 id="Gazebo及ROS机器人模型格式设定"><a href="#Gazebo及ROS机器人模型格式设定" class="headerlink" title="Gazebo及ROS机器人模型格式设定"></a>Gazebo及ROS机器人模型格式设定</h3><p>Gazebo是一个支持ROS的物理模拟引擎，他可以在没有ROS的情况下独立运行。在Gazebo中创建的大多数模型都符合一种称为模拟描述格式（SDF）的XML格式。ROS则使用一种称为通用机器人描述格式（URDF）的XML格式。虽然这两种的机器人模型格式不同，但URDF文件能够在Gazebo的保护下自动转换成SDF，但是如果模型在SDF中定义的，则在引入某些基于ROS的特征时则可能会存在一些问题。<br>鉴于此，我们将以URDF格式创建机器人模型，并允许Gazebo的内置API完成转换工作，生成Gazebo支持的格式。<br>为了实现ROS和Gazebo的集成，我们需要在两者之间建立依赖关系，并将ROS消息转换成Gazebo可接受的消息。我们需要gazebo_ros_pkgs包用于帮助Gazebo理解ROS消息和服务。需要ros_control和ros_controller包提供机器人关节和执行器空间转换处理以及基于现有控制器对位置、速度以及力的控制处理功能。可以通过一下命令安装上述所需的功能包：  </p>
+<blockquote>
+<p>sudo apt-get install ros-noetic-ros-control<br>sudo apt-get install ros-noetic-ros-controllers<br>sudo apt-get install ros-noetic-gazebo-ros-control  </p>
+</blockquote>
+<p><img src="4.png" alt="成功如下图"></p>
+<p>这里由于版本不同，Ubuntu 18.04 的melodic版本将noetic更改为melodic就可以了，同时我这里由于提前安装过所以新安装为软件为零，第一次下载的稍有不同。</p>
+<h2 id="机器人底座构建"><a href="#机器人底座构建" class="headerlink" title="机器人底座构建"></a>机器人底座构建</h2><p>如前面所述，ROS从URDF的角度理解机器人。URFD是包含机器人的所有必要信息的XML标记列表。穿件了机器人底座的URDF文件之后，我们将在代码周围引入必要的连接器和封装，一遍可以与独立的物理模拟器（如Gazebo）交互和通信。</p>
+<h3 id="机器人底座需求"><a href="#机器人底座需求" class="headerlink" title="机器人底座需求"></a>机器人底座需求</h3><p>如果想要简历一个真正的机器人底座，那么需要考虑许多因素，例如电源管理系统、必要的电气和嵌入式特性以及机械动力传输系统。因为基于ROS能够对真实工作的机器人进行模拟仿真，所以我们能够用URDF的物理特性定义底盘和轮子、使用Gazebo-ros插件定义驱动器、适应ros-controllers定义驱动器的控制。  </p>
+<p>具体规格参数为:  </p>
+<ul>
+<li>尺寸：600×450×200 （长 × 宽 × 高，单位为毫米）  </li>
+<li>类型：四轮差分驱动机器人   </li>
+<li>速度：最高1米/秒  </li>
+<li>载荷：50千克</li>
+</ul>
+<h3 id="软件参数"><a href="#软件参数" class="headerlink" title="软件参数"></a>软件参数</h3><p>接下来让我们了解一下构建这么一个移动机械臂所需要的ROS相关信息。<br>我们将移动机器人的底座看做一个黑匣子，在ROS术语中，通过一份名为/cmd_vel（命令速度）的topic接受信息，获得移动指定速度，并通过/odom（里程计）输出移动到的位置  </p>
+<ul>
+<li><p>ROS消息格式<br>/cmd_del尊村geometry_msgs/Twist消息格式；/odom遵从nav_msgs/Odometry消息格式  </p>
+</li>
+<li><p>ROS 控制器<br>我们将使用diff_driver_controller插件对机器人底座的差分运动学模型进行定义，能够实现机器人在空间中的运动  </p>
+</li>
+</ul>
+<h3 id="机器人底座建模"><a href="#机器人底座建模" class="headerlink" title="机器人底座建模"></a>机器人底座建模</h3><p>至此我们已经具备了构建机器人底座所需的所有信息，下年我们开始进行机器人建模。</p>
+<ol>
+<li>初始化工作空间<br>我们需要做的就是为机器人模型定义类型为&lt; link &gt;&lt; joint &gt;网格的标记<br>按照一下步骤进行：  </li>
+</ol>
+<ul>
+<li>穿件ROS工作空间，添加文件  <blockquote>
+<p>mkdir -p ~/chapter3_ws/src<br>catkin_init_workspace<br>cd ~/chapter3_ws/src/<br>catkin_create_pkg robot_description catkin<br>cd ~/chapter3_ws/<br>catkin_make<br>cd ~/chapter3_ws/src/robot_description/<br>mkdir config launch meshes urdf  </p>
+</blockquote>
+</li>
+</ul>
+<p><img src="5.png" alt="完成如下图"></p>
+<ul>
+<li><p>从该<a href="https://github.com/PacktPublishing/ROS-Robotics-Projects-SecondEdition/tree/master/chapter_3_ws/src/robot_description/meshes" target="_blank" rel="noopener">网址</a>获取网格文件，然后使用一下命令进入urdf文件夹，并创建robot_base.urdf.xacro的文件：  </p>
+<blockquote>
+<p>cd ~/chapter3_ws/src/robot_description/urdf/<br>gedit robot_base.urdf.xacro  </p>
+</blockquote>
+</li>
+<li><p>初始化XML版本标记以及&lt; robot &gt;标记，稍后将一步步的添加码源  </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0"?&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">robot</span> <span class="attr">xmlns:xacro</span>=<span class="string">"http://ros.org/wiki/xacro"</span> <span class="attr">name</span>=<span class="string">"robot_base"</span></span></span><br><span class="line"><span class="tag">&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">robot</span>&gt;</span></span><br><span class="line">```  </span><br><span class="line">至此我们完成了工作空间的初始化，下面定义连杆组件  </span><br><span class="line"></span><br><span class="line">2. 定义连杆组件  </span><br><span class="line">目前我们已经完成了机器人模型的部分构建，接下来将定义底盘连杆的代码写到<span class="tag">&lt; <span class="attr">robot</span> &gt;</span>标记下（即两个<span class="tag">&lt; <span class="attr">robot</span> &gt;</span>之间）：  </span><br><span class="line">```mxl</span><br><span class="line"><span class="meta">&lt;?xml version="1.0"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">robot</span> <span class="attr">xmlns:xacro</span>=<span class="string">"http://ros.org/wiki/xacro"</span> <span class="attr">name</span>=<span class="string">"robot_base"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">name</span>=<span class="string">"base_link"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">visual</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">origin</span></span></span><br><span class="line"><span class="tag">                <span class="attr">xyz</span> = <span class="string">"0 0 0"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">rpy</span> = <span class="string">"1.5707963267949 0 3.14"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">geometry</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">mesh</span> <span class="attr">filename</span>=<span class="string">"package://robot_description/meshes/robot_base.stl"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">geometry</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">material</span></span></span><br><span class="line"><span class="tag">                <span class="attr">name</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">                   <span class="tag">&lt;<span class="name">color</span></span></span><br><span class="line"><span class="tag">                <span class="attr">rgba</span>=<span class="string">"0.79216 0.8196 0.93333 1"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">material</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;/<span class="name">visual</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">link</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">robot</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>上述代码定义的是机器人的底盘，我们称之为base_link<br>同时我们需要将四个轮子连接到base_link。为了方便定义，将通过xacro来实现同一段轮子模型代码的复用，复用是将对其进行重命名，以实现对四个轮子的区分。首先需要穿件一个名为robot_essentials.xacro的文件，然后定义标准的宏，一遍对轮子模型进行复用：  </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">robot</span> <span class="attr">xmlns:xacro</span>=<span class="string">"https://ros.org/wiki.xacro"</span> <span class="attr">name</span>=<span class="string">"robot_essentials"</span> &gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">xacro:macro</span> <span class="attr">name</span>=<span class="string">"robot_wheel"</span> <span class="attr">params</span>=<span class="string">"prefix"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">name</span>=<span class="string">"$&#123;prefix&#125;_wheel"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">visual</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">origin</span></span></span><br><span class="line"><span class="tag"><span class="attr">xyz</span>=<span class="string">"0 0 0"</span></span></span><br><span class="line"><span class="tag"><span class="attr">rpy</span>=<span class="string">"1.5707963267949 0 0"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">geometry</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mesh</span> <span class="attr">filename</span>=<span class="string">"package://robot_description/meshes/wheel.stl"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">geometry</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">material</span></span></span><br><span class="line"><span class="tag"><span class="attr">name</span>=<span class="string">""</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">color</span></span></span><br><span class="line"><span class="tag"><span class="attr">rgba</span>=<span class="string">"0.79216 0.81961 0.93333 1"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">material</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">visual</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">link</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">xacro:macro</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">robot</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>到这里我们在上述文件中创建了一个轮子的通用宏。现在需要做的就是在自己的机器人模型文件中调用宏文件，只需将下列代码加入到robot_base.urdf.xacro文件中：  </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">xacro:robot_wheel</span> <span class="attr">prefix</span>=<span class="string">"front_left"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">xacro:robot_wheel</span> <span class="attr">prefix</span>=<span class="string">"front_right"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">xacro:robot_wheel</span> <span class="attr">prefix</span>=<span class="string">"rear_left"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">xacro:robot_wheel</span> <span class="attr">prefix</span>=<span class="string">"reat_right"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>通过上述宏的形式就能够使用很少的代码对相同连杆元素模型代码实现复用    </p>
+<ol start="3">
+<li>定义关键组件<br>作为关节组件的轮子仅与机器人底盘相连接，因此轮子连接至base_link，并且绕各自坐标系中的Y轴旋转。所以我们可以使用连续型的关节组件。又由于四个轮子是相同的，我们又可以将轮子关节组件以xacro的形式定义在robot_essentials.xacro文件中，具体如下：<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">xacro:macro</span> <span class="attr">name</span>=<span class="string">"wheel_joint"</span> <span class="attr">params</span>=<span class="string">"prefix origin"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">joint</span> <span class="attr">name</span>=<span class="string">"$&#123;prefix&#125;_wheel_joint"</span> <span class="attr">type</span>=<span class="string">"continuous"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">axis</span> <span class="attr">xyz</span>=<span class="string">"0 1 0"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">parent</span> <span class="attr">link</span> =<span class="string">"base_link"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">child</span> <span class="attr">link</span> =<span class="string">"$&#123;prefix&#125;_wheel"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">origin</span> <span class="attr">rpy</span> =<span class="string">"0 0 0"</span> <span class="attr">xyz</span>= <span class="string">"$&#123;origin&#125;"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">joint</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">xacro:macro</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>同时我们还同样需要在robot_base.urdf.xacro文件中对轮子关节组件进行如下定义：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">xacro:wheel_joint</span> <span class="attr">prefix</span>=<span class="string">"front_left"</span> <span class="attr">origin</span>=<span class="string">"0.222 0.250 0"</span>/&gt;</span>    </span><br><span class="line"><span class="tag">&lt;<span class="name">xacro:wheel_joint</span> <span class="attr">prefix</span>=<span class="string">"front_right"</span> <span class="attr">origin</span>=<span class="string">"0.222 0.250 0"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">xacro:wheel_joint</span> <span class="attr">prefix</span>=<span class="string">"rear_left"</span> <span class="attr">origin</span>=<span class="string">"0.222 0.250 0"</span>/&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">xacro:wheel_joint</span> <span class="attr">prefix</span>=<span class="string">"rear_right"</span> <span class="attr">origin</span>=<span class="string">"0.222 0.250 0"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>到这里我们已经完成了机器人底座的模型构建，下面我们可以通过可视化工具rviz来看一看构造的模型是否与预期一致，具体操作命令如下：  </p>
+<blockquote>
+<p>cd ~/chapter3_ws/<br>source devel/setup.bash<br>roscd robot_description/urdf/<br>roslaunch urdf_tutorial display.launch model:=robot_base.urdf.xacro</p>
+</blockquote>
+<p><img src="6.png" alt="成功如下图"><br>如果一切顺利的话就能够通过rviz可视化界面看到我们构建的机器人模型了</p>
+<h2 id="机器臂构建"><a href="#机器臂构建" class="headerlink" title="机器臂构建"></a>机器臂构建</h2><h2 id="系统构成"><a href="#系统构成" class="headerlink" title="系统构成"></a>系统构成</h2>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MySQL</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ROS 机械臂</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://striveboy-12138.github.io/38.github.io/2021/03/31/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E2%80%94%E6%9E%84%E5%BB%BA%E5%B7%A5%E4%B8%9A%E7%BA%A7%E7%A7%BB%E5%8A%A8%E6%9C%BA%E6%A2%B0%E8%87%82/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2021/03/30/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E5%88%9B%E5%BB%BA%E5%B7%A5%E4%BD%9C%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%8A%9F%E8%83%BD%E5%8C%85/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ROS学习之路——创建工作空间与功能包</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#技术要求"><span class="toc-number">1.</span> <span class="toc-text">技术要求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常见的移动机械臂"><span class="toc-number">2.</span> <span class="toc-text">常见的移动机械臂</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#移动机械臂的构建入门"><span class="toc-number">3.</span> <span class="toc-text">移动机械臂的构建入门</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#单位以及坐标系"><span class="toc-number">4.</span> <span class="toc-text">单位以及坐标系</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Gazebo及ROS机器人模型格式设定"><span class="toc-number">4.1.</span> <span class="toc-text">Gazebo及ROS机器人模型格式设定</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#机器人底座构建"><span class="toc-number">5.</span> <span class="toc-text">机器人底座构建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#机器人底座需求"><span class="toc-number">5.1.</span> <span class="toc-text">机器人底座需求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#软件参数"><span class="toc-number">5.2.</span> <span class="toc-text">软件参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#机器人底座建模"><span class="toc-number">5.3.</span> <span class="toc-text">机器人底座建模</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#机器臂构建"><span class="toc-number">6.</span> <span class="toc-text">机器臂构建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#系统构成"><span class="toc-number">7.</span> <span class="toc-text">系统构成</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -264,8 +484,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
