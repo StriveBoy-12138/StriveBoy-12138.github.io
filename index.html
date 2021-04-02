@@ -160,6 +160,168 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-ROS学习之路——构建工业级移动机械臂（二）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/04/02/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E6%9E%84%E5%BB%BA%E5%B7%A5%E4%B8%9A%E7%BA%A7%E7%A7%BB%E5%8A%A8%E6%9C%BA%E6%A2%B0%E8%87%82%EF%BC%88%E4%BA%8C%EF%BC%89/">ROS学习之路——构建工业级移动机械臂（二）</a>
+    </h1>
+  
+
+        
+        <a href="/2021/04/02/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E6%9E%84%E5%BB%BA%E5%B7%A5%E4%B8%9A%E7%BA%A7%E7%A7%BB%E5%8A%A8%E6%9C%BA%E6%A2%B0%E8%87%82%EF%BC%88%E4%BA%8C%EF%BC%89/" class="archive-article-date">
+  	<time datetime="2021-04-02T06:51:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>我们已经使用URDF构建了一个机器人底座模型，并在Gazebo中将其进行了客可视化，下面然我们开始构建机械臂。机械臂的构建过程类似与机器人底座的构建过程，均使用URDF的方式构建，系需要参照机器人底座的URDF文件，并进行一些修改即可。下面来介绍机械臂的建立过程。</p>
+        
+          <a class="article-more-a" href="/2021/04/02/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E6%9E%84%E5%BB%BA%E5%B7%A5%E4%B8%9A%E7%BA%A7%E7%A7%BB%E5%8A%A8%E6%9C%BA%E6%A2%B0%E8%87%82%EF%BC%88%E4%BA%8C%EF%BC%89/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+        <div class="article-pop-out tagcloud">
+          <i class="icon-tuding"></i>
+          <a class="article-tag-list-link color3">置顶</a>
+        </div>
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ROS</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/04/02/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E6%9E%84%E5%BB%BA%E5%B7%A5%E4%B8%9A%E7%BA%A7%E7%A7%BB%E5%8A%A8%E6%9C%BA%E6%A2%B0%E8%87%82%EF%BC%88%E4%BA%8C%EF%BC%89/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="w-ROS学习之路——构建工业级移动机械臂（一）" class="article article-type-w  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/31/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E6%9E%84%E5%BB%BA%E5%B7%A5%E4%B8%9A%E7%BA%A7%E7%A7%BB%E5%8A%A8%E6%9C%BA%E6%A2%B0%E8%87%82%EF%BC%88%E4%B8%80%EF%BC%89/">ROS学习之路———构建工业级移动机械臂（一）</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/31/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E6%9E%84%E5%BB%BA%E5%B7%A5%E4%B8%9A%E7%BA%A7%E7%A7%BB%E5%8A%A8%E6%9C%BA%E6%A2%B0%E8%87%82%EF%BC%88%E4%B8%80%EF%BC%89/" class="archive-article-date">
+  	<time datetime="2021-03-31T06:26:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-31</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>机器人学是一个跨多个学科的工程领域，在当今有着广泛的应用，与移动机器人和不移动机器的标准分类不同，机器人还根据应用场景、工作介质等进行分类，如地上移动机器人、空中机器人、海洋机器人和空间一起人等。其中最常见的是移动机器人，另一类常用的静态机器人是机械别，它在工业中有着广泛的应用。它最初应用于起重，这了任务通常能够自动完成且具有重复性，但目前机械臂已经变得足够聪明，能够理解环境和感兴趣的物体，并与人类一起执行任务。这类机械臂现在叫cobot，就时移动机械臂。<br>本次教程主要介绍常见的移动机械臂，以便更好的了解和使用他们。在此基础上，我们将探讨构建移动机械臂项目先决条件和方法。通过本次学习，我门可以分别对机器人底座和机械臂进行建模和模拟，然后将他们组合在一起，并能够查看运行情况。</p>
+        
+          <a class="article-more-a" href="/2021/03/31/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E6%9E%84%E5%BB%BA%E5%B7%A5%E4%B8%9A%E7%BA%A7%E7%A7%BB%E5%8A%A8%E6%9C%BA%E6%A2%B0%E8%87%82%EF%BC%88%E4%B8%80%EF%BC%89/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+        <div class="article-pop-out tagcloud">
+          <i class="icon-tuding"></i>
+          <a class="article-tag-list-link color3">置顶</a>
+        </div>
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ROS 机械臂</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/31/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E6%9E%84%E5%BB%BA%E5%B7%A5%E4%B8%9A%E7%BA%A7%E7%A7%BB%E5%8A%A8%E6%9C%BA%E6%A2%B0%E8%87%82%EF%BC%88%E4%B8%80%EF%BC%89/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-2021华为软挑赛提需求分析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -463,82 +625,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/06/17/STITP-%E5%9F%BA%E4%BA%8EWebRTC%E7%9A%84%E8%BF%9C%E7%A8%8B%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0(%E7%AC%AC%E4%B8%80%E9%98%B6%E6%AE%B5%E6%97%A5%E5%BF%97%E6%9B%B4%E6%96%B0%E4%B8%AD)/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="w-ROS学习之路——构建工业级移动机械臂（一）" class="article article-type-w  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/03/31/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E6%9E%84%E5%BB%BA%E5%B7%A5%E4%B8%9A%E7%BA%A7%E7%A7%BB%E5%8A%A8%E6%9C%BA%E6%A2%B0%E8%87%82%EF%BC%88%E4%B8%80%EF%BC%89/">ROS学习之路———构建工业级移动机械臂（一）</a>
-    </h1>
-  
-
-        
-        <a href="/2021/03/31/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E6%9E%84%E5%BB%BA%E5%B7%A5%E4%B8%9A%E7%BA%A7%E7%A7%BB%E5%8A%A8%E6%9C%BA%E6%A2%B0%E8%87%82%EF%BC%88%E4%B8%80%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2021-03-31T06:26:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-31</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>机器人学是一个跨多个学科的工程领域，在当今有着广泛的应用，与移动机器人和不移动机器的标准分类不同，机器人还根据应用场景、工作介质等进行分类，如地上移动机器人、空中机器人、海洋机器人和空间一起人等。其中最常见的是移动机器人，另一类常用的静态机器人是机械别，它在工业中有着广泛的应用。它最初应用于起重，这了任务通常能够自动完成且具有重复性，但目前机械臂已经变得足够聪明，能够理解环境和感兴趣的物体，并与人类一起执行任务。这类机械臂现在叫cobot，就时移动机械臂。<br>本次教程主要介绍常见的移动机械臂，以便更好的了解和使用他们。在此基础上，我们将探讨构建移动机械臂项目先决条件和方法。通过本次学习，我门可以分别对机器人底座和机械臂进行建模和模拟，然后将他们组合在一起，并能够查看运行情况。</p>
-        
-          <a class="article-more-a" href="/2021/03/31/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E6%9E%84%E5%BB%BA%E5%B7%A5%E4%B8%9A%E7%BA%A7%E7%A7%BB%E5%8A%A8%E6%9C%BA%E6%A2%B0%E8%87%82%EF%BC%88%E4%B8%80%EF%BC%89/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ROS 机械臂</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/03/31/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E6%9E%84%E5%BB%BA%E5%B7%A5%E4%B8%9A%E7%BA%A7%E7%A7%BB%E5%8A%A8%E6%9C%BA%E6%A2%B0%E8%87%82%EF%BC%88%E4%B8%80%EF%BC%89/">展开全文 >></a>
         </p>
       
 
@@ -874,68 +960,6 @@
 
 
   
-    <article id="post-嵌入式Linux系统启动三剑客之BootLoader-uboot" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/23/%E5%B5%8C%E5%85%A5%E5%BC%8FLinux%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E4%B8%89%E5%89%91%E5%AE%A2%E4%B9%8BBootLoader-uboot/">嵌入式Linux系统启动三剑客之BootLoader--uboot</a>
-    </h1>
-  
-
-        
-        <a href="/2020/11/23/%E5%B5%8C%E5%85%A5%E5%BC%8FLinux%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E4%B8%89%E5%89%91%E5%AE%A2%E4%B9%8BBootLoader-uboot/" class="archive-article-date">
-  	<time datetime="2020-11-23T05:48:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/11/23/%E5%B5%8C%E5%85%A5%E5%BC%8FLinux%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E4%B8%89%E5%89%91%E5%AE%A2%E4%B9%8BBootLoader-uboot/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1048,11 +1072,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ROS</a>
+                <a href="javascript:void(0)" class="js-tag color1">-nanoPC-T4</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">-nanoPC-T4</a>
+                <a href="javascript:void(0)" class="js-tag color4">ROS</a>
               </li>
              
               <li class="article-tag-list-item">
