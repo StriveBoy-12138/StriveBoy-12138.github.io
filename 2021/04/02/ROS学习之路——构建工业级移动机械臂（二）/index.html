@@ -18,8 +18,12 @@
 <meta property="og:image" content="http://striveboy-12138.github.io/2021/04/02/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E6%9E%84%E5%BB%BA%E5%B7%A5%E4%B8%9A%E7%BA%A7%E7%A7%BB%E5%8A%A8%E6%9C%BA%E6%A2%B0%E8%87%82%EF%BC%88%E4%BA%8C%EF%BC%89/1.png">
 <meta property="og:image" content="http://striveboy-12138.github.io/2021/04/02/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E6%9E%84%E5%BB%BA%E5%B7%A5%E4%B8%9A%E7%BA%A7%E7%A7%BB%E5%8A%A8%E6%9C%BA%E6%A2%B0%E8%87%82%EF%BC%88%E4%BA%8C%EF%BC%89/2.png">
 <meta property="og:image" content="http://striveboy-12138.github.io/2021/04/02/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E6%9E%84%E5%BB%BA%E5%B7%A5%E4%B8%9A%E7%BA%A7%E7%A7%BB%E5%8A%A8%E6%9C%BA%E6%A2%B0%E8%87%82%EF%BC%88%E4%BA%8C%EF%BC%89/3.png">
+<meta property="og:image" content="http://striveboy-12138.github.io/2021/04/02/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E6%9E%84%E5%BB%BA%E5%B7%A5%E4%B8%9A%E7%BA%A7%E7%A7%BB%E5%8A%A8%E6%9C%BA%E6%A2%B0%E8%87%82%EF%BC%88%E4%BA%8C%EF%BC%89/4.png">
+<meta property="og:image" content="http://striveboy-12138.github.io/2021/04/02/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E6%9E%84%E5%BB%BA%E5%B7%A5%E4%B8%9A%E7%BA%A7%E7%A7%BB%E5%8A%A8%E6%9C%BA%E6%A2%B0%E8%87%82%EF%BC%88%E4%BA%8C%EF%BC%89/5.png">
+<meta property="og:image" content="http://striveboy-12138.github.io/2021/04/02/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E6%9E%84%E5%BB%BA%E5%B7%A5%E4%B8%9A%E7%BA%A7%E7%A7%BB%E5%8A%A8%E6%9C%BA%E6%A2%B0%E8%87%82%EF%BC%88%E4%BA%8C%EF%BC%89/6.png">
+<meta property="og:image" content="http://striveboy-12138.github.io/2021/04/02/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E6%9E%84%E5%BB%BA%E5%B7%A5%E4%B8%9A%E7%BA%A7%E7%A7%BB%E5%8A%A8%E6%9C%BA%E6%A2%B0%E8%87%82%EF%BC%88%E4%BA%8C%EF%BC%89/7.png">
 <meta property="article:published_time" content="2021-04-02T06:51:38.000Z">
-<meta property="article:modified_time" content="2021-04-02T08:59:44.017Z">
+<meta property="article:modified_time" content="2021-04-12T10:24:59.169Z">
 <meta property="article:author" content="小褚同学">
 <meta property="article:tag" content="ROS">
 <meta name="twitter:card" content="summary">
@@ -269,12 +273,81 @@
 
 <p>到这里机器人模型的Gazebo属性就添加好了，下面开始创建机械装置。</p>
 <ol start="2">
-<li>定义执行器    </li>
+<li>定义执行器<br>现在我们为所有的连杆添加执行器信息。执行器的宏定义在 <strong>robot_arm_essentials.xacro</strong> 文件中，如下图所示：  </li>
 </ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">xacro:macro</span> <span class="attr">name</span>=<span class="string">"arm_transmission"</span> <span class="attr">params</span>=<span class="string">"prefix "</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">transmission</span> <span class="attr">name</span>=<span class="string">"$&#123;prefix&#125;_trans"</span> <span class="attr">type</span>=<span class="string">"SimpleTransmission"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">type</span>&gt;</span>transmission_interface/SimpleTransmission<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">actuator</span> <span class="attr">name</span>=<span class="string">"$&#123;prefix&#125;_motor"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">hardwareInterface</span>&gt;</span>hardware_interface/PositionJointInterface<span class="tag">&lt;/<span class="name">hardwareInterface</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">mechanicalReduction</span>&gt;</span>1<span class="tag">&lt;/<span class="name">mechanicalReduction</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">actuator</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">joint</span> <span class="attr">name</span>=<span class="string">"$&#123;prefix&#125;_joint"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">hardwareInterface</span>&gt;</span>hardware_interface/PositionJointInterface<span class="tag">&lt;/<span class="name">hardwareInterface</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">joint</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">transmission</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">xacro:macro</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>同时我们还需要在机械臂文件中调用上述宏，具体如下：  </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">xacro:arm_transmission</span> <span class="attr">prefix</span>=<span class="string">"arm_base"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">xacro:arm_transmission</span> <span class="attr">prefix</span>=<span class="string">"shoulder"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">xacro:arm_transmission</span> <span class="attr">prefix</span>=<span class="string">"bottom_wrist"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">xacro:arm_transmission</span> <span class="attr">prefix</span>=<span class="string">"elbow"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">xacro:arm_transmission</span> <span class="attr">prefix</span>=<span class="string">"top_wrist"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在添加了机械装置之后，就可以调佣控制器来使用相应的模型组件并让机器人动起来了。</p>
 <ol start="3">
-<li>定义控制器   </li>
+<li>定义控制器<br>最后我们使用向已经创建的 <strong>gazebo_essentials_arm.xacro</strong> 文件中添加控制器 <strong>joint_state_publisher</strong> 来导入建立Gazebo和ROS通信连接所必须的组件，具体方法如下：  </li>
 </ol>
-<h3 id="机械臂测试"><a href="#机械臂测试" class="headerlink" title="机械臂测试"></a>机械臂测试</h3><h2 id="系统集成"><a href="#系统集成" class="headerlink" title="系统集成"></a>系统集成</h2><h3 id="移动机械臂建模"><a href="#移动机械臂建模" class="headerlink" title="移动机械臂建模"></a>移动机械臂建模</h3><h3 id="移动机械臂模拟与测试"><a href="#移动机械臂模拟与测试" class="headerlink" title="移动机械臂模拟与测试"></a>移动机械臂模拟与测试</h3>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">gazebo</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">plugin</span> <span class="attr">name</span>=<span class="string">"joint_state_publisher"</span> <span class="attr">filename</span>=<span class="string">"libgazebo_ros_joint_state_publisher.so"</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">jointName</span>&gt;</span>arm_base_joint, shoulder_joint, bottom_wrist_joint, elbow_joint, bottom_wrist_joint<span class="tag">&lt;/<span class="name">jointName</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">gazebo</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>joint_state_publisher控制器用于发布机械臂连杆在空间中的状态信息。</p>
+<p>到这里我们已经为机器人定义了宏和Gazebo插件。下面我们把这些内容添加到机械臂文件中。可以通过&lt; robot &gt; 宏标签内添加如下内容：  </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">xacro:include</span> <span class="attr">filename</span>=<span class="string">"$(find robot_description)/urdf/robot_base_essentials.xacro"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">xacro:include</span> <span class="attr">filename</span>=<span class="string">"$(find robot_description)/urdf/gazebo_essentials_base.xacro"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>下面我们创建一个名为 <strong>arm_control.yaml</strong> 的文件，并定义机械臂控制器的配置参数：  </p>
+<blockquote>
+<p>cd chapter3_ws/src/robot_description/config/<br>gedit arm_control.yaml   </p>
+</blockquote>
+<p>并将一下代码加入到上述文件中去：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">arm_controller:</span><br><span class="line">    type: position_controllers&#x2F;JointTrajectoryController</span><br><span class="line">    joints:</span><br><span class="line">       - arm_base_joint</span><br><span class="line">       - shoulder_joint</span><br><span class="line">       - bottom_wrist_joint</span><br><span class="line">       - elbow_joint</span><br><span class="line">       - top_wrist_joint</span><br><span class="line">    constraints:</span><br><span class="line">      goal_time: 0.6</span><br><span class="line">      stopped_velocity_tolerance: 0.05</span><br><span class="line">      hip: &#123;trajectory: 0.1, goal: 0.1&#125;</span><br><span class="line">      shoulder: &#123;trajectory: 0.1, goal: 0.1&#125;</span><br><span class="line">      elbow: &#123;trajectory: 0.1, goal: 0.1&#125;</span><br><span class="line">      wrist: &#123;trajectory: 0.1, goal: 0.1&#125;</span><br><span class="line">    stop_trajectory_duration: 0.5</span><br><span class="line">    state_publish_rate:  25</span><br><span class="line">    action_monitor_rate: 10</span><br><span class="line">&#x2F;gazebo_ros_control:</span><br><span class="line">    pid_gains:</span><br><span class="line">      arm_base_joint: &#123;p: 1000.0, i: 100.0, d: 10.0&#125;</span><br><span class="line">      shoulder_joint: &#123;p: 1000.0, i: 100.0, d: 10.0&#125;</span><br><span class="line">      bottom_wrist_joint: &#123;p: 1000.0, i: 100.0, d: 10.0&#125;</span><br><span class="line">      elbow_joint: &#123;p: 1000.0, i: 100.0, d: 10.0&#125;</span><br><span class="line">      top_wrist_joint: &#123;p: 100.0, i: 0.0, d: 0.0&#125;</span><br></pre></td></tr></table></figure>
+
+<p>至此，我们完成了机械臂模型的构建，下面在Gazebo中进行测试。</p>
+<h3 id="机械臂测试"><a href="#机械臂测试" class="headerlink" title="机械臂测试"></a>机械臂测试</h3><p>下面我们对机械臂模型进行激活和测试，查看它是如何进行运动的，具体步骤如下：  </p>
+<ul>
+<li>创建一个启动文件来启动机械臂及控制器，执行以下命令，创建启动文件：  <blockquote>
+<p>cd chapter3_ws/src/robot_description/launch/<br>gedit arm_gazebo_control_xacro.launch</p>
+</blockquote>
+</li>
+</ul>
+<p>将下列代码加入到上述文件：  </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">launch</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">"robot_description"</span> <span class="attr">command</span>=<span class="string">"$(find xacro)/xacro --inorder $(find robot_description)/urdf/robot_arm.urdf.xacro"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">include</span> <span class="attr">file</span>=<span class="string">"$(find gazebo_ros)/launch/empty_world.launch"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">node</span> <span class="attr">name</span>=<span class="string">"spawn_urdf"</span> <span class="attr">pkg</span>=<span class="string">"gazebo_ros"</span> <span class="attr">type</span>=<span class="string">"spawn_model"</span> <span class="attr">args</span>=<span class="string">"-param robot_description -urdf -model robot_arm"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">rosparam</span> <span class="attr">command</span>=<span class="string">"load"</span> <span class="attr">file</span>=<span class="string">"$(find robot_description)/config/arm_control.yaml"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">node</span> <span class="attr">name</span>=<span class="string">"arm_controller_spawner"</span> <span class="attr">pkg</span>=<span class="string">"controller_manager"</span> <span class="attr">type</span>=<span class="string">"controller_manager"</span> <span class="attr">args</span>=<span class="string">"spawn arm_controller"</span> <span class="attr">respawn</span>=<span class="string">"false"</span> <span class="attr">output</span>=<span class="string">"screen"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">rosparam</span> <span class="attr">command</span>=<span class="string">"load"</span> <span class="attr">file</span>=<span class="string">"$(find robot_description)/config/joint_state_controller.yaml"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">node</span> <span class="attr">name</span>=<span class="string">"joint_state_controller_spawner"</span> <span class="attr">pkg</span>=<span class="string">"controller_manager"</span> <span class="attr">type</span>=<span class="string">"controller_manager"</span> <span class="attr">args</span>=<span class="string">"spawn joint_state_controller"</span> <span class="attr">respawn</span>=<span class="string">"false"</span> <span class="attr">output</span>=<span class="string">"screen"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">node</span> <span class="attr">name</span>=<span class="string">"robot_state_publisher"</span> <span class="attr">pkg</span>=<span class="string">"robot_state_publisher"</span> <span class="attr">type</span>=<span class="string">"robot_state_publisher"</span> <span class="attr">respawn</span>=<span class="string">"false"</span> <span class="attr">output</span>=<span class="string">"screen"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">launch</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>运行以下命令，对机械臂进行可视化,然后打开新窗口，应执行命令查看相应的话题列表：<blockquote>
+<p>roslaunch robot_description arm_gazebo_control_xacro.launch  </p>
+</blockquote>
+</li>
+</ul>
+<p><img src="4.png" alt="可视化">  </p>
+<blockquote>
+<p>rostopic list   </p>
+</blockquote>
+<p><img src="5.png" alt="可视化"></p>
+<ul>
+<li>使用以下命令通过发布运动的数值控制机械臂运动：  <blockquote>
+<p>rostopic pub /arm_controller/command trajectory_msgs/JointTrajectory ‘{joint_names: [“arm_base_joint”, “shoulder_joint”, “bottom_wrist_joint”, “elbow_joint”, “top_wrist_joint”], points: [{positions: [-0.1, 0.210116830848170721, 0.022747275919015486, 0.0024182584123728645, 0.00012406874824844039], time_from_start: [1.0,.0.]}]}’</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="系统集成"><a href="#系统集成" class="headerlink" title="系统集成"></a>系统集成</h2><p>至此，我们成功创建的一个机器人的底座和一个机械臂，并且在Gazebo中对其进行了模拟测试，距离构建移动机械臂只有一步之遥。</p>
+<h3 id="移动机械臂建模"><a href="#移动机械臂建模" class="headerlink" title="移动机械臂建模"></a>移动机械臂建模</h3><p>我们通过xacro简单的实现机器人底座和机械臂的连接，即创建移动机器机械臂的目标就是将机械臂与机器人底座连接。因此我们需要将机械臂模型中的 <strong>arm_base</strong> 连杆组件连接到机器人底座模型中的 <strong>base_link</strong> 连杆组件中。具体方法就是创建一个名为 <strong>mobile_manipulator.urdf.xacro</strong> 文件，然后将下列代码添加到该文件中去：  </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0"?&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">robot</span> <span class="attr">xmlns:xacro</span>=<span class="string">"http://ros.org/wiki/xacro"</span> <span class="attr">name</span>=<span class="string">"robot_base"</span> &gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">xacro:include</span> <span class="attr">filename</span>=<span class="string">"$(find robot_description)/urdf/robot_base.urdf.xacro"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">xacro:include</span> <span class="attr">filename</span>=<span class="string">"$(find robot_description)/urdf/robot_arm.urdf.xacro"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">xacro:arm_joint</span> <span class="attr">prefix</span>=<span class="string">"arm_base_link"</span> <span class="attr">parent</span>=<span class="string">"base_link"</span> <span class="attr">child</span>=<span class="string">"arm_base"</span> <span class="attr">originxyz</span>=<span class="string">"0.20 0.0 0.145"</span> <span class="attr">originrpy</span>=<span class="string">"0 0 0"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">robot</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>然后可以使用以下命令启动rviz，加载移动机械臂模型并 对其进行可视化，具体操作如下：  </p>
+<blockquote>
+<p>cd chapter3_ws/<br>source devel/setup.bash<br>roscd robot_description/urdf/<br>roslaunch urdf_tutorial display.launch model:=mobile_manipulator.urdf</p>
+</blockquote>
+<p><img src="6.png" alt="可视化"></p>
+<h3 id="移动机械臂模拟与测试"><a href="#移动机械臂模拟与测试" class="headerlink" title="移动机械臂模拟与测试"></a>移动机械臂模拟与测试</h3><p>首先使用以下命令创建启动文件,并将设置代码加入到该文件中去：   </p>
+<blockquote>
+<p>cd chapter3_ws/src/robot_description/launch<br>gedit mobile_manipulator_gazebo_control_xacro.launch  </p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">launch</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">"robot_description"</span> <span class="attr">command</span>=<span class="string">"$(find xacro)/xacro --inorder $(find robot_description)/urdf/mobile_manipulator.urdf"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">include</span> <span class="attr">file</span>=<span class="string">"$(find gazebo_ros)/launch/empty_world.launch"</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!--arg name="world_name" value="/home/robot/custom_worlds/postoffice.world"/--&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">node</span> <span class="attr">name</span>=<span class="string">"spawn_urdf"</span> <span class="attr">pkg</span>=<span class="string">"gazebo_ros"</span> <span class="attr">type</span>=<span class="string">"spawn_model"</span> <span class="attr">args</span>=<span class="string">"-param robot_description -urdf -model mobile_manipulator"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">rosparam</span> <span class="attr">command</span>=<span class="string">"load"</span> <span class="attr">file</span>=<span class="string">"$(find robot_description)/config/arm_control.yaml"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">node</span> <span class="attr">name</span>=<span class="string">"arm_controller_spawner"</span> <span class="attr">pkg</span>=<span class="string">"controller_manager"</span> <span class="attr">type</span>=<span class="string">"controller_manager"</span> <span class="attr">args</span>=<span class="string">"spawn arm_controller"</span> <span class="attr">respawn</span>=<span class="string">"false"</span> <span class="attr">output</span>=<span class="string">"screen"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">rosparam</span> <span class="attr">command</span>=<span class="string">"load"</span> <span class="attr">file</span>=<span class="string">"$(find robot_description)/config/joint_state_controller.yaml"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">node</span> <span class="attr">name</span>=<span class="string">"joint_state_controller_spawner"</span> <span class="attr">pkg</span>=<span class="string">"controller_manager"</span> <span class="attr">type</span>=<span class="string">"controller_manager"</span> <span class="attr">args</span>=<span class="string">"spawn joint_state_controller"</span> <span class="attr">respawn</span>=<span class="string">"false"</span> <span class="attr">output</span>=<span class="string">"screen"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">rosparam</span> <span class="attr">command</span>=<span class="string">"load"</span> <span class="attr">file</span>=<span class="string">"$(find robot_description)/config/control.yaml"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">node</span> <span class="attr">name</span>=<span class="string">"base_controller_spawner"</span> <span class="attr">pkg</span>=<span class="string">"controller_manager"</span> <span class="attr">type</span>=<span class="string">"spawner"</span> <span class="attr">args</span>=<span class="string">"robot_base_joint_publisher robot_base_velocity_controller"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">node</span> <span class="attr">name</span>=<span class="string">"robot_state_publisher"</span> <span class="attr">pkg</span>=<span class="string">"robot_state_publisher"</span> <span class="attr">type</span>=<span class="string">"robot_state_publisher"</span> <span class="attr">respawn</span>=<span class="string">"false"</span> <span class="attr">output</span>=<span class="string">"screen"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">launch</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>最后运行一下命令可视化移动机械臂模型：  </p>
+<blockquote>
+<p>cd chapter3_ws/<br>source devel/setup.bash<br>roslaunch robot_description mobile_manipulator_gazebo_xacro.launch  model</p>
+</blockquote>
+<p><img src="7.png" alt="可视化">  </p>
+<p>现在就可以基于前面使用过的 <strong>rqt_robot_steering</strong> 以及 <strong>rostopic</strong>的参数来控制移动机械臂了。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>在本次学习中，我们了解了如何在ROS中借助Gazebo定义、建模和模拟机器人。我们通过Gazebo上的插件定义了机器人的物理特性。从机器人底座开始，接着创建了一个5自由度的机械臂。最后，我们将机器人底座和机械臂组装起来，构成了移动机械臂。</p>
+
       
 
       
@@ -412,7 +485,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#机械臂构建"><span class="toc-number">1.</span> <span class="toc-text">机械臂构建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#机械臂需求"><span class="toc-number">1.1.</span> <span class="toc-text">机械臂需求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#软件参数"><span class="toc-number">1.2.</span> <span class="toc-text">软件参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#机械臂建模"><span class="toc-number">1.3.</span> <span class="toc-text">机械臂建模</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#机械臂模拟"><span class="toc-number">1.4.</span> <span class="toc-text">机械臂模拟</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#机械臂测试"><span class="toc-number">1.5.</span> <span class="toc-text">机械臂测试</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#系统集成"><span class="toc-number">2.</span> <span class="toc-text">系统集成</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#移动机械臂建模"><span class="toc-number">2.1.</span> <span class="toc-text">移动机械臂建模</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#移动机械臂模拟与测试"><span class="toc-number">2.2.</span> <span class="toc-text">移动机械臂模拟与测试</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#机械臂构建"><span class="toc-number">1.</span> <span class="toc-text">机械臂构建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#机械臂需求"><span class="toc-number">1.1.</span> <span class="toc-text">机械臂需求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#软件参数"><span class="toc-number">1.2.</span> <span class="toc-text">软件参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#机械臂建模"><span class="toc-number">1.3.</span> <span class="toc-text">机械臂建模</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#机械臂模拟"><span class="toc-number">1.4.</span> <span class="toc-text">机械臂模拟</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#机械臂测试"><span class="toc-number">1.5.</span> <span class="toc-text">机械臂测试</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#系统集成"><span class="toc-number">2.</span> <span class="toc-text">系统集成</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#移动机械臂建模"><span class="toc-number">2.1.</span> <span class="toc-text">移动机械臂建模</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#移动机械臂模拟与测试"><span class="toc-number">2.2.</span> <span class="toc-text">移动机械臂模拟与测试</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -527,15 +600,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">华为软挑</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">golang</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">华为软挑</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -551,6 +624,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">微信小程序；教育管理系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">STITP</a>
               </li>
              
@@ -563,15 +644,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">微信小程序；教育管理系统</a>
               </li>
              
               <li class="article-tag-list-item">
