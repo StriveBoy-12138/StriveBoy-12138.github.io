@@ -16,9 +16,10 @@
 <meta property="og:description" content="本教程记录如何用C++编写并检验简单的服务端和客户端。">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://striveboy-12138.github.io/2021/04/15/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94C++%E7%BC%96%E5%86%99%E7%AE%80%E5%8D%95%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%92%8C%E5%AE%A2%E6%88%B7%E7%AB%AF/1.png">
+<meta property="og:image" content="http://striveboy-12138.github.io/2021/04/15/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94C++%E7%BC%96%E5%86%99%E7%AE%80%E5%8D%95%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%92%8C%E5%AE%A2%E6%88%B7%E7%AB%AF/2.png">
 <meta property="og:image" content="http://striveboy-12138.github.io/2021/04/15/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94C++%E7%BC%96%E5%86%99%E7%AE%80%E5%8D%95%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%92%8C%E5%AE%A2%E6%88%B7%E7%AB%AF/3.png">
 <meta property="article:published_time" content="2021-04-15T07:26:52.000Z">
-<meta property="article:modified_time" content="2021-04-15T07:27:55.019Z">
+<meta property="article:modified_time" content="2021-04-16T07:51:50.670Z">
 <meta property="article:author" content="小褚同学">
 <meta property="article:tag" content="ROS">
 <meta name="twitter:card" content="summary">
@@ -220,7 +221,7 @@
 </blockquote>
 </li>
 </ul>
-<p>得到的结果<br>![2.png]</p>
+<p>得到的结果<br><img src="2.png" alt="运行结果"></p>
 <ul>
 <li>总结<br>通过以上练习就算简单的了解了ROS通信机制中的服务通信，但作为初学者，我们会遇到非常多的问题，这些问题中大多数都和代码错误以及编译过程中所需依赖的设置有着非常大的关系，所以自己手动操作非常重要！！<br>下面就分享一个小问题，自己在代码写完，以来设置完之后运行服务和客户端节点是返回问题如下图：<br><img src="3.png" alt="错误"><br>在确定完代码没有错误之后，根据CSDN博主<a href="https://blog.csdn.net/weixin_42303723/article/details/112595145" target="_blank" rel="noopener">小六说酒</a>的提醒找到了问题所在。原来在<strong>CMakeList.txt</strong> 偷懒复制客户端client的依赖时，没有全部改过来，导致应该使client.cpp产生可执行文件client的地方写成了生成可执行文件server，导致可执行文件重复，出现了节点重复的问题.</li>
 </ul>
@@ -481,10 +482,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">-nanoPC-T4</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
@@ -497,11 +494,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ROS c++ Publisher</a>
+                <a href="javascript:void(0)" class="js-tag color1">-nanoPC-T4</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ROS 机械臂</a>
+                <a href="javascript:void(0)" class="js-tag color3">ROS c++ Publisher</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -514,6 +511,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">远程控制</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ROS 机械臂</a>
               </li>
              
               <li class="article-tag-list-item">
