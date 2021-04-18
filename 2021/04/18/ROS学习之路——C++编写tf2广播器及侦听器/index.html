@@ -8,19 +8,19 @@
   <link rel="dns-prefetch" href="http://StriveBoy-12138.github.io">
   <title>ROS学习之路———C++编写tf2广播器及侦听器 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="tf2 简介tf2是转换库的第二代，可让用户随时间跟踪多个坐标系。tf2保持时间缓冲的树结构中的坐标系之间的关系，并允许用户在任意所需的时间点在任意两个坐标系之间转换点，向量等，任何用户基本上都会使用tf2进行两项任务，即监听转换和广播转换。 编写tf2广播器广播转换：将坐标系的相对姿势发送到系统的其余部分。一个系统可以有许多广播公司，每个广播公司都提供有关机器人不同部分的信息  创建一个lear">
+  <meta name="description" content="tf2 简介tf2是转换库的第二代，可让用户随时间跟踪多个坐标系。tf2保持时间缓冲的树结构中的坐标系之间的关系，并允许用户在任意所需的时间点在任意两个坐标系之间转换点，向量等，任何用户基本上都会使用tf2进行两项任务，即监听转换和广播转换。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ROS学习之路———C++编写tf2广播器及侦听器">
 <meta property="og:url" content="http://striveboy-12138.github.io/2021/04/18/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94C++%E7%BC%96%E5%86%99tf2%E5%B9%BF%E6%92%AD%E5%99%A8%E5%8F%8A%E4%BE%A6%E5%90%AC%E5%99%A8/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="tf2 简介tf2是转换库的第二代，可让用户随时间跟踪多个坐标系。tf2保持时间缓冲的树结构中的坐标系之间的关系，并允许用户在任意所需的时间点在任意两个坐标系之间转换点，向量等，任何用户基本上都会使用tf2进行两项任务，即监听转换和广播转换。 编写tf2广播器广播转换：将坐标系的相对姿势发送到系统的其余部分。一个系统可以有许多广播公司，每个广播公司都提供有关机器人不同部分的信息  创建一个lear">
+<meta property="og:description" content="tf2 简介tf2是转换库的第二代，可让用户随时间跟踪多个坐标系。tf2保持时间缓冲的树结构中的坐标系之间的关系，并允许用户在任意所需的时间点在任意两个坐标系之间转换点，向量等，任何用户基本上都会使用tf2进行两项任务，即监听转换和广播转换。">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://striveboy-12138.github.io/2021/04/18/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94C++%E7%BC%96%E5%86%99tf2%E5%B9%BF%E6%92%AD%E5%99%A8%E5%8F%8A%E4%BE%A6%E5%90%AC%E5%99%A8/1.png">
 <meta property="og:image" content="http://striveboy-12138.github.io/2021/04/18/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94C++%E7%BC%96%E5%86%99tf2%E5%B9%BF%E6%92%AD%E5%99%A8%E5%8F%8A%E4%BE%A6%E5%90%AC%E5%99%A8/2.png">
 <meta property="og:image" content="http://striveboy-12138.github.io/2021/04/18/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94C++%E7%BC%96%E5%86%99tf2%E5%B9%BF%E6%92%AD%E5%99%A8%E5%8F%8A%E4%BE%A6%E5%90%AC%E5%99%A8/3.png">
 <meta property="og:image" content="http://striveboy-12138.github.io/2021/04/18/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94C++%E7%BC%96%E5%86%99tf2%E5%B9%BF%E6%92%AD%E5%99%A8%E5%8F%8A%E4%BE%A6%E5%90%AC%E5%99%A8/4.png">
 <meta property="article:published_time" content="2021-04-18T05:58:42.000Z">
-<meta property="article:modified_time" content="2021-04-18T13:15:46.594Z">
+<meta property="article:modified_time" content="2021-04-18T13:21:45.037Z">
 <meta property="article:author" content="小褚同学">
 <meta property="article:tag" content="tf2 ROS">
 <meta name="twitter:card" content="summary">
@@ -193,7 +193,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="tf2-简介"><a href="#tf2-简介" class="headerlink" title="tf2 简介"></a><strong>tf2</strong> 简介</h2><p>tf2是转换库的第二代，可让用户随时间跟踪多个坐标系。tf2保持时间缓冲的树结构中的坐标系之间的关系，并允许用户在任意所需的时间点在任意两个坐标系之间转换点，向量等，任何用户基本上都会使用tf2进行两项任务，即监听转换和广播转换。<br><img src="1.png" alt="tf2"></p>
+        <h2 id="tf2-简介"><a href="#tf2-简介" class="headerlink" title="tf2 简介"></a><strong>tf2</strong> 简介</h2><p>tf2是转换库的第二代，可让用户随时间跟踪多个坐标系。tf2保持时间缓冲的树结构中的坐标系之间的关系，并允许用户在任意所需的时间点在任意两个坐标系之间转换点，向量等，任何用户基本上都会使用tf2进行两项任务，即监听转换和广播转换。 </p>
+<a id="more"></a> 
+<p><img src="1.png" alt="tf2"></p>
 <h2 id="编写tf2广播器"><a href="#编写tf2广播器" class="headerlink" title="编写tf2广播器"></a>编写tf2广播器</h2><p>广播转换：将坐标系的相对姿势发送到系统的其余部分。一个系统可以有许多广播公司，每个广播公司都提供有关机器人不同部分的信息</p>
 <ul>
 <li><p>创建一个learning_tf2软件包<br>首先，我们将创建一个catkin包，该包将用于本教程和后续教程。这个名为learning_tf2的软件包将取决于 tf2，tf2_ros，roscpp，rospy和turtlesim  </p>
@@ -511,15 +513,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">-nanoPC-T4</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">golang</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">-nanoPC-T4</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -571,15 +573,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">分治法</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">最近点对</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
               <li class="article-tag-list-item">
