@@ -160,6 +160,123 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-ROS学习之路——C++编写tf2广播器及侦听器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/04/18/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94C++%E7%BC%96%E5%86%99tf2%E5%B9%BF%E6%92%AD%E5%99%A8%E5%8F%8A%E4%BE%A6%E5%90%AC%E5%99%A8/">ROS学习之路———C++编写tf2广播器及侦听器</a>
+    </h1>
+  
+
+        
+        <a href="/2021/04/18/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94C++%E7%BC%96%E5%86%99tf2%E5%B9%BF%E6%92%AD%E5%99%A8%E5%8F%8A%E4%BE%A6%E5%90%AC%E5%99%A8/" class="archive-article-date">
+  	<time datetime="2021-04-18T05:58:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="tf2-简介"><a href="#tf2-简介" class="headerlink" title="tf2 简介"></a><strong>tf2</strong> 简介</h2><p>tf2是转换库的第二代，可让用户随时间跟踪多个坐标系。tf2保持时间缓冲的树结构中的坐标系之间的关系，并允许用户在任意所需的时间点在任意两个坐标系之间转换点，向量等，任何用户基本上都会使用tf2进行两项任务，即监听转换和广播转换。<br><img src="1.png" alt="tf2"></p>
+<h2 id="编写tf2广播器"><a href="#编写tf2广播器" class="headerlink" title="编写tf2广播器"></a>编写tf2广播器</h2><p>广播转换：将坐标系的相对姿势发送到系统的其余部分。一个系统可以有许多广播公司，每个广播公司都提供有关机器人不同部分的信息</p>
+<ul>
+<li><p>创建一个learning_tf2软件包<br>首先，我们将创建一个catkin包，该包将用于本教程和后续教程。这个名为learning_tf2的软件包将取决于 tf2，tf2_ros，roscpp，rospy和turtlesim  </p>
+<blockquote>
+<p>catkin_create_pkg learning_tf2 tf tf2_ros roscpp rospy turtlesim<br>roscd learning_tf2  t</p>
+</blockquote>
+</li>
+<li><p>将乌龟姿势发布到tf2的相关代码<br>创建一个名为src /的文件夹，并启动您喜欢的编辑器，将以下代码粘贴到一个名为src / turtle_tf2_broadcaster.cpp的新文件中  </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ros/ros.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;tf2/LinearMath/Quaternion.h&gt;</span></span></span><br><span class="line"><span class="comment">//tf2软件包提供了TransformBroadcaster的实现，以帮助简化发布转换的任务</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;tf2_ros/transform_broadcaster.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;geometry_msgs/TransformStamped.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;turtlesim/Pose.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">string</span> turtle_name;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">poseCallbacks</span><span class="params">(<span class="keyword">const</span> turtlesim::PoseConstPtr &amp;msg)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//在这里，我们创建一个TransformBroadcaster对象br，稍后将使用它通过网络发送转换</span></span><br><span class="line">    <span class="keyword">static</span> tf2_ros::TransformBroadcaster br;</span><br><span class="line">    <span class="comment">//在这里，我们创建一个Transform对象，并稍后为其提供适当的元数据</span></span><br><span class="line">    geometry_msgs::TransformStamped transformStamped;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//我们需要给要发布的转换加上时间戳，我们只需将其标记为当前时间ros::Time::now()即可</span></span><br><span class="line">    transformStamped.header.stamp = ros::Time::now();</span><br><span class="line">    <span class="comment">//然后，我们需要设置要创建的链接的父框架的名称，在本例中为“ world”</span></span><br><span class="line">    transformStamped.header.frame_id = <span class="string">"world"</span>;</span><br><span class="line">    <span class="comment">//最后，我们需要设置要创建的链接的子节点的名称，在这种情况下，这就是乌龟本身的名称</span></span><br><span class="line">    transformStamped.child_frame_id = turtle_name;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//在这里，我们将信息从3D乌龟姿势复制到3D变换中</span></span><br><span class="line">    transformStamped.transform.translation.x = msg-&gt;x;</span><br><span class="line">    transformStamped.transform.translation.y = msg-&gt;y;</span><br><span class="line">    transformStamped.transform.translation.z = <span class="number">0.0</span>;</span><br><span class="line">    tf2::Quaternion q;</span><br><span class="line">    q.setRPY(<span class="number">0</span>, <span class="number">0</span>, msg-&gt;theta);</span><br><span class="line">    transformStamped.transform.rotation.x = q.x();</span><br><span class="line">    transformStamped.transform.rotation.y = q.y();</span><br><span class="line">    transformStamped.transform.rotation.z = q.z();</span><br><span class="line">    transformStamped.transform.rotation.w = q.w();</span><br><span class="line"></span><br><span class="line">    <span class="comment">//这是完成实际工作的地方。使用TransformBroadcaster发送转换仅需要传递转换本身</span></span><br><span class="line">    <span class="comment">//sendTransform和StampedTransform的父级和子级顺序相反</span></span><br><span class="line">    br.sendTrannsform(transformStamped);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ros::intt(argc, argv, <span class="string">"my_tf2_broadcaster"</span>);</span><br><span class="line">    <span class="function">ros::NodeHandle <span class="title">private_node</span><span class="params">(<span class="string">"~"</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!private_node.hasParam(<span class="string">"turtle"</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (argc != <span class="number">2</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            ROS_ERROR(<span class="string">"need turtle name as argument"</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        &#125;;</span><br><span class="line">        turtle_name = argv[<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        private_node.getParam(<span class="string">"turtle"</span>, turtle_name);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ros::NodeHandle node;</span><br><span class="line">    ros::Subscriber sub = node.subscribe(turtle_name + <span class="string">"/pose"</span>, <span class="number">10</span>, $poseCallbacks);</span><br><span class="line"></span><br><span class="line">    ros::spin();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改CMakeList.txt文件<br>打开CMakeLists.txt文件，并添加以下内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">add_executable（turtle_tf2_broadcaster src &#x2F; turtle_tf2_broadcaster.cpp）</span><br><span class="line">target_link_libraries（turtle_tf2_broadcaster</span><br><span class="line"> $ &#123;catkin_LIBRARIES&#125;</span><br><span class="line">）</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编译  </p>
+<blockquote>
+<p>catkin_make  </p>
+</blockquote>
+</li>
+</ul>
+<p>成功后可以在<strong>lib</strong> 文件中获得名为 <strong>turtle_tf2_broadcaster</strong> 的二进制文件<br><img src="2.png" alt="成功"></p>
+<ul>
+<li>创建启动文件<strong>start_demo.launch</strong>  </li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">启动</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">！-Turtlesim节点-</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">node</span> <span class="attr">pkg</span> =<span class="string">“</span> <span class="attr">turtlesim</span>” <span class="attr">type</span> =<span class="string">“</span> <span class="attr">turtlesim_node</span>” <span class="attr">name</span> =<span class="string">“</span> <span class="attr">sim</span>” /&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="tag">&lt;<span class="name">node</span> <span class="attr">pkg</span> =<span class="string">“</span> <span class="attr">turtlesim</span>” <span class="attr">type</span> =<span class="string">“</span> <span class="attr">turtle_teleop_key</span>” <span class="attr">name</span> =<span class="string">“</span> <span class="attr">teleop</span>” <span class="attr">output</span> =<span class="string">“</span> <span class="attr">screen</span>” /&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">！-轴-</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span> =<span class="string">“</span> <span class="attr">scale_linear</span>” <span class="attr">value</span> =<span class="string">“</span> <span class="attr">2</span>” <span class="attr">type</span> =<span class="string">“</span> <span class="attr">double</span>” /&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span> =<span class="string">“</span> <span class="attr">scale_angular</span>” <span class="attr">value</span> =<span class="string">“</span> <span class="attr">2</span>” <span class="attr">type</span> =<span class="string">“</span> <span class="attr">double</span>” /&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="tag">&lt;<span class="name">node</span> <span class="attr">pkg</span> =<span class="string">“</span> <span class="attr">learning_tf2</span>” <span class="attr">type</span> =<span class="string">“</span> <span class="attr">turtle_tf2_broadcaster</span>”</span></span><br><span class="line"><span class="tag">         <span class="attr">args</span> =<span class="string">“</span> / <span class="attr">turtle1</span>” <span class="attr">name</span> =<span class="string">“</span> <span class="attr">turtle1_tf2_broadcaster</span>” /&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">node</span> <span class="attr">pkg</span> =<span class="string">“</span> <span class="attr">learning_tf2</span>” <span class="attr">type</span> =<span class="string">“</span> <span class="attr">turtle_tf2_broadcaster</span>”</span></span><br><span class="line"><span class="tag">         <span class="attr">args</span> =<span class="string">“</span> / <span class="attr">turtle2</span>” <span class="attr">name</span> =<span class="string">“</span> <span class="attr">turtle2_tf2_broadcaster</span>” /&gt;</span></span><br><span class="line"></span><br><span class="line"> <span class="tag">&lt;/ <span class="attr">launch</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>修改CMakeList.txt文件<br>在文件中的<strong>install</strong> 区域内将启动文件标记为安装文件  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> start_demo.launch</span><br><span class="line"> ＃myfile2</span><br><span class="line"> DESTINATION $ &#123;CATKIN_PACKAGE_SHARE_DESTINATION&#125;</span><br><span class="line">）</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>开始乌龟广播演示  </p>
+<blockquote>
+<p>roslaunch learning_tf2 start_demo.launch<br>结果显示一直乌龟在turtlesim窗口中</p>
+</blockquote>
+</li>
+<li><p>检查结果<br>使用<strong>ts_echo</strong> 工具检查乌龟姿势是否确实正在广播到tf2，在启动广播界面使用键盘方向键更改乌龟位置，查看乌龟姿势中个位置是否发生变化<br><img src="3.png" alt="成功结果"></p>
+</li>
+</ul>
+<h2 id="编写tf2侦听器"><a href="#编写tf2侦听器" class="headerlink" title="编写tf2侦听器"></a>编写tf2侦听器</h2><p>监听装换：接收和缓冲系统中广播的所有坐标帧，并查询帧之间的特定变换  </p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+        <div class="article-pop-out tagcloud">
+          <i class="icon-tuding"></i>
+          <a class="article-tag-list-link color3">置顶</a>
+        </div>
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">tf2 ROS</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/04/18/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94C++%E7%BC%96%E5%86%99tf2%E5%B9%BF%E6%92%AD%E5%99%A8%E5%8F%8A%E4%BE%A6%E5%90%AC%E5%99%A8/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-ROS学习之路——C++编写简单的服务和客户端" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -892,85 +1009,9 @@
 
 
   
-    <article id="w-ROS学习之路——创建工作空间与功能包" class="article article-type-w  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/03/30/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E5%88%9B%E5%BB%BA%E5%B7%A5%E4%BD%9C%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%8A%9F%E8%83%BD%E5%8C%85/">ROS学习之路——创建工作空间与功能包</a>
-    </h1>
-  
-
-        
-        <a href="/2021/03/30/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E5%88%9B%E5%BB%BA%E5%B7%A5%E4%BD%9C%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%8A%9F%E8%83%BD%E5%8C%85/" class="archive-article-date">
-  	<time datetime="2021-03-30T11:32:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在配置了ROS之后，下一步是在ROS中创建工作空间。在最新的ROS发行版中，我们使用基于catkin的工作空间构建和安装ROS功能包。<a href="https://wiki.ros.org/catkin" target="_blank" rel="noopener">catkin系统</a>是ROS的官方构建系统，能够帮助用户在工作空间中将源代码便以为可执行文件或链接库。</p>
-        
-          <a class="article-more-a" href="/2021/03/30/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E5%88%9B%E5%BB%BA%E5%B7%A5%E4%BD%9C%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%8A%9F%E8%83%BD%E5%8C%85/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ROS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/03/30/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E5%88%9B%E5%BB%BA%E5%B7%A5%E4%BD%9C%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%8A%9F%E8%83%BD%E5%8C%85/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -1080,7 +1121,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ROS</a>
+                <a href="javascript:void(0)" class="js-tag color3">tf2 ROS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1088,7 +1129,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ROS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">ROS c++ Publisher</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ROS 机械臂</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1104,19 +1157,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ROS 机械臂</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" class="js-tag color3">微信小程序；教育管理系统</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">微信小程序；教育管理系统</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1128,15 +1173,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">分治法</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">最近点对</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
               <li class="article-tag-list-item">
