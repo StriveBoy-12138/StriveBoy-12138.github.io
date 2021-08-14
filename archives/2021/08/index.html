@@ -6,36 +6,15 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://StriveBoy-12138.github.io">
-  <title>手把手教你Ubuntu安装ROS | Hexo</title>
+  <title>Archives: 2021/8 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="ROS 是一个开源的、灵活的机器人软件框架，用于机器人应用程序编写，ROS提供了一个硬件抽象层，开发者可以在其中构建机器人应用程序，而不必担心底层硬件。ROS还提供不同软件工具莱克石化和调试机器人数据。ROS矿建的一个核心是消息传递中间件，在这个中间件中，进程可以相互通信和交换数据，即使他们运行在不同的机器上。ROS消息传递可以是同步的，也可以是异步的。简而言之，ROS是管道（或通信，即通信机制）">
-<meta property="og:type" content="article">
-<meta property="og:title" content="手把手教你Ubuntu安装ROS">
-<meta property="og:url" content="http://striveboy-12138.github.io/2021/03/29/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0Ubuntu%E5%AE%89%E8%A3%85ROS/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://striveboy-12138.github.io/archives/2021/08/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="ROS 是一个开源的、灵活的机器人软件框架，用于机器人应用程序编写，ROS提供了一个硬件抽象层，开发者可以在其中构建机器人应用程序，而不必担心底层硬件。ROS还提供不同软件工具莱克石化和调试机器人数据。ROS矿建的一个核心是消息传递中间件，在这个中间件中，进程可以相互通信和交换数据，即使他们运行在不同的机器上。ROS消息传递可以是同步的，也可以是异步的。简而言之，ROS是管道（或通信，即通信机制）">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://striveboy-12138.github.io/2021/03/29/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0Ubuntu%E5%AE%89%E8%A3%85ROS/2.png">
-<meta property="og:image" content="http://striveboy-12138.github.io/2021/03/29/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0Ubuntu%E5%AE%89%E8%A3%85ROS/3.png">
-<meta property="og:image" content="http://striveboy-12138.github.io/2021/03/29/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0Ubuntu%E5%AE%89%E8%A3%85ROS/4.png">
-<meta property="og:image" content="http://striveboy-12138.github.io/2021/03/29/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0Ubuntu%E5%AE%89%E8%A3%85ROS/5.png">
-<meta property="og:image" content="http://striveboy-12138.github.io/2021/03/29/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0Ubuntu%E5%AE%89%E8%A3%85ROS/6.png">
-<meta property="og:image" content="http://striveboy-12138.github.io/2021/03/29/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0Ubuntu%E5%AE%89%E8%A3%85ROS/7.png">
-<meta property="og:image" content="http://striveboy-12138.github.io/2021/03/29/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0Ubuntu%E5%AE%89%E8%A3%85ROS/8.png">
-<meta property="og:image" content="http://striveboy-12138.github.io/2021/03/29/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0Ubuntu%E5%AE%89%E8%A3%85ROS/9.png">
-<meta property="og:image" content="http://striveboy-12138.github.io/2021/03/29/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0Ubuntu%E5%AE%89%E8%A3%85ROS/10.png">
-<meta property="og:image" content="http://striveboy-12138.github.io/2021/03/29/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0Ubuntu%E5%AE%89%E8%A3%85ROS/11.png">
-<meta property="og:image" content="http://striveboy-12138.github.io/2021/03/29/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0Ubuntu%E5%AE%89%E8%A3%85ROS/11-2.png">
-<meta property="og:image" content="http://striveboy-12138.github.io/2021/03/29/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0Ubuntu%E5%AE%89%E8%A3%85ROS/12.png">
-<meta property="og:image" content="http://striveboy-12138.github.io/2021/03/29/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0Ubuntu%E5%AE%89%E8%A3%85ROS/13.png">
-<meta property="og:image" content="http://striveboy-12138.github.io/2021/03/29/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0Ubuntu%E5%AE%89%E8%A3%85ROS/rviz.png">
-<meta property="og:image" content="http://striveboy-12138.github.io/2021/03/29/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0Ubuntu%E5%AE%89%E8%A3%85ROS/gazebo.png">
-<meta property="article:published_time" content="2021-03-29T14:28:06.000Z">
-<meta property="article:modified_time" content="2021-03-29T15:51:50.930Z">
 <meta property="article:author" content="小褚同学">
-<meta property="article:tag" content="ubuntu ROS">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://striveboy-12138.github.io/2021/03/29/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0Ubuntu%E5%AE%89%E8%A3%85ROS/2.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -180,311 +159,59 @@
           </div>
           <div id="js-content" class="content-ll">
             
-<article id="w-手把手教你Ubuntu安装ROS" class="article article-type-w " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 class="article-title" itemprop="name">
-      手把手教你Ubuntu安装ROS
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2021" class="archive-year">2021</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2021/08/14/%E4%B8%80%E8%B5%B7%E6%9D%A5%E5%AD%A6shiro%E2%80%94%E2%80%94%E7%AE%80%E4%BB%8B/" class="archive-article-date">
+  	<time datetime="2021-08-14T02:20:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-14</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2021/08/14/%E4%B8%80%E8%B5%B7%E6%9D%A5%E5%AD%A6shiro%E2%80%94%E2%80%94%E7%AE%80%E4%BB%8B/">一起来学shiro——简介</a>
     </h1>
   
 
-        
-        <a href="/2021/03/29/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0Ubuntu%E5%AE%89%E8%A3%85ROS/" class="archive-article-date">
-  	<time datetime="2021-03-29T14:28:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>ROS 是一个开源的、灵活的机器人软件框架，用于机器人应用程序编写，ROS提供了一个硬件抽象层，开发者可以在其中构建机器人应用程序，而不必担心底层硬件。ROS还提供不同软件工具莱克石化和调试机器人数据。ROS矿建的一个核心是消息传递中间件，在这个中间件中，进程可以相互通信和交换数据，即使他们运行在不同的机器上。ROS消息传递可以是同步的，也可以是异步的。<br>简而言之，ROS是管道（或通信，即通信机制）、（开发）工具、（应用）功能和生态系统的组合。</p>
-<a id="more"></a>  
-
-<h3 id="ROS的安装"><a href="#ROS的安装" class="headerlink" title="ROS的安装"></a>ROS的安装</h3><ol>
-<li>配置Ubuntu仓库 </li>
-</ol>
-<ul>
-<li>单击Software &amp; Update 并启用所有的 Ubuntu 仓库，仓库需要具有与县构建的.deb格式的ROS二进制文件，才能够使用ROS仓库中的功能包</li>
-</ul>
-<p><img src="2.png" alt="softdownload"></p>
-<ol start="2">
-<li>设置 source.list<br>下一步是允许获取来自 ROS 仓库服务器的 ROS 功能包 packages.ROS.org 的访问权，为此我们必须将 ROS 仓库服务器的详细信息输入 source.list 中，该列表位于 etc/apt/ ，输入命令如下：  （注意使用英文）<blockquote>
-<p>sudo sh -c ‘echo “deb <a href="http://packages.ROS.org/ROS/ubuntu" target="_blank" rel="noopener">http://packages.ROS.org/ROS/ubuntu</a> $(lsb_release -sc) main” &gt; /etc/apt/sources.list.d/ROS-latest.list’     </p>
-</blockquote>
-</li>
-</ol>
-<p><img src="3.png" alt="成功如下图"></p>
-<ol start="3">
-<li>设置密钥<br>在向Ubuntu中添加新的仓库时，需要添加相应的密钥，以确保其可信性，并能够验证功能包的来源，因此，再开始安装ROS之前，应将一下密钥添加到 Ubuntu:<blockquote>
-<p>sudo apt-key adv –keyserver hkp://ha.pool.sks-keyservers.net:80 –recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116  </p>
-</blockquote>
-</li>
-</ol>
-<p><img src="4.png" alt="成功如下图">  </p>
-<ol start="4">
-<li>安装ROS noetic    </li>
-</ol>
-<ul>
-<li>更新功能包列表   <blockquote>
-<p>sudo apt-get update  </p>
-</blockquote>
-</li>
-</ul>
-<p><img src="5.png" alt="成功如下图">    </p>
-<blockquote>
-<p>sudo apt-key adv –keyserver keyserver.ubuntu.com –recv-keys F42ED6FBAB17C654  </p>
-</blockquote>
-<p><img src="6.png" alt="成功如下图">  </p>
-<ul>
-<li>下载整个（并非全部，只是大多数常用）ROS功能包套件,下载的noetic 还是 melodic 请参考<a href="http://wiki.ROS.org/" target="_blank" rel="noopener">官网</a>的教程，根据自己相信的Ubuntu版本选择合适的ROS功能包套件   <blockquote>
-<p>sudo apt-get install ROS-noetic-desktop-full </p>
-</blockquote>
-</li>
-</ul>
-<p><img src="7.png" alt="小错误"><br><img src="8.png" alt="成功如下图">  </p>
-<p>到这里ROS的安装已经完毕，下面我们需要对ROS的环境进行配置   </p>
-<ol start="5">
-<li>设置 ROS 环境<br>安装ROS主要涉及各种脚本和可执行文件，安装目录为 /opt/ros/&lt; ros_version &gt;，为了访问这些命令和脚本，我们需要向Ubuntu终端添加ROS环境变量，只需要通过source命令将相关设置文件进行配置即可：  <blockquote>
-<p>source /opt/ROS/noedic/setup.bash  </p>
-</blockquote>
-</li>
-</ol>
-<p>但是，为了在多个终端中获得ROS环境，我们应该将命令添加到位于主文件夹中的 .bashrc 脚本中。这样每次打开终端使，都将读取 .bashrc 脚本，从而加载ROS环境变量，具体操作为下列指令  </p>
-<blockquote>
-<p>echo “source /opt/ROS/noedic/setup.bash” &gt;&gt; ~/.bashrc<br>source ~/.bashrc  </p>
-</blockquote>
-<p><img src="9.png" alt="成功如下图">  </p>
-<ol start="6">
-<li>安装rosinstall<br>在安装过程的最后，我们将安装ROS命令ROSinstall，用来为特定的ROS功能包安装源代码树，该工具基于python    <blockquote>
-<p>sudo apt install python3-ROSdep python3-ROSinstall python3-ROSinstall-generator python3-wstool build-essential  </p>
-</blockquote>
-</li>
-</ol>
-<p><img src="10.png" alt="成功如下图">  </p>
-<ul>
-<li>初始化rosdep<br>rosdep工具能够帮助用户在编译功能包的时候方便的安装依赖项，同时该工具对于 ROS 中的某些和谐组件而言也是必要的，执行以下命令以初始化rosdep：      <blockquote>
-<p>sudo apt-get install python3-ROSdep<br>sudo ROSdep init<br>ROSdep update  </p>
-</blockquote>
-</li>
-</ul>
-<p>rosdep update 的过程中会出现如下方第一张图的超时问题，只需要连接手机热点，并多尝试几次就可以解决<br><img src="11.png" alt="小问题"><br><img src="11-2.png" alt="成功如下图">  </p>
-<h3 id="运行检查"><a href="#运行检查" class="headerlink" title="运行检查"></a>运行检查</h3><p>至此我们已经完成了ROS的安装，只需运行以下命令检查是否成功：<br>7. 启动小乌龟</p>
-<ul>
-<li><p>打开一个终端窗口，运行rescore命令  </p>
-<blockquote>
-<p>roscore  </p>
-</blockquote>
-</li>
-<li><p>重新打开一个终端窗口，运行turtlesim 节点：  </p>
-<blockquote>
-<p>rosrun turtlesim turtlesim_node  </p>
-</blockquote>
-</li>
-<li><p>、打开一个新的终端窗口，运行以下命令，将光标放置在该窗口，控制方向键可以控制小乌龟的移动  </p>
-<blockquote>
-<p>ROSrun turtlesim turtle_teleop_key  </p>
-</blockquote>
-</li>
-</ul>
-<p><img src="12.png" alt="成功如下图"></p>
-<ol start="8">
-<li>启动 RViz 三维可视化平台<br>rviz是一款三维可视化工具，很好的兼容了各种基于ROS软件框架的机器人平台。在rviz中，可以使用XML对机器人、周围物体等任何实物进行尺寸、质量、位置、材质、关节等属性的描述，并且在界面中呈现出来。同时，rviz还可以通过图形化的方式，实时显示机器人传感器的信息、机器人的运动状态、周围环境的变化等。总而言之，rviz帮助开发者实现所有可监测信息的图形化显示，开发者也可以在rviz的控制界面下，通过按钮、滑动条、数值等方式，控制机器人的行为。     </li>
-</ol>
-<ul>
-<li><p>打开一个终端窗口，运行rescore命令  </p>
-<blockquote>
-<p>roscore   </p>
-</blockquote>
-</li>
-<li><p>重新打开一个终端窗口，运行命令</p>
-<blockquote>
-<p>rviz  </p>
-</blockquote>
-</li>
-</ul>
-<p><img src="13.png" alt="命令"><br><img src="rviz.png" alt="rviz">  </p>
-<ol start="9">
-<li>启动 gazebo 物理仿真平台<br>gazebo是一款功能强大的三维物理仿真平台，具备强大的物理引擎、高质量的图形渲染、方便的编程与图形接口，最重要的是其开源免费的特性。gazebo中的机器人模型与rviz使用的模型相同，但是需要在模型中加入机器人和周围环境的物理属性，例如质量、摩擦系数、弹性系数等。机器人的传感器信息也可以通过插件的形式加入仿真环境，以可视化的方式进行显示。  </li>
-</ol>
-<ul>
-<li><p>打开一个终端窗口，运行roscore命令    </p>
-<blockquote>
-<p>roscore  </p>
-</blockquote>
-</li>
-<li><p>重新打开一个终端窗口，运行gazebo命令  </p>
-<blockquote>
-<p>gazebo    </p>
-</blockquote>
-</li>
-</ul>
-<p><img src="gazebo.png" alt="gazebo">  </p>
-<p>到此所有的ROS安装以及简单工具的启动测试已经完成，若有问题和更深层次的学习请参考<a href="http://wiki.ROS.org/noetic/Installation/Ubuntu" target="_blank" rel="noopener">官网</a></p>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">ubuntu ROS</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">shiro</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://striveboy-12138.github.io/38.github.io/2021/03/29/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0Ubuntu%E5%AE%89%E8%A3%85ROS/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2021/03/30/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E5%88%9B%E5%BB%BA%E5%B7%A5%E4%BD%9C%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%8A%9F%E8%83%BD%E5%8C%85/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          ROS学习之路——创建工作空间与功能包
-        
-      </div>
-    </a>
   
   
-    <a href="/2021/03/29/Ubuntu%E6%89%93%E4%B8%8D%E5%BC%80Software%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Ubuntu打不开Software解决办法,亲测有效！</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#ROS的安装"><span class="toc-number">1.</span> <span class="toc-text">ROS的安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#运行检查"><span class="toc-number">2.</span> <span class="toc-text">运行检查</span></a></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -510,8 +237,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
