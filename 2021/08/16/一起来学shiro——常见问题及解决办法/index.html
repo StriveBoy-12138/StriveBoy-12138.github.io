@@ -6,15 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://StriveBoy-12138.github.io">
-  <title>Archives: 2020 | Hexo</title>
+  <title>一起来学shiro——常见问题及解决办法 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://striveboy-12138.github.io/archives/2020/page/2/index.html">
+  <meta name="description" content="我们在学习shiro框架的时候总会遇到这样那样的小问题，我把我学习过程中的遇到的常见的关于shiro问题进行汇总并提供解决办法，为以后的学习提供帮助（不定期更新） 问题一：IniSecurityManagerFactory过期问题我使用的shiro版本是1.7.1，在获取shiro.ini文件时发现IniSecurityManagerFactory过期，证明在以后的jdk版本中IniSecurit">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一起来学shiro——常见问题及解决办法">
+<meta property="og:url" content="http://striveboy-12138.github.io/2021/08/16/%E4%B8%80%E8%B5%B7%E6%9D%A5%E5%AD%A6shiro%E2%80%94%E2%80%94%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="我们在学习shiro框架的时候总会遇到这样那样的小问题，我把我学习过程中的遇到的常见的关于shiro问题进行汇总并提供解决办法，为以后的学习提供帮助（不定期更新） 问题一：IniSecurityManagerFactory过期问题我使用的shiro版本是1.7.1，在获取shiro.ini文件时发现IniSecurityManagerFactory过期，证明在以后的jdk版本中IniSecurit">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://striveboy-12138.github.io/2021/08/16/%E4%B8%80%E8%B5%B7%E6%9D%A5%E5%AD%A6shiro%E2%80%94%E2%80%94%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/1.1.png">
+<meta property="og:image" content="http://striveboy-12138.github.io/2021/08/16/%E4%B8%80%E8%B5%B7%E6%9D%A5%E5%AD%A6shiro%E2%80%94%E2%80%94%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/1.2.png">
+<meta property="article:published_time" content="2021-08-16T08:58:15.000Z">
+<meta property="article:modified_time" content="2021-08-16T09:11:06.724Z">
 <meta property="article:author" content="小褚同学">
+<meta property="article:tag" content="shiro">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://striveboy-12138.github.io/2021/08/16/%E4%B8%80%E8%B5%B7%E6%9D%A5%E5%AD%A6shiro%E2%80%94%E2%80%94%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/1.1.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -159,62 +167,185 @@
           </div>
           <div id="js-content" class="content-ll">
             
-  
-  
+<article id="post-一起来学shiro——常见问题及解决办法" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/06/15/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" class="archive-article-date">
-  	<time datetime="2020-06-15T02:32:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-15</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/06/15/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/">我的第一篇文章</a>
+    <h1 class="article-title" itemprop="name">
+      一起来学shiro——常见问题及解决办法
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2021/08/16/%E4%B8%80%E8%B5%B7%E6%9D%A5%E5%AD%A6shiro%E2%80%94%E2%80%94%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/" class="archive-article-date">
+  	<time datetime="2021-08-16T08:58:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>我们在学习shiro框架的时候总会遇到这样那样的小问题，我把我学习过程中的遇到的常见的关于shiro问题进行汇总并提供解决办法，为以后的学习提供帮助（不定期更新）</p>
+<h3 id="问题一：IniSecurityManagerFactory过期问题"><a href="#问题一：IniSecurityManagerFactory过期问题" class="headerlink" title="问题一：IniSecurityManagerFactory过期问题"></a>问题一：IniSecurityManagerFactory过期问题</h3><p>我使用的shiro版本是1.7.1，在获取shiro.ini文件时发现IniSecurityManagerFactory过期，证明在以后的jdk版本中IniSecurityManagerFactory可能会被删除。</p>
+<p><img src="1.1.png" alt="问题"></p>
+<p>解决办法：使用DefaultSecurityManager替换使用  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DefaultSecurityManager defaultSecurityManager &#x3D; new DefaultSecurityManager();    </span><br><span class="line">IniRealm iniRealm &#x3D; new IniRealm(&quot;classpath:shiro.ini&quot;);   </span><br><span class="line">defaultSecurityManager.setRealm(iniRealm);</span><br></pre></td></tr></table></figure>
+
+<p><img src="1.2.png" alt="解决办法"></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">MarkDown hexo</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">shiro</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://striveboy-12138.github.io/38.github.io/2021/08/16/%E4%B8%80%E8%B5%B7%E6%9D%A5%E5%AD%A6shiro%E2%80%94%E2%80%94%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2021/08/14/%E4%B8%80%E8%B5%B7%E6%9D%A5%E5%AD%A6shiro%E2%80%94%E2%80%94%E7%AE%80%E4%BB%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">一起来学shiro——简介</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#问题一：IniSecurityManagerFactory过期问题"><span class="toc-number">1.</span> <span class="toc-text">问题一：IniSecurityManagerFactory过期问题</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2020/">&amp;laquo; Prev</a><a class="page-number" href="/archives/2020/">1</a><span class="page-number current">2</span>
-    </nav>
+  
+
+  
+
   
 
 
@@ -241,8 +372,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
