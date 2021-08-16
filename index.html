@@ -897,34 +897,50 @@
 
 
   
-    <article id="post-一起来学shiro——常见问题及解决办法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-工作中可能需要的知识点——java篇" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/08/16/%E4%B8%80%E8%B5%B7%E6%9D%A5%E5%AD%A6shiro%E2%80%94%E2%80%94%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/">一起来学shiro——常见问题及解决办法</a>
+      <a class="article-title" href="/2021/08/16/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E5%8F%AF%E8%83%BD%E9%9C%80%E8%A6%81%E7%9A%84%E7%9F%A5%E8%AF%86%E7%82%B9%E2%80%94%E2%80%94java%E7%AF%87/">工作中可能需要的知识点——java篇</a>
     </h1>
   
 
         
-        <a href="/2021/08/16/%E4%B8%80%E8%B5%B7%E6%9D%A5%E5%AD%A6shiro%E2%80%94%E2%80%94%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2021-08-16T08:58:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-16</time>
+        <a href="/2021/08/16/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E5%8F%AF%E8%83%BD%E9%9C%80%E8%A6%81%E7%9A%84%E7%9F%A5%E8%AF%86%E7%82%B9%E2%80%94%E2%80%94java%E7%AF%87/" class="archive-article-date">
+  	<time datetime="2021-08-16T09:39:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-16</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>我们在学习shiro框架的时候总会遇到这样那样的小问题，我把我学习过程中的遇到的常见的关于shiro问题进行汇总并提供解决办法，为以后的学习提供帮助（不定期更新）</p>
-<h3 id="问题一：IniSecurityManagerFactory过期问题"><a href="#问题一：IniSecurityManagerFactory过期问题" class="headerlink" title="问题一：IniSecurityManagerFactory过期问题"></a>问题一：IniSecurityManagerFactory过期问题</h3><p>我使用的shiro版本是1.7.1，在获取shiro.ini文件时发现IniSecurityManagerFactory过期，证明在以后的jdk版本中IniSecurityManagerFactory可能会被删除。</p>
-<p><img src="1.1.png" alt="问题"></p>
-<p>解决办法：使用DefaultSecurityManager替换使用  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DefaultSecurityManager defaultSecurityManager &#x3D; new DefaultSecurityManager();    </span><br><span class="line">IniRealm iniRealm &#x3D; new IniRealm(&quot;classpath:shiro.ini&quot;);   </span><br><span class="line">defaultSecurityManager.setRealm(iniRealm);</span><br></pre></td></tr></table></figure>
+        <p>看看一年能够积攒多少有用的<strong>java</strong>知识  </p>
+<h2 id="知识点一：implements和extends的区别"><a href="#知识点一：implements和extends的区别" class="headerlink" title="知识点一：implements和extends的区别"></a>知识点一：<strong>implements和extends的区别</strong></h2><details> 
+### **implements**  
+关键字**implements**是一个类，实现一个接口用的关键字，它是用来实现接口中定义的抽象方法。实现一个接口，必须实现接口中的所有方法。使用 implements 关键字可以变相的使java具有多继承的特性，使用范围为类继承接口的情况，可以同时继承多个接口（接口跟接口之间采用逗号分隔） 
 
-<p><img src="1.2.png" alt="解决办法"></p>
+<p>接口优势为：“接口+实现”最常见的优势就是实现类和接口分离，在更换实现类的时候，不用更换接口功能。</p>
+<p>还有几点需要注意：</p>
+<ul>
+<li>接口可以被多重实现（implements）,抽象类只能被单一继承（extends）</li>
+<li>接口只有定义,抽象类可以有定义和实现</li>
+<li>接口的字段定义默认为:public static final, 抽象类字段默认是”friendly”(本包可见)</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//单一实现两个接口 Bread、Milk</span></span><br><span class="line"><span class="comment">//定义Bread接口</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Bread</span></span>&#123;</span><br><span class="line">  <span class="comment">//定义一个方法吃面包(接口中没有具体的实现方法体)</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">eatBread</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//Bread接口的实现类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BreadImpl</span> <span class="keyword">implements</span> <span class="title">Bread</span></span>&#123;</span><br><span class="line">   <span class="comment">//实现eatBread方法(接口的实现类中需要有具体的方法体)</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">eatBread</span><span class="params">()</span></span>&#123;</span><br><span class="line">     System.out.println(<span class="string">"吃面包"</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Milk</span></span>&#123;</span><br><span class="line">  <span class="comment">//定义一个方法喝牛奶</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">drinkMilk</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//Bread接口的实现类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MilkImpl</span> <span class="keyword">implements</span> <span class="title">Milk</span></span>&#123;</span><br><span class="line">   <span class="comment">//实现eatBread方法(接口的实现类中需要有具体的方法体)</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">drinkMilk</span><span class="params">()</span></span>&#123;</span><br><span class="line">     System.out.println(<span class="string">"喝牛奶"</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//多重实现</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Man</span> <span class="keyword">implements</span> <span class="title">Bread</span>,<span class="title">Milk</span></span>&#123;</span><br><span class="line">  <span class="comment">//实现了Bread接口中eatBread方法</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">eatBread</span><span class="params">()</span></span>&#123;</span><br><span class="line">     System.out.println(<span class="string">"吃面包"</span>);</span><br><span class="line">   &#125;</span><br><span class="line"><span class="comment">//实现了Milk接口中drinkMilk方法</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">drinkMilk</span><span class="params">()</span></span>&#123;</span><br><span class="line">     System.out.println(<span class="string">"喝牛奶"</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<h3 id="extend"><a href="#extend" class="headerlink" title="extend"></a><strong>extend</strong></h3><p>关键字<strong>extends</strong>，表示对父类的继承，可以实现父类，也可以调用父类初始化。而且会覆盖父类定义的变量或者函数。在 Java 中，类的继承是单一继承，也就是说，一个子类只能拥有一个父类，所以 extends 只能继承一个类。</p>
+<p>在继承关系中，<strong>父类</strong>的成员变量、局部变量、方法被隐藏被子类常常覆盖，这时需要引用父类成员变量、局部变量、方法。super.变量名，super.方法名，super.父类的构造方法；<br>这里还引入一个关键字<strong>this</strong>的用法<br>如果类的成员变量与局部变量重名，类的成员变量将被隐藏，如果要使用类的成员变量，需要使用this引用之。this.变量名，this.方法名，this.父类的构造方法；</p>
+<p>继承的特性</p>
+<ul>
+<li>子类拥有父类非private的属性，方法。  </li>
+<li>子类可以拥有自己的属性和方法，即子类可以对父类进行扩展。  </li>
+<li>子类可以用自己的方式实现父类的方法。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//公共父类————动物类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123; </span><br><span class="line">    <span class="keyword">private</span> String name;  </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id; </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Animal</span><span class="params">(String myName, <span class="keyword">int</span> myid)</span> </span>&#123; </span><br><span class="line">        name = myName; </span><br><span class="line">        id = myid;</span><br><span class="line">    &#125; </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span></span>&#123; </span><br><span class="line">        System.out.println(name+<span class="string">"正在吃"</span>); </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sleep</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(name+<span class="string">"正在睡"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">introduction</span><span class="params">()</span> </span>&#123; </span><br><span class="line">        System.out.println(<span class="string">"大家好！我是"</span>         + id + <span class="string">"号"</span> + name + <span class="string">"."</span>); </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//子类————企鹅</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Penguin</span> <span class="keyword">extends</span> <span class="title">Animal</span> </span>&#123; </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Penguin</span><span class="params">(String myName, <span class="keyword">int</span> myid)</span> </span>&#123; </span><br><span class="line">        <span class="keyword">super</span>(myName, myid); </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//子类————老鼠</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Mouse</span> <span class="keyword">extends</span> <span class="title">Animal</span> </span>&#123; </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Mouse</span><span class="params">(String myName, <span class="keyword">int</span> myid)</span> </span>&#123; </span><br><span class="line">        <span class="keyword">super</span>(myName, myid); </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</details>
       
 
       
@@ -937,7 +953,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">shiro</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">java - 知识点</a>
         		</li>
       		
 		</ul>
@@ -947,7 +963,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/08/16/%E4%B8%80%E8%B5%B7%E6%9D%A5%E5%AD%A6shiro%E2%80%94%E2%80%94%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/08/16/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E5%8F%AF%E8%83%BD%E9%9C%80%E8%A6%81%E7%9A%84%E7%9F%A5%E8%AF%86%E7%82%B9%E2%80%94%E2%80%94java%E7%AF%87/">展开全文 >></a>
         </p>
       
 
@@ -1089,11 +1105,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">tf2 ROS</a>
+                <a href="javascript:void(0)" class="js-tag color1">-nanoPC-T4</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">-nanoPC-T4</a>
+                <a href="javascript:void(0)" class="js-tag color3">tf2 ROS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1105,27 +1121,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ROS c++ Publisher</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">launch文件</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ROS c++ Publisher</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">ROS 机械臂</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">shiro</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1141,11 +1145,27 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MarkDown hexo</a>
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">shiro</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">java - 知识点</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">微信小程序；教育管理系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">MarkDown hexo</a>
               </li>
              
               <li class="article-tag-list-item">
