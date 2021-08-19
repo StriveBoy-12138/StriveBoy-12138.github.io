@@ -15,11 +15,13 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="看看一年能够积攒多少有用的java知识">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://striveboy-12138.github.io/2021/08/16/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E5%8F%AF%E8%83%BD%E9%9C%80%E8%A6%81%E7%9A%84%E7%9F%A5%E8%AF%86%E7%82%B9%E2%80%94%E2%80%94java%E7%AF%87/1.png">
 <meta property="article:published_time" content="2021-08-16T09:39:35.000Z">
-<meta property="article:modified_time" content="2021-08-17T05:27:06.845Z">
+<meta property="article:modified_time" content="2021-08-17T08:55:29.800Z">
 <meta property="article:author" content="小褚同学">
 <meta property="article:tag" content="java - 知识点">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://striveboy-12138.github.io/2021/08/16/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E5%8F%AF%E8%83%BD%E9%9C%80%E8%A6%81%E7%9A%84%E7%9F%A5%E8%AF%86%E7%82%B9%E2%80%94%E2%80%94java%E7%AF%87/1.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -211,6 +213,14 @@
 </details>
 
 
+<h2 id="知识点二：int与int和integer的区别"><a href="#知识点二：int与int和integer的区别" class="headerlink" title="知识点二：int与int和integer的区别?"></a>知识点二：int与int和integer的区别?</h2><details>
+
+<p>int与integer的区别从大的方面来说就是<strong>基本数据类型</strong>与其<strong>包装类</strong>的区别：int 是<strong>基本类型</strong>，直接存数值；而integer是<strong>对象</strong>，用一个引用指向这个对象.  </p>
+<p>类似的7种基本数据类型和各自的包装类<br><img src="1.png" alt="包装类">  </p>
+<p>举个例子：当需要往ArrayList，HashMap中放东西时，像int，double这种类型是放不进去的，因为容器都是装 object的，这是就需要这些包装类型了。  </p>
+<p>如果我们定义一个int类型的数，只是用来进行一些加减乘除的运算or作为参数进行传递，那么就可以直接声明为int基本数据类型，但如果要像对象一样来进行处理，那么就要用Integer来声明一个对象，因为java是面向对象的语言，因此当声明为对象时能够提供很多对象间转换的方式，与一些常用的方法。</p>
+</details>
+
 
       
 
@@ -353,7 +363,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#知识点一：implements和extends的区别"><span class="toc-number">1.</span> <span class="toc-text">知识点一：implements和extends的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#implements"><span class="toc-number">1.1.</span> <span class="toc-text">implements</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#extend"><span class="toc-number">1.2.</span> <span class="toc-text">extend</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#知识点一：implements和extends的区别"><span class="toc-number">1.</span> <span class="toc-text">知识点一：implements和extends的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#implements"><span class="toc-number">1.1.</span> <span class="toc-text">implements</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#extend"><span class="toc-number">1.2.</span> <span class="toc-text">extend</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#知识点二：int与int和integer的区别"><span class="toc-number">2.</span> <span class="toc-text">知识点二：int与int和integer的区别?</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -476,15 +486,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">tf2 ROS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">golang</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">tf2 ROS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -508,10 +518,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">shiro</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
@@ -532,6 +538,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">shiro</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring - 注解</a>
               </li>
              
@@ -544,7 +554,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">ubuntu ROS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">MarkDown hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -556,15 +574,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Socket编程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">ubuntu ROS</a>
               </li>
             
             <div class="clearfix"></div>
