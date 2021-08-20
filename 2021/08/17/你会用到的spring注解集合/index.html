@@ -17,8 +17,9 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://striveboy-12138.github.io/2021/08/17/%E4%BD%A0%E4%BC%9A%E7%94%A8%E5%88%B0%E7%9A%84spring%E6%B3%A8%E8%A7%A3%E9%9B%86%E5%90%88/mapper.png">
 <meta property="og:image" content="http://striveboy-12138.github.io/2021/08/17/%E4%BD%A0%E4%BC%9A%E7%94%A8%E5%88%B0%E7%9A%84spring%E6%B3%A8%E8%A7%A3%E9%9B%86%E5%90%88/table.png">
+<meta property="og:image" content="http://striveboy-12138.github.io/2021/08/17/%E4%BD%A0%E4%BC%9A%E7%94%A8%E5%88%B0%E7%9A%84spring%E6%B3%A8%E8%A7%A3%E9%9B%86%E5%90%88/requiresRoles.png">
 <meta property="article:published_time" content="2021-08-17T05:19:39.000Z">
-<meta property="article:modified_time" content="2021-08-19T02:41:21.882Z">
+<meta property="article:modified_time" content="2021-08-20T08:13:26.694Z">
 <meta property="article:author" content="小褚同学">
 <meta property="article:tag" content="spring - 注解">
 <meta name="twitter:card" content="summary">
@@ -352,6 +353,32 @@
 </details>
 
 
+<h2 id="Transactional"><a href="#Transactional" class="headerlink" title="@Transactional"></a>@Transactional</h2><p>@Transactional 是声明式事务管理 编程中使用的注解</p>
+<details>
+
+<p>事务管理是应用系统开发中必不可少的一部分。Spring 为事务管理提供了丰富的功能支持。Spring 事务管理分为编码式和声明式的两种方式。<strong>编程式事务</strong>指的是通过编码方式实现事务；<strong>声明式事务</strong>基于 AOP,将具体业务逻辑与事务处理解耦。声明式事务管理使业务代码逻辑不受污染, 因此在实际使用中声明式事务用的比较多。<strong>声明式事务有两种方式</strong>，一种是在配置文件（xml）中做相关的事务规则声明，另一种是基于@Transactional 注解的方式。注释配置是目前流行的使用方式  </p>
+<p><strong>需要注意</strong>  </p>
+<ul>
+<li>默认配置下 Spring 只会回滚运行时、未检查异常（继承自 RuntimeException 的异常）或者 Error  </li>
+<li>@Transactional 注解只能应用到 public 方法才有效  </li>
+</ul>
+<h3 id="简单的使用方法"><a href="#简单的使用方法" class="headerlink" title="简单的使用方法"></a>简单的使用方法</h3><p>只需在方法加上 @Transactional 注解就可以了。<br>如下有一个保存用户的方法，加入 @Transactional 注解，使用默认配置，抛出异常之后，事务会自动回滚，数据不会插入到数据库。  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Transactional</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">save</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    User user = <span class="keyword">new</span> User(<span class="string">"服部半藏"</span>);</span><br><span class="line">    userMapper.insertSelective(user);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"save 抛异常了"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</details>
+
+
+<h2 id="RequiresRoles"><a href="#RequiresRoles" class="headerlink" title="@RequiresRoles"></a>@RequiresRoles</h2><p>验证当前用户是否具有某角色，与验证权限类似<br>使用这注解的前提是会进入到Realm的doGetAuthorizationInfo()授权方法中。</p>
+<details>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//授权</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> AuthorizationInfo <span class="title">doGetAuthorizationInfo</span><span class="params">(PrincipalCollection principals)</span> </span>&#123;</span><br><span class="line">        logger.info(<span class="string">"进行授权"</span>);</span><br><span class="line">        SimpleAuthorizationInfo simpleAuthorizationInfo = <span class="keyword">new</span> SimpleAuthorizationInfo();</span><br><span class="line">        User user = (User) principals.getPrimaryPrincipal();</span><br><span class="line">        Set&lt;Role&gt; roleSet = user.getRoles();</span><br><span class="line">        <span class="keyword">for</span> (Role role : roleSet)&#123;</span><br><span class="line">            <span class="keyword">if</span> (role.getRoleId() == user.getCurrentRoleId())&#123;</span><br><span class="line">                simpleAuthorizationInfo.addRole(role.getRoleName());</span><br><span class="line">                <span class="keyword">if</span> (role.getPermissions() != <span class="keyword">null</span>)&#123;</span><br><span class="line">                    simpleAuthorizationInfo.addStringPermissions(role.getPermissions());</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> simpleAuthorizationInfo;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>设置访问权限<br><img src="requiresRoles.png" alt="角色">    </p>
+<p>感谢csnd博主<strong>一只沙雕</strong>的分享，有兴趣请参考(文章)[<a href="https://blog.csdn.net/qq_41212530/article/details/101297491]" target="_blank" rel="noopener">https://blog.csdn.net/qq_41212530/article/details/101297491]</a>  </p>
+</details>
+
+
+
       
 
       
@@ -484,7 +511,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#CommponentScan"><span class="toc-number">1.</span> <span class="toc-text">@CommponentScan</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mapper"><span class="toc-number">2.</span> <span class="toc-text">@Mapper</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Table"><span class="toc-number">3.</span> <span class="toc-text">@Table</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#TableId"><span class="toc-number">3.1.</span> <span class="toc-text">@TableId</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TableField"><span class="toc-number">3.2.</span> <span class="toc-text">@TableField</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Veresion"><span class="toc-number">4.</span> <span class="toc-text">@Veresion</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Accessors"><span class="toc-number">5.</span> <span class="toc-text">@Accessors</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Service"><span class="toc-number">6.</span> <span class="toc-text">@Service</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Antowired"><span class="toc-number">7.</span> <span class="toc-text">@Antowired</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#CommponentScan"><span class="toc-number">1.</span> <span class="toc-text">@CommponentScan</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mapper"><span class="toc-number">2.</span> <span class="toc-text">@Mapper</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Table"><span class="toc-number">3.</span> <span class="toc-text">@Table</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#TableId"><span class="toc-number">3.1.</span> <span class="toc-text">@TableId</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TableField"><span class="toc-number">3.2.</span> <span class="toc-text">@TableField</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Veresion"><span class="toc-number">4.</span> <span class="toc-text">@Veresion</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Accessors"><span class="toc-number">5.</span> <span class="toc-text">@Accessors</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Service"><span class="toc-number">6.</span> <span class="toc-text">@Service</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Antowired"><span class="toc-number">7.</span> <span class="toc-text">@Antowired</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Transactional"><span class="toc-number">8.</span> <span class="toc-text">@Transactional</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#简单的使用方法"><span class="toc-number">8.1.</span> <span class="toc-text">简单的使用方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RequiresRoles"><span class="toc-number">9.</span> <span class="toc-text">@RequiresRoles</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -615,11 +642,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">tf2 ROS</a>
+                <a href="javascript:void(0)" class="js-tag color4">ROS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ROS</a>
+                <a href="javascript:void(0)" class="js-tag color3">tf2 ROS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -639,10 +666,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">STITP</a>
               </li>
              
@@ -655,15 +678,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">shiro</a>
+                <a href="javascript:void(0)" class="js-tag color2">spring - 注解</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">spring - 注解</a>
+                <a href="javascript:void(0)" class="js-tag color1">shiro</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -675,15 +702,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">ubuntu ROS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">MarkDown hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -695,7 +714,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">ubuntu ROS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Socket编程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
             
             <div class="clearfix"></div>

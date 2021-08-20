@@ -16,8 +16,10 @@
 <meta property="og:description" content="看看一年能够积攒多少有用的java知识">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://striveboy-12138.github.io/2021/08/16/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E5%8F%AF%E8%83%BD%E9%9C%80%E8%A6%81%E7%9A%84%E7%9F%A5%E8%AF%86%E7%82%B9%E2%80%94%E2%80%94java%E7%AF%87/1.png">
+<meta property="og:image" content="http://striveboy-12138.github.io/2021/08/16/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E5%8F%AF%E8%83%BD%E9%9C%80%E8%A6%81%E7%9A%84%E7%9F%A5%E8%AF%86%E7%82%B9%E2%80%94%E2%80%94java%E7%AF%87/2.png">
+<meta property="og:image" content="http://striveboy-12138.github.io/2021/08/16/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E5%8F%AF%E8%83%BD%E9%9C%80%E8%A6%81%E7%9A%84%E7%9F%A5%E8%AF%86%E7%82%B9%E2%80%94%E2%80%94java%E7%AF%87/3.png">
 <meta property="article:published_time" content="2021-08-16T09:39:35.000Z">
-<meta property="article:modified_time" content="2021-08-17T08:55:29.800Z">
+<meta property="article:modified_time" content="2021-08-19T05:58:01.434Z">
 <meta property="article:author" content="小褚同学">
 <meta property="article:tag" content="java - 知识点">
 <meta name="twitter:card" content="summary">
@@ -222,6 +224,24 @@
 </details>
 
 
+<h2 id="知识点三：Java中的list和set有什么区别"><a href="#知识点三：Java中的list和set有什么区别" class="headerlink" title="知识点三：Java中的list和set有什么区别"></a>知识点三：Java中的list和set有什么区别</h2><p>list与set方法的区别有：list可以允许重复对象和插入多个null值，而set不允许；list容器是有序的，而set容器是无序的等等</p>
+<details>
+
+<p>Java中的集合共包含三大类，它们分别是Set（集），List（列表）以及Map（映射）。它们都处在java.util中并且都为接口。它们各自都有各自的实现类。Set的实现类主要有HashSet和TreeSet，List的实现类主要有ArrayList。  </p>
+<p><img src="2.png" alt="区别"></p>
+<h3 id="List方法与set方法的区别"><a href="#List方法与set方法的区别" class="headerlink" title="List方法与set方法的区别"></a>List方法与set方法的区别</h3><ul>
+<li><p>重复对象：list方法可以允许重复的对象，而set方法不允许重复对象  </p>
+</li>
+<li><p>null元素：list可以插入多个null元素，而set只允许插入一个null元素  </p>
+</li>
+<li><p>容器是否有序：list是一个有序的容器，保持了每个元素的插入顺序。即输出顺序就是输入顺序，而set方法是无序容器，无法保证每个元素的存储顺序，TreeSet通过 Comparator 或者 Comparable 维护了一个排序顺序<br><img src="3.png" alt="3">  </p>
+</li>
+</ul>
+<h3 id="常用的实现类"><a href="#常用的实现类" class="headerlink" title="常用的实现类"></a>常用的实现类</h3><p>list方法常用的实现类有<strong>ArrayList</strong>、<strong>LinkedList</strong> 和 <strong>Vector</strong>。其中ArrayList 最为流行，它提供了使用索引的随意访问，而LinkedList 则对于经常需要从 List 中添加或删除元素的场合更为合适，Vector 表示底层数组，线程安全</p>
+<p>Set方法中最流行的几个实现类是 <strong>HashSet</strong>、<strong>LinkedHashSet</strong> 以及 <strong>TreeSet</strong>。最流行的是基于 HashMap实现的 HashSet；TreeSet 还实现了 SortedSet 接口，因此 TreeSet 是一个根据其 compare() 和compareTo() 的定义进行排序的有序容器</p>
+</details>
+
+
       
 
       
@@ -363,7 +383,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#知识点一：implements和extends的区别"><span class="toc-number">1.</span> <span class="toc-text">知识点一：implements和extends的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#implements"><span class="toc-number">1.1.</span> <span class="toc-text">implements</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#extend"><span class="toc-number">1.2.</span> <span class="toc-text">extend</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#知识点二：int与int和integer的区别"><span class="toc-number">2.</span> <span class="toc-text">知识点二：int与int和integer的区别?</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#知识点一：implements和extends的区别"><span class="toc-number">1.</span> <span class="toc-text">知识点一：implements和extends的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#implements"><span class="toc-number">1.1.</span> <span class="toc-text">implements</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#extend"><span class="toc-number">1.2.</span> <span class="toc-text">extend</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#知识点二：int与int和integer的区别"><span class="toc-number">2.</span> <span class="toc-text">知识点二：int与int和integer的区别?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#知识点三：Java中的list和set有什么区别"><span class="toc-number">3.</span> <span class="toc-text">知识点三：Java中的list和set有什么区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#List方法与set方法的区别"><span class="toc-number">3.1.</span> <span class="toc-text">List方法与set方法的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常用的实现类"><span class="toc-number">3.2.</span> <span class="toc-text">常用的实现类</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -494,11 +514,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">tf2 ROS</a>
+                <a href="javascript:void(0)" class="js-tag color4">ROS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ROS</a>
+                <a href="javascript:void(0)" class="js-tag color3">tf2 ROS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -518,10 +538,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">STITP</a>
               </li>
              
@@ -534,15 +550,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">shiro</a>
+                <a href="javascript:void(0)" class="js-tag color2">spring - 注解</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">spring - 注解</a>
+                <a href="javascript:void(0)" class="js-tag color1">shiro</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -554,15 +574,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">ubuntu ROS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">MarkDown hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -574,7 +586,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">ubuntu ROS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Socket编程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
             
             <div class="clearfix"></div>
