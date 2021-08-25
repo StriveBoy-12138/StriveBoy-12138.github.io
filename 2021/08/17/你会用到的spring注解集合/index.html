@@ -21,7 +21,7 @@
 <meta property="og:image" content="http://striveboy-12138.github.io/2021/08/17/%E4%BD%A0%E4%BC%9A%E7%94%A8%E5%88%B0%E7%9A%84spring%E6%B3%A8%E8%A7%A3%E9%9B%86%E5%90%88/requiresPermissions.png">
 <meta property="og:image" content="http://striveboy-12138.github.io/2021/08/17/%E4%BD%A0%E4%BC%9A%E7%94%A8%E5%88%B0%E7%9A%84spring%E6%B3%A8%E8%A7%A3%E9%9B%86%E5%90%88/5.png">
 <meta property="article:published_time" content="2021-08-17T05:19:39.000Z">
-<meta property="article:modified_time" content="2021-08-20T09:57:36.228Z">
+<meta property="article:modified_time" content="2021-08-25T03:20:04.780Z">
 <meta property="article:author" content="小褚同学">
 <meta property="article:tag" content="spring - 注解">
 <meta name="twitter:card" content="summary">
@@ -386,6 +386,32 @@
 </details>
 
 
+
+<h2 id="FeignClient"><a href="#FeignClient" class="headerlink" title="@FeignClient"></a>@FeignClient</h2><details>
+
+<p>由于SpringCloud采用分布式微服务架构，难免在各个子模块下存在<strong>模块方法互相调用</strong>的情况。比如service-admin服务要调用service-card 服务的方法。</p>
+<p>@FeignClient()注解就是为了解决这个问题的。</p>
+<p>@FeignClient()注解的源码要求它<strong>必须在Interface接口上使用</strong>。（  FeignClient注解被@Target(ElementType.TYPE)修饰，表示FeignClient注解的作用目标在接口上）  </p>
+<h3 id="关于调用目前有两种："><a href="#关于调用目前有两种：" class="headerlink" title="关于调用目前有两种："></a>关于调用目前有两种：</h3><ul>
+<li><p>接口提供方在注册中心<br>如果服务提供方已经注册到注册中心了，那么name或者value的值为：服务提供方的服务名称。必须为所有客户端指定一个name或者value<br>@FeignClient(value=”run-product”,fallback = ProductClientServiceFallBack.class)  </p>
+</li>
+<li><p>单独的一个http接口，接口提供方没有到注册中心<br>@FeignClient(name=”runClient11111”,url=”localhost:8001”)<br>此处name的值为:调用客户端的名称。   </p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FeignClient</span>(value = <span class="string">"feign-server"</span>,configuration = FeignConfig<span class="class">.<span class="keyword">class</span>)  //需要一个配置文件</span></span><br><span class="line"><span class="class"><span class="title">public</span> <span class="title">interface</span> <span class="title">TestService</span> </span>&#123;</span><br><span class="line">    <span class="meta">@RequestLine</span>(<span class="string">"POST /feign/test"</span>)    <span class="comment">//对应请求方式和路径</span></span><br><span class="line">    <span class="function">String <span class="title">feign</span><span class="params">(@RequestBody UserDO userDO)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@EnableFeignClients</span></span><br><span class="line"><span class="meta">@SpringBootConfiguration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FeignConfig</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Contract <span class="title">contract</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> feign.Contract.Default();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="FeignClient标签的常用属性如下："><a href="#FeignClient标签的常用属性如下：" class="headerlink" title="@FeignClient标签的常用属性如下："></a>@FeignClient标签的常用属性如下：</h3><ul>
+<li>value: 服务名  </li>
+<li>name：指定FeignClient的名称，如果项目使用了Ribbon，name属性会作为微服务的名称，用于服务发现  </li>
+<li>url: url一般用于调试，可以手动指定@FeignClient调用的地址  </li>
+<li>decode404:当发生http 404错误时，如果该字段位true，会调用decoder进行解码，否则抛出FeignException  </li>
+<li>configuration: Feign配置类，可以自定义Feign的Encoder、Decoder、LogLevel、Contract  </li>
+<li>fallback: 定义容错的处理类，当调用远程接口失败或超时时，会调用对应接口的容错逻辑，fallback指定的类必须实现@FeignClient标记的接口  </li>
+<li>fallbackFactory: 工厂类，用于生成fallback类示例，通过这个属性我们可以实现每个接口通用的容错逻辑，减少重复的代码  </li>
+<li>path: 定义当前FeignClient的统一前缀  </li>
+</ul>
+<p><strong>此外还要求服务的启动类要有@EnableFeignClients 注解才能使Fegin生效</strong></p>
+</details>
       
 
       
@@ -518,7 +544,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#CommponentScan"><span class="toc-number">1.</span> <span class="toc-text">@CommponentScan</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mapper"><span class="toc-number">2.</span> <span class="toc-text">@Mapper</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Table"><span class="toc-number">3.</span> <span class="toc-text">@Table</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#TableId"><span class="toc-number">3.1.</span> <span class="toc-text">@TableId</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TableField"><span class="toc-number">3.2.</span> <span class="toc-text">@TableField</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Veresion"><span class="toc-number">4.</span> <span class="toc-text">@Veresion</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Accessors"><span class="toc-number">5.</span> <span class="toc-text">@Accessors</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Service"><span class="toc-number">6.</span> <span class="toc-text">@Service</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Antowired"><span class="toc-number">7.</span> <span class="toc-text">@Antowired</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Transactional"><span class="toc-number">8.</span> <span class="toc-text">@Transactional</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#简单的使用方法"><span class="toc-number">8.1.</span> <span class="toc-text">简单的使用方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RequiresRoles"><span class="toc-number">9.</span> <span class="toc-text">@RequiresRoles</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RequiresPermissions"><span class="toc-number">10.</span> <span class="toc-text">@RequiresPermissions</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#CommponentScan"><span class="toc-number">1.</span> <span class="toc-text">@CommponentScan</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mapper"><span class="toc-number">2.</span> <span class="toc-text">@Mapper</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Table"><span class="toc-number">3.</span> <span class="toc-text">@Table</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#TableId"><span class="toc-number">3.1.</span> <span class="toc-text">@TableId</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TableField"><span class="toc-number">3.2.</span> <span class="toc-text">@TableField</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Veresion"><span class="toc-number">4.</span> <span class="toc-text">@Veresion</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Accessors"><span class="toc-number">5.</span> <span class="toc-text">@Accessors</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Service"><span class="toc-number">6.</span> <span class="toc-text">@Service</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Antowired"><span class="toc-number">7.</span> <span class="toc-text">@Antowired</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Transactional"><span class="toc-number">8.</span> <span class="toc-text">@Transactional</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#简单的使用方法"><span class="toc-number">8.1.</span> <span class="toc-text">简单的使用方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RequiresRoles"><span class="toc-number">9.</span> <span class="toc-text">@RequiresRoles</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RequiresPermissions"><span class="toc-number">10.</span> <span class="toc-text">@RequiresPermissions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FeignClient"><span class="toc-number">11.</span> <span class="toc-text">@FeignClient</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#关于调用目前有两种："><span class="toc-number">11.1.</span> <span class="toc-text">关于调用目前有两种：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FeignClient标签的常用属性如下："><span class="toc-number">11.2.</span> <span class="toc-text">@FeignClient标签的常用属性如下：</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -633,6 +659,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">华为软挑</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
@@ -641,15 +671,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">华为软挑</a>
+                <a href="javascript:void(0)" class="js-tag color3">tf2 ROS</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">-nanoPC-T4</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">tf2 ROS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -665,11 +691,27 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ROS 机械臂</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">ROS c++ Publisher</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ROS 机械臂</a>
+                <a href="javascript:void(0)" class="js-tag color1">shiro</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">spring - 注解</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -685,23 +727,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">shiro</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">spring - 注解</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">java - 知识点</a>
+                <a href="javascript:void(0)" class="js-tag color4">MarkDown hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -709,7 +735,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MarkDown hexo</a>
+                <a href="javascript:void(0)" class="js-tag color1">java - 知识点</a>
               </li>
              
               <li class="article-tag-list-item">
