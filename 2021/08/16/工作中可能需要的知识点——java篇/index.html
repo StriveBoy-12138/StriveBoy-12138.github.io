@@ -18,8 +18,10 @@
 <meta property="og:image" content="http://striveboy-12138.github.io/2021/08/16/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E5%8F%AF%E8%83%BD%E9%9C%80%E8%A6%81%E7%9A%84%E7%9F%A5%E8%AF%86%E7%82%B9%E2%80%94%E2%80%94java%E7%AF%87/1.png">
 <meta property="og:image" content="http://striveboy-12138.github.io/2021/08/16/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E5%8F%AF%E8%83%BD%E9%9C%80%E8%A6%81%E7%9A%84%E7%9F%A5%E8%AF%86%E7%82%B9%E2%80%94%E2%80%94java%E7%AF%87/2.png">
 <meta property="og:image" content="http://striveboy-12138.github.io/2021/08/16/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E5%8F%AF%E8%83%BD%E9%9C%80%E8%A6%81%E7%9A%84%E7%9F%A5%E8%AF%86%E7%82%B9%E2%80%94%E2%80%94java%E7%AF%87/3.png">
+<meta property="og:image" content="http://striveboy-12138.github.io/2021/08/16/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E5%8F%AF%E8%83%BD%E9%9C%80%E8%A6%81%E7%9A%84%E7%9F%A5%E8%AF%86%E7%82%B9%E2%80%94%E2%80%94java%E7%AF%87/4.png">
+<meta property="og:image" content="http://striveboy-12138.github.io/2021/08/16/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E5%8F%AF%E8%83%BD%E9%9C%80%E8%A6%81%E7%9A%84%E7%9F%A5%E8%AF%86%E7%82%B9%E2%80%94%E2%80%94java%E7%AF%87/5.png">
 <meta property="article:published_time" content="2021-08-16T09:39:35.000Z">
-<meta property="article:modified_time" content="2021-08-19T05:58:01.434Z">
+<meta property="article:modified_time" content="2021-09-01T03:01:08.806Z">
 <meta property="article:author" content="小褚同学">
 <meta property="article:tag" content="java - 知识点">
 <meta name="twitter:card" content="summary">
@@ -242,6 +244,17 @@
 </details>
 
 
+<h2 id="知识点四：springboot约束Mysql表设计"><a href="#知识点四：springboot约束Mysql表设计" class="headerlink" title="知识点四：springboot约束Mysql表设计"></a>知识点四：springboot约束Mysql表设计</h2><details>
+
+<h4 id="概述：在springboot环境下，使用springdatajpa得时候，报错Unknown-column-‘last-login-i-p’-in-‘field-list’；"><a href="#概述：在springboot环境下，使用springdatajpa得时候，报错Unknown-column-‘last-login-i-p’-in-‘field-list’；" class="headerlink" title="概述：在springboot环境下，使用springdatajpa得时候，报错Unknown column ‘last_login_i_p’ in ‘field list’；"></a>概述：在springboot环境下，使用springdatajpa得时候，报错Unknown column ‘last_login_i_p’ in ‘field list’；</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//实体类定义</span></span><br><span class="line"><span class="keyword">public</span> Class User&#123;</span><br><span class="line">  <span class="keyword">private</span> string lastLoginIP;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//数据库</span></span><br><span class="line">  `lastLoginIP` varchar(<span class="number">20</span>) DEFAULT NULL COMMENT <span class="string">'最后登录IP'</span>,</span><br></pre></td></tr></table></figure>
+
+<p>查看官方文档得知原因：默认使用<strong>Hiberbate4</strong>命名规则，<strong>驼峰规则</strong>转化时会在大写字母下加入<strong>下划线</strong><br><img src="4.png" alt="4"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//修改实体类定义</span></span><br><span class="line"><span class="keyword">public</span> Class User&#123;</span><br><span class="line">  <span class="keyword">private</span> string lastLoginIp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//修改数据库为</span></span><br><span class="line">  `last_login_ip` varchar(<span class="number">20</span>) DEFAULT NULL COMMENT <span class="string">'最后登录IP'</span>,</span><br></pre></td></tr></table></figure>
+
+<p>成功运行<br><img src="5.png" alt="5"></p>
+</details>
+
+
       
 
       
@@ -383,7 +396,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#知识点一：implements和extends的区别"><span class="toc-number">1.</span> <span class="toc-text">知识点一：implements和extends的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#implements"><span class="toc-number">1.1.</span> <span class="toc-text">implements</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#extend"><span class="toc-number">1.2.</span> <span class="toc-text">extend</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#知识点二：int与int和integer的区别"><span class="toc-number">2.</span> <span class="toc-text">知识点二：int与int和integer的区别?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#知识点三：Java中的list和set有什么区别"><span class="toc-number">3.</span> <span class="toc-text">知识点三：Java中的list和set有什么区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#List方法与set方法的区别"><span class="toc-number">3.1.</span> <span class="toc-text">List方法与set方法的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常用的实现类"><span class="toc-number">3.2.</span> <span class="toc-text">常用的实现类</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#知识点一：implements和extends的区别"><span class="toc-number">1.</span> <span class="toc-text">知识点一：implements和extends的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#implements"><span class="toc-number">1.1.</span> <span class="toc-text">implements</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#extend"><span class="toc-number">1.2.</span> <span class="toc-text">extend</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#知识点二：int与int和integer的区别"><span class="toc-number">2.</span> <span class="toc-text">知识点二：int与int和integer的区别?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#知识点三：Java中的list和set有什么区别"><span class="toc-number">3.</span> <span class="toc-text">知识点三：Java中的list和set有什么区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#List方法与set方法的区别"><span class="toc-number">3.1.</span> <span class="toc-text">List方法与set方法的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常用的实现类"><span class="toc-number">3.2.</span> <span class="toc-text">常用的实现类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#知识点四：springboot约束Mysql表设计"><span class="toc-number">4.</span> <span class="toc-text">知识点四：springboot约束Mysql表设计</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#概述：在springboot环境下，使用springdatajpa得时候，报错Unknown-column-‘last-login-i-p’-in-‘field-list’；"><span class="toc-number">4.0.1.</span> <span class="toc-text">概述：在springboot环境下，使用springdatajpa得时候，报错Unknown column ‘last_login_i_p’ in ‘field list’；</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -502,10 +515,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">tf2 ROS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">-nanoPC-T4</a>
               </li>
              
@@ -518,11 +527,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ROS</a>
+                <a href="javascript:void(0)" class="js-tag color3">tf2 ROS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">client server</a>
+                <a href="javascript:void(0)" class="js-tag color4">ROS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -531,6 +540,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">ROS c++ Publisher</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">client server</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -543,10 +556,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -566,15 +575,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">java - 知识点</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">微信小程序；教育管理系统</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring - 注解</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">java - 知识点</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -586,15 +599,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">分治法</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">最近点对</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
               <li class="article-tag-list-item">
