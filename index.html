@@ -897,29 +897,29 @@
 
 
   
-    <article id="post-JVM性能调优" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-知识点-谈谈HTTP中的GET和POST方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2022/05/06/JVM%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/">JVM性能调优</a>
+      <a class="article-title" href="/2022/05/09/%E7%9F%A5%E8%AF%86%E7%82%B9-%E8%B0%88%E8%B0%88HTTP%E4%B8%AD%E7%9A%84GET%E5%92%8CPOST%E6%96%B9%E6%B3%95/">知识点-谈谈HTTP中的GET和POST方法</a>
     </h1>
   
 
         
-        <a href="/2022/05/06/JVM%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/" class="archive-article-date">
-  	<time datetime="2022-05-05T16:00:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-06</time>
+        <a href="/2022/05/09/%E7%9F%A5%E8%AF%86%E7%82%B9-%E8%B0%88%E8%B0%88HTTP%E4%B8%AD%E7%9A%84GET%E5%92%8CPOST%E6%96%B9%E6%B3%95/" class="archive-article-date">
+  	<time datetime="2022-05-09T02:04:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-09</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>JVM是Java Virtual Machine（Java虚拟机）的缩写，JVM包括即时编译（JIT）、内存管理（垃圾回收GC技术）和Runtime技术，其中GC调优是性能调优中应用最为广泛。本次调优思路主要根据自己手中的项目针对GC展开说明。</p>
+        <p>在客户端与服务端之间进行通信时，有很多种客户端向服务端进行请求的方法，例如：GET、POST、PUT、HEAD、DELETE、PATCH、OPTIONS。其中最常用的是<strong>POST</strong>、<strong>GET</strong>方法。下面我们去了解并比较一下这两种请求方法。  ’</p>
         
-          <a class="article-more-a" href="/2022/05/06/JVM%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/#more">more >></a>
+          <a class="article-more-a" href="/2022/05/09/%E7%9F%A5%E8%AF%86%E7%82%B9-%E8%B0%88%E8%B0%88HTTP%E4%B8%AD%E7%9A%84GET%E5%92%8CPOST%E6%96%B9%E6%B3%95/#more">more >></a>
         
       
 
@@ -933,7 +933,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">JVM</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">HTTP</a>
         		</li>
       		
 		</ul>
@@ -945,7 +945,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/JVM//" class="article-tag-list-link color4">JVM</a>
+        			<a href="/categories/知识点//" class="article-tag-list-link color4">知识点</a>
         		</li>
       		
 		</ul>
@@ -954,7 +954,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2022/05/06/JVM%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/">展开全文 >></a>
+          <a class="article-more-a" href="/2022/05/09/%E7%9F%A5%E8%AF%86%E7%82%B9-%E8%B0%88%E8%B0%88HTTP%E4%B8%AD%E7%9A%84GET%E5%92%8CPOST%E6%96%B9%E6%B3%95/">展开全文 >></a>
         </p>
       
 
@@ -1084,10 +1084,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">华为软挑</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
@@ -1096,11 +1092,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+                <a href="javascript:void(0)" class="js-tag color5">华为软挑</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Mybatis-plus</a>
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1108,11 +1104,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">-nanoPC-T4</a>
+                <a href="javascript:void(0)" class="js-tag color3">Mybatis-plus</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">tf2 ROS</a>
+                <a href="javascript:void(0)" class="js-tag color1">-nanoPC-T4</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1120,11 +1116,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">launch文件</a>
+                <a href="javascript:void(0)" class="js-tag color3">tf2 ROS</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">client server</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">launch文件</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1148,19 +1148,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Springcloud</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">shiro</a>
+                <a href="javascript:void(0)" class="js-tag color2">Springcloud</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">shiro</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1172,27 +1172,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">微信小程序；教育管理系统</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">-MQTT -MQ</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">MarkDown hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">ubuntu ROS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Socket编程</a>
+                <a href="javascript:void(0)" class="js-tag color3">微信小程序；教育管理系统</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1201,6 +1185,26 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">最近点对</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">ubuntu ROS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">-MQTT -MQ</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Socket编程</a>
               </li>
             
             <div class="clearfix"></div>

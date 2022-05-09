@@ -6,14 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://StriveBoy-12138.github.io">
-  <title>Archives | Hexo</title>
+  <title>知识点-谈谈HTTP中的GET和POST方法 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://striveboy-12138.github.io/archives/index.html">
+  <meta name="description" content="在客户端与服务端之间进行通信时，有很多种客户端向服务端进行请求的方法，例如：GET、POST、PUT、HEAD、DELETE、PATCH、OPTIONS。其中最常用的是POST、GET方法。下面我们去了解并比较一下这两种请求方法。  ’">
+<meta property="og:type" content="article">
+<meta property="og:title" content="知识点-谈谈HTTP中的GET和POST方法">
+<meta property="og:url" content="http://striveboy-12138.github.io/2022/05/09/%E7%9F%A5%E8%AF%86%E7%82%B9-%E8%B0%88%E8%B0%88HTTP%E4%B8%AD%E7%9A%84GET%E5%92%8CPOST%E6%96%B9%E6%B3%95/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="在客户端与服务端之间进行通信时，有很多种客户端向服务端进行请求的方法，例如：GET、POST、PUT、HEAD、DELETE、PATCH、OPTIONS。其中最常用的是POST、GET方法。下面我们去了解并比较一下这两种请求方法。  ’">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-05-09T02:04:13.000Z">
+<meta property="article:modified_time" content="2022-05-09T05:37:19.920Z">
 <meta property="article:author" content="小褚同学">
+<meta property="article:tag" content="HTTP">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -159,35 +164,129 @@
           </div>
           <div id="js-content" class="content-ll">
             
-  
-  
+<article id="post-知识点-谈谈HTTP中的GET和POST方法" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/05/09/%E7%9F%A5%E8%AF%86%E7%82%B9-%E8%B0%88%E8%B0%88HTTP%E4%B8%AD%E7%9A%84GET%E5%92%8CPOST%E6%96%B9%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2022-05-09T02:04:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-09</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/05/09/%E7%9F%A5%E8%AF%86%E7%82%B9-%E8%B0%88%E8%B0%88HTTP%E4%B8%AD%E7%9A%84GET%E5%92%8CPOST%E6%96%B9%E6%B3%95/">知识点-谈谈HTTP中的GET和POST方法</a>
+    <h1 class="article-title" itemprop="name">
+      知识点-谈谈HTTP中的GET和POST方法
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2022/05/09/%E7%9F%A5%E8%AF%86%E7%82%B9-%E8%B0%88%E8%B0%88HTTP%E4%B8%AD%E7%9A%84GET%E5%92%8CPOST%E6%96%B9%E6%B3%95/" class="archive-article-date">
+  	<time datetime="2022-05-09T02:04:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在客户端与服务端之间进行通信时，有很多种客户端向服务端进行请求的方法，例如：GET、POST、PUT、HEAD、DELETE、PATCH、OPTIONS。其中最常用的是<strong>POST</strong>、<strong>GET</strong>方法。下面我们去了解并比较一下这两种请求方法。  ’</p>
+<a id="more"></a>
+
+<h3 id="什么是HTTP"><a href="#什么是HTTP" class="headerlink" title="什么是HTTP"></a>什么是HTTP</h3><p>超文本传输协议（hypertext transfer protocol，缩写HTTP）旨在启用客户端和服务器之间的通信。充当着客户端-服务器之间的请求-响应协议。  </p>
+<h3 id="POST方法"><a href="#POST方法" class="headerlink" title="POST方法"></a>POST方法</h3><p><strong>POST用于将数据发送到服务器来创建/更新资源。</strong><br>通过POST发送到服务器的数据存储在HTTP请求的请求主体中。</p>
+<blockquote>
+<p>POST /test/demo_form.php HTTP/1.1<br>Host: w3school.com.cn<br>name1=value1&amp;name2=value2  </p>
+</blockquote>
+<p><strong>有关POST请求需要注意的是：</strong><br>1、POST请求不会被缓存<br>2、POST请求不会保留在浏览器历史记录当中<br>3、POST请求不能收藏为书签<br>4、POST请求对数据长度没有要求  </p>
+<h3 id="GET方法"><a href="#GET方法" class="headerlink" title="GET方法"></a>GET方法</h3><p><strong>GET用于从指定资源请求数据</strong><br>GET请求查询的字符串（名称/值对）是在GET请求的URL中发送的  </p>
+<blockquote>
+<p>/test/demo_form.php?name1=value1&amp;name2=value2  </p>
+</blockquote>
+<p><strong>有关GET请求需要注意的是：</strong><br>1、GET请求会被缓存<br>2、GET请求会保留在浏览器历史记录当中<br>3、GET请求能收藏为书签<br>4、GET请求不应在处理敏感数据时使用<br>5、GET请求对数据长度有限制<br>6、GET请求只应当用于取回数据（不修改）  </p>
+<h3 id="POST-与-GET-请求的区别"><a href="#POST-与-GET-请求的区别" class="headerlink" title="POST 与 GET 请求的区别"></a>POST 与 GET 请求的区别</h3><table>
+<thead>
+<tr>
+<th></th>
+<th>GET</th>
+<th>POST</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>后退/刷新</td>
+<td>无害</td>
+<td>数据会被重新提交（浏览器应该告知用户数据会被重新提交）。</td>
+</tr>
+<tr>
+<td>书签</td>
+<td>可以被收藏</td>
+<td>不可以被是收藏</td>
+</tr>
+<tr>
+<td>缓存</td>
+<td>能被缓存</td>
+<td>不能被缓存</td>
+</tr>
+<tr>
+<td>编码类型</td>
+<td>application/x-www-form-urlencoded</td>
+<td>application/x-www-form-urlencoded 或 multipart/form-data。为二进制数据使用多重编码。</td>
+</tr>
+<tr>
+<td>历史记录</td>
+<td>会被保存</td>
+<td>不会被保存</td>
+</tr>
+<tr>
+<td>数据长度</td>
+<td>有限制，URL最长2048个字符</td>
+<td>无限制</td>
+</tr>
+<tr>
+<td>数据类型</td>
+<td>只允许ASCII字符</td>
+<td>无限制，可为二进制数据</td>
+</tr>
+<tr>
+<td>安全性</td>
+<td>相比于POST，安全性较差，因为数据在URL之中</td>
+<td>更安全，因为不会保存在历史记录和服务器日志中</td>
+</tr>
+<tr>
+<td>可见性</td>
+<td>显示在URL中，所有人可见</td>
+<td>不显示在URL中</td>
+</tr>
+<tr>
+<td>功能</td>
+<td>用于获取信息</td>
+<td>用于修改/更新服务器数据</td>
+</tr>
+</tbody></table>
+<h3 id="相关问题"><a href="#相关问题" class="headerlink" title="相关问题"></a>相关问题</h3><p><strong>1、POST一定安全吗？</strong><br>答：POST只是相对于GET方法是安全的，因为数据时存储在HTTP请求主体之中，但并不是安全的。然而从传输的角度来说并不是安全的，因为HTTP在网络上数据与铭文传输的，只要在网络节点上进行抓包，就能够获取完整的数据报文。要想传输是也是安全的，就只有通过加密的方式，也就是HTTPS（超文本传输安全协议，主要通过数字认证、加密算法、非对称密钥等技术完成数据传输加密。）  </p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -199,7 +298,7 @@
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -212,383 +311,116 @@
 	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/05/06/JVM%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/" class="archive-article-date">
-  	<time datetime="2022-05-05T16:00:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/05/06/JVM%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/">JVM性能调优</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">JVM</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/JVM//" class="article-tag-list-link color4">JVM</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
       
-        </div></section>
+
       
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://striveboy-12138.github.io/38.github.io/2022/05/09/%E7%9F%A5%E8%AF%86%E7%82%B9-%E8%B0%88%E8%B0%88HTTP%E4%B8%AD%E7%9A%84GET%E5%92%8CPOST%E6%96%B9%E6%B3%95/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/11/26/Mybatis%E2%80%94plus%E6%96%B0%E5%A2%9E%E6%8F%92%E5%85%A5%E5%90%8E%E8%BF%94%E5%9B%9E%E4%B8%BB%E9%94%AEid/" class="archive-article-date">
-  	<time datetime="2021-11-26T03:00:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-26</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/11/26/Mybatis%E2%80%94plus%E6%96%B0%E5%A2%9E%E6%8F%92%E5%85%A5%E5%90%8E%E8%BF%94%E5%9B%9E%E4%B8%BB%E9%94%AEid/">Mybatis—plus新增插入后返回主键id</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Mybatis-plus</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/09/26/Kafka-%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" class="archive-article-date">
-  	<time datetime="2021-09-26T05:38:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-26</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2022/05/06/JVM%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JVM性能调优</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/09/26/Kafka-%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/">Kafka 的基本概念</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">-Kafka</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是HTTP"><span class="toc-number">1.</span> <span class="toc-text">什么是HTTP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#POST方法"><span class="toc-number">2.</span> <span class="toc-text">POST方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GET方法"><span class="toc-number">3.</span> <span class="toc-text">GET方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#POST-与-GET-请求的区别"><span class="toc-number">4.</span> <span class="toc-text">POST 与 GET 请求的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#相关问题"><span class="toc-number">5.</span> <span class="toc-text">相关问题</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/09/26/%E7%9F%A5%E8%AF%86%E2%80%94%E2%80%94MQTT%E5%92%8CMQ%E7%9A%84%E5%8C%BA%E5%88%AB/" class="archive-article-date">
-  	<time datetime="2021-09-26T02:08:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-26</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/09/26/%E7%9F%A5%E8%AF%86%E2%80%94%E2%80%94MQTT%E5%92%8CMQ%E7%9A%84%E5%8C%BA%E5%88%AB/">知识——MQTT和MQ的区别</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">-MQTT -MQ</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/08/25/SpringCloud%E2%80%94%E2%80%94%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="archive-article-date">
-  	<time datetime="2021-08-25T05:28:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/08/25/SpringCloud%E2%80%94%E2%80%94%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">SpringCloud——学习笔记</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Springcloud</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/08/17/%E4%BD%A0%E4%BC%9A%E7%94%A8%E5%88%B0%E7%9A%84spring%E6%B3%A8%E8%A7%A3%E9%9B%86%E5%90%88/" class="archive-article-date">
-  	<time datetime="2021-08-17T05:19:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-17</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/08/17/%E4%BD%A0%E4%BC%9A%E7%94%A8%E5%88%B0%E7%9A%84spring%E6%B3%A8%E8%A7%A3%E9%9B%86%E5%90%88/">你会用到的spring注解集合</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spring - 注解</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/08/16/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E5%8F%AF%E8%83%BD%E9%9C%80%E8%A6%81%E7%9A%84%E7%9F%A5%E8%AF%86%E7%82%B9%E2%80%94%E2%80%94java%E7%AF%87/" class="archive-article-date">
-  	<time datetime="2021-08-16T09:39:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/08/16/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E5%8F%AF%E8%83%BD%E9%9C%80%E8%A6%81%E7%9A%84%E7%9F%A5%E8%AF%86%E7%82%B9%E2%80%94%E2%80%94java%E7%AF%87/">工作中可能需要的知识点——java篇</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">java - 知识点</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/08/16/%E4%B8%80%E8%B5%B7%E6%9D%A5%E5%AD%A6shiro%E2%80%94%E2%80%94%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2021-08-16T08:58:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/08/16/%E4%B8%80%E8%B5%B7%E6%9D%A5%E5%AD%A6shiro%E2%80%94%E2%80%94%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/">一起来学shiro——常见问题及解决办法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">shiro</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/08/14/%E4%B8%80%E8%B5%B7%E6%9D%A5%E5%AD%A6shiro%E2%80%94%E2%80%94%E7%AE%80%E4%BB%8B/" class="archive-article-date">
-  	<time datetime="2021-08-14T02:20:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/08/14/%E4%B8%80%E8%B5%B7%E6%9D%A5%E5%AD%A6shiro%E2%80%94%E2%80%94%E7%AE%80%E4%BB%8B/">一起来学shiro——简介</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">shiro</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><a class="page-number" href="/archives/page/4/">4</a><a class="extend next" rel="next" href="/archives/page/2/">Next &amp;raquo;</a>
-    </nav>
   
 
 
@@ -615,8 +447,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
