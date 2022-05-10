@@ -6,15 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://StriveBoy-12138.github.io">
-  <title>Archives: 2022 | Hexo</title>
+  <title>知识点-你应该熟知的Linux | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://striveboy-12138.github.io/archives/2022/index.html">
+  <meta name="description" content="我们不论在开发还是使用上，经常会接触到Linux系统，下面简单记录一下Linux的几个基础知识点：Linux的目录结构、Linux的基本命令">
+<meta property="og:type" content="article">
+<meta property="og:title" content="知识点-你应该熟知的Linux">
+<meta property="og:url" content="http://striveboy-12138.github.io/2022/05/09/%E7%9F%A5%E8%AF%86%E7%82%B9-%E4%BD%A0%E5%BA%94%E8%AF%A5%E7%86%9F%E7%9F%A5%E7%9A%84Linux/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="我们不论在开发还是使用上，经常会接触到Linux系统，下面简单记录一下Linux的几个基础知识点：Linux的目录结构、Linux的基本命令">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2014/06/d0c50-linux2bfile2bsystem2bhierarchy.jpg">
+<meta property="article:published_time" content="2022-05-09T11:35:16.000Z">
+<meta property="article:modified_time" content="2022-05-09T12:18:41.480Z">
 <meta property="article:author" content="小褚同学">
+<meta property="article:tag" content="linux">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.runoob.com/wp-content/uploads/2014/06/d0c50-linux2bfile2bsystem2bhierarchy.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -159,35 +166,162 @@
           </div>
           <div id="js-content" class="content-ll">
             
-  
-  
+<article id="post-知识点-你应该熟知的Linux" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/05/09/%E7%9F%A5%E8%AF%86%E7%82%B9-%E4%BD%A0%E5%BA%94%E8%AF%A5%E7%86%9F%E7%9F%A5%E7%9A%84Linux/" class="archive-article-date">
-  	<time datetime="2022-05-09T11:35:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-09</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/05/09/%E7%9F%A5%E8%AF%86%E7%82%B9-%E4%BD%A0%E5%BA%94%E8%AF%A5%E7%86%9F%E7%9F%A5%E7%9A%84Linux/">知识点-你应该熟知的Linux</a>
+    <h1 class="article-title" itemprop="name">
+      知识点-你应该熟知的Linux
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2022/05/09/%E7%9F%A5%E8%AF%86%E7%82%B9-%E4%BD%A0%E5%BA%94%E8%AF%A5%E7%86%9F%E7%9F%A5%E7%9A%84Linux/" class="archive-article-date">
+  	<time datetime="2022-05-09T11:35:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>我们不论在开发还是使用上，经常会接触到Linux系统，下面简单记录一下Linux的几个基础知识点：Linux的目录结构、Linux的基本命令  </p>
+<a id="more"></a>
+
+<h3 id="Linux-简介"><a href="#Linux-简介" class="headerlink" title="Linux 简介"></a>Linux 简介</h3><p>Linux 是一套免费使用和自由传播的类 Unix 操作系统，是一个基于 POSIX 和 UNIX 的多用户、多任务、支持多线程和多 CPU 的操作系统。<br>Linux 能运行主要的 UNIX 工具软件、应用程序和网络协议。支持 32 位和 64 为硬件。Linux 继承了 Unix 以网络为核心的设计思想，是一个性能稳定的多用户网络操作系统。  </p>
+<h3 id="Linux-系统目录结构"><a href="#Linux-系统目录结构" class="headerlink" title="Linux 系统目录结构"></a>Linux 系统目录结构</h3><p>Linux 树状目录结构：  </p>
+<p><img src="https://www.runoob.com/wp-content/uploads/2014/06/d0c50-linux2bfile2bsystem2bhierarchy.jpg" alt="目录结构">  </p>
+<p>参看以下各个目录作用解释：  </p>
+<table>
+<thead>
+<tr>
+<th>目录名称</th>
+<th>解释说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>/bin</td>
+<td>是 Binaries（二进制文件）的缩写，存放着最常使用的命令</td>
+</tr>
+<tr>
+<td>/boot</td>
+<td>这里存放的是启动 Linux 时使用的一些核心文件，包括一些连接文件和镜像文件</td>
+</tr>
+<tr>
+<td>/dev</td>
+<td>是 Device（设备）的缩写，该目录下存放的是 Linux 的外部设备，在 Linux 中访问设备的方式和访问文件的方式是相同的</td>
+</tr>
+<tr>
+<td>/etc</td>
+<td>是 Etcetera（等等）的缩写，这个目录用来存放所有的系统管理所需要的配置文件和子目录</td>
+</tr>
+<tr>
+<td>/home</td>
+<td>用户的主目录</td>
+</tr>
+<tr>
+<td>/lib</td>
+<td>是 Library（库）的缩写，这个目录里存放着系统最基本的动态连接共享库，其作用类似于 Windows 里的 DLL 文件，几乎所有应用程序都需要用到这些共享库</td>
+</tr>
+<tr>
+<td>/lost+found</td>
+<td>这个目录一般是空的，系统非法关机后，就存放一些文件</td>
+</tr>
+<tr>
+<td>/media</td>
+<td>系统会自动识别一些设备，例如U盘、光驱等，当识别后，Linux 会把识别的设备挂载到这个目录下</td>
+</tr>
+<tr>
+<td>/mnt</td>
+<td>系统提供该目录是为了让用户临时挂载别的系统文件的</td>
+</tr>
+<tr>
+<td>/opt</td>
+<td>是 Option（可选）的缩写，给主机额外安装软件所摆放的目录，比如安装一个 ORACLE 数据库则就可以安装在这</td>
+</tr>
+<tr>
+<td>/proc</td>
+<td>是 Processsess（进程）的缩写，是一种伪文件系统，是一个虚拟的目录，是系统内存的映射</td>
+</tr>
+<tr>
+<td>/root</td>
+<td>该目录是系统管理员</td>
+</tr>
+<tr>
+<td>/sbin</td>
+<td>就是 Super User 的意思，是 Superuser Binaries（超级用户的二进制文件）的缩写，存放的是系统管理员使用的系统管理程序</td>
+</tr>
+<tr>
+<td>/selinux</td>
+<td>是 Redhat/CentOS 特有的目录，是一种安全机制，类似于 windows 的防火墙</td>
+</tr>
+<tr>
+<td>/srv</td>
+<td>该目录存放一些服务启动之后需要提取的数据</td>
+</tr>
+<tr>
+<td>/sys</td>
+<td>sysfs 文件系统集成了下面3种文件系统的信息：针对进程信息的 proc 文件系统、针对设备的 devfs 文件系统以及针对伪终端的 devpts 文件系统。该文件系统是内核设备树的一个直观反映</td>
+</tr>
+<tr>
+<td>/tmp</td>
+<td>是 temporary（临时）的缩写，用来存放一些临时文件</td>
+</tr>
+<tr>
+<td>/usr</td>
+<td>是 unix shared resources（共享资源）的缩写，这是一个非常重要的目录，用户的很多应用程序和文件都放在这个目录下，类似于 Windows 下的 program files 目录</td>
+</tr>
+<tr>
+<td>/usr/bin</td>
+<td>系统用户使用的应用程序</td>
+</tr>
+<tr>
+<td>/usr/sbin</td>
+<td>超级用户使用的比较高级的管理程序和系统守护程序</td>
+</tr>
+<tr>
+<td>/usr/src</td>
+<td>内核源代码默认的放置目录</td>
+</tr>
+<tr>
+<td>/var</td>
+<td>cariable（变量）的缩写，存放着不多扩充着的东西，包括各种日志文件</td>
+</tr>
+<tr>
+<td>/run</td>
+<td>是一个临时文件系统，存储系统启动依赖的信息</td>
+</tr>
+</tbody></table>
+<h3 id="Linux-基本命令"><a href="#Linux-基本命令" class="headerlink" title="Linux 基本命令"></a>Linux 基本命令</h3>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -199,7 +333,7 @@
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -212,115 +346,117 @@
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://striveboy-12138.github.io/38.github.io/2022/05/09/%E7%9F%A5%E8%AF%86%E7%82%B9-%E4%BD%A0%E5%BA%94%E8%AF%A5%E7%86%9F%E7%9F%A5%E7%9A%84Linux/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/05/09/%E7%9F%A5%E8%AF%86%E7%82%B9-%E8%B0%88%E8%B0%88HTTP%E4%B8%AD%E7%9A%84GET%E5%92%8CPOST%E6%96%B9%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2022-05-09T02:04:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-09</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2022/05/09/%E7%9F%A5%E8%AF%86%E7%82%B9-%E8%B0%88%E8%B0%88HTTP%E4%B8%AD%E7%9A%84GET%E5%92%8CPOST%E6%96%B9%E6%B3%95/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">知识点-谈谈HTTP中的GET和POST方法</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/05/09/%E7%9F%A5%E8%AF%86%E7%82%B9-%E8%B0%88%E8%B0%88HTTP%E4%B8%AD%E7%9A%84GET%E5%92%8CPOST%E6%96%B9%E6%B3%95/">知识点-谈谈HTTP中的GET和POST方法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">HTTP</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/知识点//" class="article-tag-list-link color4">知识点</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux-简介"><span class="toc-number">1.</span> <span class="toc-text">Linux 简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux-系统目录结构"><span class="toc-number">2.</span> <span class="toc-text">Linux 系统目录结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux-基本命令"><span class="toc-number">3.</span> <span class="toc-text">Linux 基本命令</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/05/06/JVM%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/" class="archive-article-date">
-  	<time datetime="2022-05-05T16:00:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/05/06/JVM%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/">JVM性能调优</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">JVM</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/JVM//" class="article-tag-list-link color4">JVM</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+
   
   
-    </div></section>
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -346,8 +482,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
