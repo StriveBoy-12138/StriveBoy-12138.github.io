@@ -6,15 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://StriveBoy-12138.github.io">
-  <title>Archives: 2021 | Hexo</title>
+  <title>视觉SLAM十四讲-2.2、经典视觉SLAM框架 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://striveboy-12138.github.io/archives/2021/page/2/index.html">
+  <meta name="description" content="在这里开一个单元用来讨论和记录 Visual SLAM 相关的知识点。SLAM（Simultaneous Localization And Mapping）同时定位与地图构建，根据名称我们就能清晰的看出，SLAM主要是用来解决定位（我在什么地方？）和建图（我周围环境是什么样的？）这两个问题的。下面我们来详细讨论一下。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="视觉SLAM十四讲-2.2、经典视觉SLAM框架">
+<meta property="og:url" content="http://striveboy-12138.github.io/2022/05/10/%E8%A7%86%E8%A7%89SLAM%E5%8D%81%E5%9B%9B%E8%AE%B2-2-2%E3%80%81%E7%BB%8F%E5%85%B8%E8%A7%86%E8%A7%89SLAM%E6%A1%86%E6%9E%B6/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="在这里开一个单元用来讨论和记录 Visual SLAM 相关的知识点。SLAM（Simultaneous Localization And Mapping）同时定位与地图构建，根据名称我们就能清晰的看出，SLAM主要是用来解决定位（我在什么地方？）和建图（我周围环境是什么样的？）这两个问题的。下面我们来详细讨论一下。">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://striveboy-12138.github.io/2022/05/10/%E8%A7%86%E8%A7%89SLAM%E5%8D%81%E5%9B%9B%E8%AE%B2-2-2%E3%80%81%E7%BB%8F%E5%85%B8%E8%A7%86%E8%A7%89SLAM%E6%A1%86%E6%9E%B6/SLAM%E6%A1%86%E6%9E%B6.jpg">
+<meta property="article:published_time" content="2022-05-10T05:03:03.000Z">
+<meta property="article:modified_time" content="2022-05-10T08:37:44.331Z">
 <meta property="article:author" content="小褚同学">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://striveboy-12138.github.io/2022/05/10/%E8%A7%86%E8%A7%89SLAM%E5%8D%81%E5%9B%9B%E8%AE%B2-2-2%E3%80%81%E7%BB%8F%E5%85%B8%E8%A7%86%E8%A7%89SLAM%E6%A1%86%E6%9E%B6/SLAM%E6%A1%86%E6%9E%B6.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -159,404 +165,198 @@
           </div>
           <div id="js-content" class="content-ll">
             
-  
-  
+<article id="post-视觉SLAM十四讲-2-2、经典视觉SLAM框架" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      视觉SLAM十四讲-2.2、经典视觉SLAM框架
+    </h1>
+  
+
+        
+        <a href="/2022/05/10/%E8%A7%86%E8%A7%89SLAM%E5%8D%81%E5%9B%9B%E8%AE%B2-2-2%E3%80%81%E7%BB%8F%E5%85%B8%E8%A7%86%E8%A7%89SLAM%E6%A1%86%E6%9E%B6/" class="archive-article-date">
+  	<time datetime="2022-05-10T05:03:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-10</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在这里开一个单元用来讨论和记录 Visual SLAM 相关的知识点。<br><strong>SLAM（Simultaneous Localization And Mapping）同时定位与地图构建</strong>，根据名称我们就能清晰的看出，SLAM主要是用来解决<strong>定位</strong>（我在什么地方？）和<strong>建图</strong>（我周围环境是什么样的？）这两个问题的。下面我们来详细讨论一下。</p>
+<a id="more"></a>
+
+<h2 id="经典-Visual-SLAM-框架"><a href="#经典-Visual-SLAM-框架" class="headerlink" title="经典 Visual SLAM 框架"></a>经典 Visual SLAM 框架</h2><p>如下图所示，经典 Visual SLAM 是有五部分组成，分别是：传感器（信息获取）、前端（视觉里程计）、后端（非线性优化）、回环检测（降低误差）、建图（地图构建）  </p>
+<p><img src="SLAM%E6%A1%86%E6%9E%B6.jpg" alt="SLAM框架">  </p>
+<p>整个 Visual SLAM 的流程如下所示：  </p>
+<p>1、<strong>传感器获取信息</strong>：在 SLAM 传感器的作用就是获取周围信息，主要有雷达、相机两种传感器。在 Visual SLAM 中主要是对相机图像的读取和预处理。如果是机器人，我们还需要获取码盘、惯性传感器等信息的读取和同步。<br>2、<strong>前端视觉里程计（Visual Odometry， VO）</strong>：获取到图像信息之后，就需要视觉里程计去分析估计相邻图像之间相机的运动以及局部地图。<br>3、<strong>后端（非线性）优化（Optimization）</strong>：后端则是通过获取前端传来的相机位姿和回环检测的信息，对他们进行优化，从而得到贴近与实际的相机运动轨迹和地图信息。<br>4、<strong>回环检测（Loop Closure Detection）</strong>：回环检测判断机器人之前是否到达过当前位置，如果检测到回环（到达过）就会向后端提供信息。<br>5、<strong>建图（Mapping）</strong>：根据估计的轨迹、构建与任务要求对应的地图。  </p>
+<h3 id="传感器"><a href="#传感器" class="headerlink" title="传感器"></a>传感器</h3><p>想要向人类一下感受到到周围环境，机器人就需要人类一样的”眼睛”，那么机器人的”眼睛”就是<strong>相机</strong>。现在市场上主流的相机包括：单目（Monocular）相机、双目（Stereo）相机、深度（RGB-D）相机三大类。同时还有全景相机、Event相机等特殊和新兴相机。</p>
+<h4 id="单目相机"><a href="#单目相机" class="headerlink" title="单目相机"></a>单目相机</h4><p>单目相机，顾名思义就是只有用一个摄像头的相机，这种类型的相机结构简单、成本低廉。<br>单目相机的数据其实就是一张照片，本质上就是某个环境场景在平面上的投影，相当于将三维世界记录在一个二维世界之中，那么就丢掉了在视觉 SLAM 中一个非常重要的信息：深度（或者距离）。没有了距离，我们就无法通过一张招聘得到各个物体与相机之间的远近，就失去人类拥有的空间感、距离感。所以你也不能在单张图片中判断物体的真实大小，因为会出现<strong>近大远小</strong>和<strong>远大近小</strong>的透视关系。<br>所以想要知道知道物体的真实大小我们必须通过改变相机的视角来获取更多的图片，所以需要<strong>移动相机</strong>，才能估计相机的运动，同时估计环境中物体的大小和远近。因为我们知道：同一个环境下，远处的物体移动的慢，近处的物体移动的快，无穷远的物体几乎不移动。那么通过这种<strong>视差</strong>我们就知道了物体的远近关系了。<br>获取了物体的远近之后我们又将面临一个问题–尺寸大小。因为相片是将三维物体投影到二维空间之上，我们获取的是该物体等比例缩小的投影，并不能获取器真实大小。我们将图像等比例放大之后也许会获得该物体的近似大小。称这一比例就是<strong>尺度</strong>，所以单目 SLAM 是无法获取真实尺度的，所以是 <strong>尺度不确定性</strong>。  </p>
+<h4 id="双目相机"><a href="#双目相机" class="headerlink" title="双目相机"></a>双目相机</h4><p>双目相机其实本质上就是将两个单目相机根据已知的距离（基线）固定在一起，通过这种手段可以测量和计算出物体和相机之间的距离，克服了单目相机无法获取距离和尺度不确定性的问题，解决了这两个问题就能通过单张图片来恢复三维环境了。基线距离越大能够测量的深度范围就越远，所以它更适用于室外环境。但是双目乃至多目相机的配置和标定也是非常复杂的，同时想要计算其环境物体的深度和精度受双目的基线和分辨率显示，而且视差的计算是非常消耗计算资源的，需要使用 GPU 和 FPGA 设备进行加速，才能实时的输出整张图像的距离信息。</p>
+<h4 id="深度相机"><a href="#深度相机" class="headerlink" title="深度相机"></a>深度相机</h4><p>深度相机其最大的特点是可以通过红外结构光或 Time-of-Fight（ToF）原理，向激光传感器那样，通过主动向周围环境的物体发射光并接收返回的光来计算物体与相机的距离。并不向双目相机那样通过软件大量计算，而是通过物理的测量手段，相比于双目相机，节省了大量的计算资源。但是 RGB-D 相机还存在测量范围窄、噪声大、视野小、易受日光干扰、无法测量投射材质等问题，主要应用于室内环境。</p>
+<h3 id="视觉里程计"><a href="#视觉里程计" class="headerlink" title="视觉里程计"></a>视觉里程计</h3><p>视觉里程计关心相邻图像之间的相机运动。在计算机视觉领域，对于人类来说一件十分自然的事情，在计算机视觉当中确实非常困难的。图像在计算机里只有一个数值矩阵，这个矩阵里表达的什么意义，计算机是毫无概念的，而在视觉SLAM中，我们只能看到一个个像素，视觉里程计及能够通过相邻帧之间的图像估计出相机的运动，并回复场景的空间结构。称它为”里程计”是因为它和实际的里程计一样，值计算相邻时刻的运动，和过去的信息没有关联，就像一种只有短时（不限于两帧，也许更多）记忆的物种。<br>有了视觉里程计，估计了两张图象间的相机运动，只要把相邻时刻运动”串”起来，就构成了机器人的<strong>运动轨迹</strong>，从而解决了<strong>定位问题</strong>。同时，根据每个时刻相机的位置，计算出各像素对应的空间点的位置，就得到了<strong>地图</strong>。但是通过仅视觉里程计来估计轨迹，将不可避免的出现<strong>累计漂移</strong>。由于估计是”串”起来的，那么之前的估计误差就会影响到之后的估计，长期积累下来，就会造成非常大的误差。为了解决这个问题，还需要两个技术：后端优化、回环检测。回环检测负责把”机器人回到原始位置”的事情检测出来，后端优化则是根据信息，矫正整个轨迹的形状。  </p>
+<h3 id="后端（非线性）优化"><a href="#后端（非线性）优化" class="headerlink" title="后端（非线性）优化"></a>后端（非线性）优化</h3><p>虽然我们希望所有的数据都是准确的，但是再精确的传感器也带有一定噪声，后端优化考虑的问题，就是如何从这些带有噪声的数据中 估计整个系统的状态，以及这个状态估计的不确定性有多大——称为最大后验概率估计（Maximum-a-Posteriori，MAP）。这里的状态包括机器人自身的轨迹和地图。后端主要采用滤波器或非线性优化，估计状态的均值和不确定性（方差）。</p>
+<h3 id="回环检测"><a href="#回环检测" class="headerlink" title="回环检测"></a>回环检测</h3><p>回环检测，又称闭环检测，主要解决位置估计<strong>随时时间漂移</strong>的问题。假设机器人经过一段时间的运动后回到了原点，但由于漂移，它的位置估计没有回到原点。我们利用某种手段，让机器人知道”回到了原点”，或者把原点识别出来，我们再把位置估计值”拉”过去，就可以消除漂移了。例如可以判断图象间的相似性来完成回环检测，如果回环检测成功，就可以显著的减小累计误差。所以回环检测实质上是一种图像数据相似性的算法。由于图像的信息非常丰富，使得正取回环检测的难度得以降低。</p>
+<h3 id="建图"><a href="#建图" class="headerlink" title="建图"></a>建图</h3><p><strong>度量地图（Metric Map）</strong>：强调精确地表示地图中物体的位置关系，通常用<strong>稀疏（Sparse）</strong>与**稠密（Dense）对其分类。稀疏地图进行了一定程度的抽象，并不需要表达所有的物体。通常选择一部分有意义的东西。相对的，稠密地图着重于建模所有看到的东西。定位是用稀疏路标地图就足够了，但是用于导航时，往往需要稠密地图。稠密地图通常按照某种分辨率有许多小块组成（二维是小格子（Grid），三维是小方块（Voxel））。一方面这种地图需要存储每一个格点的状态，会消耗大量的存储空间，而且多数情况下的细节是无用的。另一方面，大规模度量地图有事会出现一致性的问题。很小的转向误差，可能会导致两间屋子的墙出现重叠，使地图失效。  </p>
+<p><strong>拓扑地图（Topological Map）</strong>：相比于度量地图的精确性，拓扑地图更强调地图元素之间的关系。拓扑地图是一个图，有节点和边组成，只考虑节点间的连通性。放松了精确位置的需要，去掉了地图的细节，是一种更为紧凑的表达方式。然而，拓扑地图不擅长表达具有复杂结构的地图，如何对地图进行分割，形成节点与边，有如何进行导航与路径规划，仍然存在很多问题。  </p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/18/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94C++%E7%BC%96%E5%86%99tf2%E5%B9%BF%E6%92%AD%E5%99%A8%E5%8F%8A%E4%BE%A6%E5%90%AC%E5%99%A8/" class="archive-article-date">
-  	<time datetime="2021-04-18T05:58:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/04/18/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94C++%E7%BC%96%E5%86%99tf2%E5%B9%BF%E6%92%AD%E5%99%A8%E5%8F%8A%E4%BE%A6%E5%90%AC%E5%99%A8/">ROS学习之路———C++编写tf2广播器及侦听器</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">tf2 ROS</a>
+        			<a href="/categories/Visual-SLAM//" class="article-tag-list-link color2">Visual SLAM</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Visual-SLAM/论文//" class="article-tag-list-link color3">论文</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://striveboy-12138.github.io/38.github.io/2022/05/10/%E8%A7%86%E8%A7%89SLAM%E5%8D%81%E5%9B%9B%E8%AE%B2-2-2%E3%80%81%E7%BB%8F%E5%85%B8%E8%A7%86%E8%A7%89SLAM%E6%A1%86%E6%9E%B6/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/15/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94C++%E7%BC%96%E5%86%99%E7%AE%80%E5%8D%95%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%92%8C%E5%AE%A2%E6%88%B7%E7%AB%AF/" class="archive-article-date">
-  	<time datetime="2021-04-15T07:26:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-15</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2022/05/09/%E7%9F%A5%E8%AF%86%E7%82%B9-%E4%BD%A0%E5%BA%94%E8%AF%A5%E7%86%9F%E7%9F%A5%E7%9A%84Linux/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">知识点-你应该熟知的Linux</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/04/15/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94C++%E7%BC%96%E5%86%99%E7%AE%80%E5%8D%95%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%92%8C%E5%AE%A2%E6%88%B7%E7%AB%AF/">ROS学习之路——C++编写简单的服务和客户端</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ROS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#经典-Visual-SLAM-框架"><span class="toc-number">1.</span> <span class="toc-text">经典 Visual SLAM 框架</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#传感器"><span class="toc-number">1.1.</span> <span class="toc-text">传感器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#单目相机"><span class="toc-number">1.1.1.</span> <span class="toc-text">单目相机</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#双目相机"><span class="toc-number">1.1.2.</span> <span class="toc-text">双目相机</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#深度相机"><span class="toc-number">1.1.3.</span> <span class="toc-text">深度相机</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#视觉里程计"><span class="toc-number">1.2.</span> <span class="toc-text">视觉里程计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#后端（非线性）优化"><span class="toc-number">1.3.</span> <span class="toc-text">后端（非线性）优化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#回环检测"><span class="toc-number">1.4.</span> <span class="toc-text">回环检测</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#建图"><span class="toc-number">1.5.</span> <span class="toc-text">建图</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-w">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/14/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94ROS%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7%E9%9B%86%E5%90%88/" class="archive-article-date">
-  	<time datetime="2021-04-14T09:32:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-14</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/04/14/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94ROS%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7%E9%9B%86%E5%90%88/">ROS学习之路--ROS命令行工具集合</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ROS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/12/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E5%8F%91%E5%B8%83%E8%80%85Publisher%E7%9A%84c++%E7%BC%96%E7%A8%8B%E5%AE%9E%E7%8E%B0/" class="archive-article-date">
-  	<time datetime="2021-04-12T14:38:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/04/12/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E5%8F%91%E5%B8%83%E8%80%85Publisher%E7%9A%84c++%E7%BC%96%E7%A8%8B%E5%AE%9E%E7%8E%B0/">ROS学习之路——发布者Publisher的c++编程实现</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ROS c++ Publisher</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/02/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E6%9E%84%E5%BB%BA%E5%B7%A5%E4%B8%9A%E7%BA%A7%E7%A7%BB%E5%8A%A8%E6%9C%BA%E6%A2%B0%E8%87%82%EF%BC%88%E4%BA%8C%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2021-04-02T06:51:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/04/02/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E6%9E%84%E5%BB%BA%E5%B7%A5%E4%B8%9A%E7%BA%A7%E7%A7%BB%E5%8A%A8%E6%9C%BA%E6%A2%B0%E8%87%82%EF%BC%88%E4%BA%8C%EF%BC%89/">ROS学习之路——构建工业级移动机械臂（二）</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ROS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-w">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/03/31/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E6%9E%84%E5%BB%BA%E5%B7%A5%E4%B8%9A%E7%BA%A7%E7%A7%BB%E5%8A%A8%E6%9C%BA%E6%A2%B0%E8%87%82%EF%BC%88%E4%B8%80%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2021-03-31T06:26:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/03/31/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E6%9E%84%E5%BB%BA%E5%B7%A5%E4%B8%9A%E7%BA%A7%E7%A7%BB%E5%8A%A8%E6%9C%BA%E6%A2%B0%E8%87%82%EF%BC%88%E4%B8%80%EF%BC%89/">ROS学习之路———构建工业级移动机械臂（一）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ROS 机械臂</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-w">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/03/30/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E5%88%9B%E5%BB%BA%E5%B7%A5%E4%BD%9C%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%8A%9F%E8%83%BD%E5%8C%85/" class="archive-article-date">
-  	<time datetime="2021-03-30T11:32:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/03/30/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E5%88%9B%E5%BB%BA%E5%B7%A5%E4%BD%9C%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%8A%9F%E8%83%BD%E5%8C%85/">ROS学习之路——创建工作空间与功能包</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ROS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-w">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/03/29/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0Ubuntu%E5%AE%89%E8%A3%85ROS/" class="archive-article-date">
-  	<time datetime="2021-03-29T14:28:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/03/29/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0Ubuntu%E5%AE%89%E8%A3%85ROS/">手把手教你Ubuntu安装ROS</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">ubuntu ROS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/03/29/Ubuntu%E6%89%93%E4%B8%8D%E5%BC%80Software%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2021-03-29T08:38:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/03/29/Ubuntu%E6%89%93%E4%B8%8D%E5%BC%80Software%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/">Ubuntu打不开Software解决办法,亲测有效！</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/03/13/2021%E5%8D%8E%E4%B8%BA%E8%BD%AF%E6%8C%91%E8%B5%9B%E6%8F%90%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90/" class="archive-article-date">
-  	<time datetime="2021-03-13T09:58:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/03/13/2021%E5%8D%8E%E4%B8%BA%E8%BD%AF%E6%8C%91%E8%B5%9B%E6%8F%90%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90/">2021华为软挑赛提需求分析</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">华为软挑</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2021/">&amp;laquo; Prev</a><a class="page-number" href="/archives/2021/">1</a><span class="page-number current">2</span>
-    </nav>
   
 
 
@@ -583,8 +383,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
