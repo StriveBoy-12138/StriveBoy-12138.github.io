@@ -19,7 +19,7 @@
 <meta property="og:image" content="http://striveboy-12138.github.io/2022/05/12/%E8%A7%86%E8%A7%89SLAM%E5%8D%81%E5%9B%9B%E8%AE%B2%EF%BC%9A7-1%E3%80%81%E8%A7%86%E8%A7%89%E9%87%8C%E7%A8%8B%E8%AE%A1%E4%B9%8B%E7%89%B9%E5%BE%81%E7%82%B9%E6%B3%95/FAST%E8%A7%92%E7%82%B9.jpg">
 <meta property="og:image" content="http://striveboy-12138.github.io/2022/05/12/%E8%A7%86%E8%A7%89SLAM%E5%8D%81%E5%9B%9B%E8%AE%B2%EF%BC%9A7-1%E3%80%81%E8%A7%86%E8%A7%89%E9%87%8C%E7%A8%8B%E8%AE%A1%E4%B9%8B%E7%89%B9%E5%BE%81%E7%82%B9%E6%B3%95/%E5%9B%BE%E5%83%8F%E9%87%91%E5%AD%97%E5%A1%94.jpg">
 <meta property="article:published_time" content="2022-05-12T04:44:19.000Z">
-<meta property="article:modified_time" content="2022-05-13T15:11:01.672Z">
+<meta property="article:modified_time" content="2022-06-06T12:23:19.664Z">
 <meta property="article:author" content="小褚同学">
 <meta property="article:tag" content="视觉里程计">
 <meta property="article:tag" content="特征点法">
@@ -212,7 +212,7 @@
 <p>在提取 Oriented FAST 关键点后，我们对每个点计算其描述子。ORB 使用改进的 BRIEF 特征描述。<br>BRIEF 是一种二进制描述子，其描述向量有许多个 0 和 1 组成，0 和 1 编码了附近两个随机像素（比如 p 和 q）的大小关系：如果 p 比 q 大，则取 1，反之取 0。如果我们取了 128 个这样的 p 和 q，则最后得到了 128 维由 0、1 组成的向量。原始的 BRIEF 描述子不具有旋转不变性，因此在图像发生旋转时容易丢失，而 ORB 在 FAST 特征点提取阶段计算了方向，可以利用方向信息，计算旋转之后的”Steer BRIEF”特征时 ORB 的描述子具有较好的旋转不变性。同时，BRIEF 使用了随机选点的比较，速度非常快，有因为使用了二进制表达，存储起来十分方便，适用于实时的图像匹配系统。  </p>
 <h3 id="特征匹配"><a href="#特征匹配" class="headerlink" title="特征匹配"></a>特征匹配</h3><p>特征匹配解决了 SLAM 中的数据关联问题，即确定当前看到的路标与之前看到的路标之间的对应关系。通过对<strong>描述子</strong>准确匹配，可以为后续的姿态估计、优化操作减轻大量负担。因为场景中可能存在大量的重复纹理，是的特征描述非常相似（即使相距非常远的特征点也有可能其描述子非常相似），但仅利用局部特征解决误匹配是非常困难的。  </p>
 <p>在正常匹配的情况下，考虑两个时刻的图像，如何找到来两个图像特征点集合元素的对应关系，最简单的特征匹配方法就是<strong>暴力匹配（Brute-Force Matcher)</strong>：对上一时刻的每一个特征点与下一时刻的每一个特征点测量描述子的距离（表示两个特征之间的相似程度），然后排序，取最近的一个作为匹配点。对于浮点类型的描述子，使用<strong>欧几里得度量</strong>，对于二进制的描述子通常使用<strong>汉明距离</strong>（两个二进制串之间的汉明距离，指的是其不同位数的可数）。<br>当特征点数量很大时，暴力匹配法的运算量非常大，不符合实时性，可以使用比较成熟的<strong>快速近似最近邻（FLANN）算法</strong>，而且其实现已经集成到OpenCV，可以下面去了解学习一下。  </p>
-<h2 id="对极几何约束"><a href="#对极几何约束" class="headerlink" title="对极几何约束"></a>对极几何约束</h2><h2 id="三角测量"><a href="#三角测量" class="headerlink" title="三角测量"></a>三角测量</h2>
+
       
 
       
@@ -373,7 +373,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#特征点法"><span class="toc-number">1.</span> <span class="toc-text">特征点法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ORB-特征"><span class="toc-number">1.1.</span> <span class="toc-text">ORB 特征</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#特征匹配"><span class="toc-number">1.2.</span> <span class="toc-text">特征匹配</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对极几何约束"><span class="toc-number">2.</span> <span class="toc-text">对极几何约束</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三角测量"><span class="toc-number">3.</span> <span class="toc-text">三角测量</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#特征点法"><span class="toc-number">1.</span> <span class="toc-text">特征点法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ORB-特征"><span class="toc-number">1.1.</span> <span class="toc-text">ORB 特征</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#特征匹配"><span class="toc-number">1.2.</span> <span class="toc-text">特征匹配</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -488,15 +488,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">华为软挑</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">golang</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">华为软挑</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">-Kafka</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -508,10 +512,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">-Kafka</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">-nanoPC-T4</a>
               </li>
              
@@ -520,11 +520,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">client server</a>
+                <a href="javascript:void(0)" class="js-tag color4">ROS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ROS</a>
+                <a href="javascript:void(0)" class="js-tag color4">client server</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -533,6 +533,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">ROS c++ Publisher</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ROS 机械臂</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -552,10 +556,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ROS 机械臂</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
@@ -568,10 +568,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MarkDown hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring - 注解</a>
               </li>
              
@@ -581,6 +577,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">微信小程序；教育管理系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">MarkDown hexo</a>
               </li>
              
               <li class="article-tag-list-item">
