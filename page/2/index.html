@@ -160,6 +160,280 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-视觉SLAM十四讲：实践-特征提取与匹配" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/05/13/%E8%A7%86%E8%A7%89SLAM%E5%8D%81%E5%9B%9B%E8%AE%B2%EF%BC%9A%E5%AE%9E%E8%B7%B5-%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96%E4%B8%8E%E5%8C%B9%E9%85%8D/">视觉SLAM十四讲：实践-特征提取与匹配</a>
+    </h1>
+  
+
+        
+        <a href="/2022/05/13/%E8%A7%86%E8%A7%89SLAM%E5%8D%81%E5%9B%9B%E8%AE%B2%EF%BC%9A%E5%AE%9E%E8%B7%B5-%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96%E4%B8%8E%E5%8C%B9%E9%85%8D/" class="archive-article-date">
+  	<time datetime="2022-05-13T03:08:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在之前的文章中我们已经大致了解了 视觉里程计（Visual Odometry，VO）的基本框架和解决算法流程的知识，主要介绍了特征点的相关理论知识，下面将记录一下如何实际动手操作去实现<strong>特征提取和匹配</strong>，主要通过两个实验去介绍：1、演示使用 OpenCV 进行 ORB 的特征匹配；2、如何根据之前介绍的原理，手写一个简单的 ORB 特征。希望能够通过这次手写，能够更加理解 ORB 的计算过程，并类推到其他特征中去。   </p>
+<!--mrore-->
+
+<h2 id="OpenCV-的-ORB-特征匹配"><a href="#OpenCV-的-ORB-特征匹配" class="headerlink" title="OpenCV 的 ORB 特征匹配"></a>OpenCV 的 ORB 特征匹配</h2><h3 id="如何提取-ORB-特征并进行匹配"><a href="#如何提取-ORB-特征并进行匹配" class="headerlink" title="如何提取 ORB 特征并进行匹配"></a>如何提取 ORB 特征并进行匹配</h3><h3 id="如何用匹配结果估计运动相机"><a href="#如何用匹配结果估计运动相机" class="headerlink" title="如何用匹配结果估计运动相机"></a>如何用匹配结果估计运动相机</h3><h2 id="手写一个简单的-ORB-特征"><a href="#手写一个简单的-ORB-特征" class="headerlink" title="手写一个简单的 ORB 特征"></a>手写一个简单的 ORB 特征</h2>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">视觉里程计</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">特征点法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Visual-SLAM//" class="article-tag-list-link color2">Visual SLAM</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Visual-SLAM/论文//" class="article-tag-list-link color3">论文</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Visual-SLAM/论文/实践//" class="article-tag-list-link color3">实践</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/05/13/%E8%A7%86%E8%A7%89SLAM%E5%8D%81%E5%9B%9B%E8%AE%B2%EF%BC%9A%E5%AE%9E%E8%B7%B5-%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96%E4%B8%8E%E5%8C%B9%E9%85%8D/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-视觉SLAM十四讲：7-1、视觉里程计之特征点法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/05/12/%E8%A7%86%E8%A7%89SLAM%E5%8D%81%E5%9B%9B%E8%AE%B2%EF%BC%9A7-1%E3%80%81%E8%A7%86%E8%A7%89%E9%87%8C%E7%A8%8B%E8%AE%A1%E4%B9%8B%E7%89%B9%E5%BE%81%E7%82%B9%E6%B3%95/">视觉SLAM十四讲：7-1、视觉里程计之特征点法</a>
+    </h1>
+  
+
+        
+        <a href="/2022/05/12/%E8%A7%86%E8%A7%89SLAM%E5%8D%81%E5%9B%9B%E8%AE%B2%EF%BC%9A7-1%E3%80%81%E8%A7%86%E8%A7%89%E9%87%8C%E7%A8%8B%E8%AE%A1%E4%B9%8B%E7%89%B9%E5%BE%81%E7%82%B9%E6%B3%95/" class="archive-article-date">
+  	<time datetime="2022-05-12T04:44:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>从之前的介绍中，我们了解到经典 SLAM 系统的组成包括：传感器、前端、后端、回环检测、建图，其中前端也被称为视觉里程计（Visual Odometry，VO）。所以传感器接收到的信息传给前端，前端是对这个数据信息做处理的。里程计的意义是为了估计和计算某一种运动过程，那么视觉里程计的作用就很清晰了：在运动（包括静止）的过程中通过视觉传感器（相机）传过来的图像，对这个相机的运动轨迹、状态进行估计。那么怎么能够完成这个估计，怎么能更贴实际情况呢？下面内容将介绍一些常用的算法和思路。  </p>
+        
+          <a class="article-more-a" href="/2022/05/12/%E8%A7%86%E8%A7%89SLAM%E5%8D%81%E5%9B%9B%E8%AE%B2%EF%BC%9A7-1%E3%80%81%E8%A7%86%E8%A7%89%E9%87%8C%E7%A8%8B%E8%AE%A1%E4%B9%8B%E7%89%B9%E5%BE%81%E7%82%B9%E6%B3%95/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">视觉里程计</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">特征点法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Visual-SLAM//" class="article-tag-list-link color2">Visual SLAM</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Visual-SLAM/论文//" class="article-tag-list-link color3">论文</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/05/12/%E8%A7%86%E8%A7%89SLAM%E5%8D%81%E5%9B%9B%E8%AE%B2%EF%BC%9A7-1%E3%80%81%E8%A7%86%E8%A7%89%E9%87%8C%E7%A8%8B%E8%AE%A1%E4%B9%8B%E7%89%B9%E5%BE%81%E7%82%B9%E6%B3%95/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-视觉SLAM十四讲-2-2、经典视觉SLAM框架" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/05/10/%E8%A7%86%E8%A7%89SLAM%E5%8D%81%E5%9B%9B%E8%AE%B2-2-2%E3%80%81%E7%BB%8F%E5%85%B8%E8%A7%86%E8%A7%89SLAM%E6%A1%86%E6%9E%B6/">视觉SLAM十四讲-2.2、经典视觉SLAM框架</a>
+    </h1>
+  
+
+        
+        <a href="/2022/05/10/%E8%A7%86%E8%A7%89SLAM%E5%8D%81%E5%9B%9B%E8%AE%B2-2-2%E3%80%81%E7%BB%8F%E5%85%B8%E8%A7%86%E8%A7%89SLAM%E6%A1%86%E6%9E%B6/" class="archive-article-date">
+  	<time datetime="2022-05-10T05:03:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在这里开一个单元用来讨论和记录 Visual SLAM 相关的知识点。<br><strong>SLAM（Simultaneous Localization And Mapping）同时定位与地图构建</strong>，根据名称我们就能清晰的看出，SLAM主要是用来解决<strong>定位</strong>（我在什么地方？）和<strong>建图</strong>（我周围环境是什么样的？）这两个问题的。下面我们来详细讨论一下。</p>
+        
+          <a class="article-more-a" href="/2022/05/10/%E8%A7%86%E8%A7%89SLAM%E5%8D%81%E5%9B%9B%E8%AE%B2-2-2%E3%80%81%E7%BB%8F%E5%85%B8%E8%A7%86%E8%A7%89SLAM%E6%A1%86%E6%9E%B6/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Visual-SLAM//" class="article-tag-list-link color2">Visual SLAM</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Visual-SLAM/论文//" class="article-tag-list-link color3">论文</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/05/10/%E8%A7%86%E8%A7%89SLAM%E5%8D%81%E5%9B%9B%E8%AE%B2-2-2%E3%80%81%E7%BB%8F%E5%85%B8%E8%A7%86%E8%A7%89SLAM%E6%A1%86%E6%9E%B6/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-知识点-你应该熟知的Linux" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -726,234 +1000,6 @@
 
 
   
-    <article id="post-你会用到的spring注解集合" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/08/17/%E4%BD%A0%E4%BC%9A%E7%94%A8%E5%88%B0%E7%9A%84spring%E6%B3%A8%E8%A7%A3%E9%9B%86%E5%90%88/">你会用到的spring注解集合</a>
-    </h1>
-  
-
-        
-        <a href="/2021/08/17/%E4%BD%A0%E4%BC%9A%E7%94%A8%E5%88%B0%E7%9A%84spring%E6%B3%A8%E8%A7%A3%E9%9B%86%E5%90%88/" class="archive-article-date">
-  	<time datetime="2021-08-17T05:19:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>下面我会对自己在项目开发过程中遇到的常用的spring 注解进行总结方便以后学习（不定期更新）</p>
-        
-          <a class="article-more-a" href="/2021/08/17/%E4%BD%A0%E4%BC%9A%E7%94%A8%E5%88%B0%E7%9A%84spring%E6%B3%A8%E8%A7%A3%E9%9B%86%E5%90%88/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spring - 注解</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/08/17/%E4%BD%A0%E4%BC%9A%E7%94%A8%E5%88%B0%E7%9A%84spring%E6%B3%A8%E8%A7%A3%E9%9B%86%E5%90%88/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-工作中可能需要的知识点——java篇" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/08/16/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E5%8F%AF%E8%83%BD%E9%9C%80%E8%A6%81%E7%9A%84%E7%9F%A5%E8%AF%86%E7%82%B9%E2%80%94%E2%80%94java%E7%AF%87/">工作中可能需要的知识点——java篇</a>
-    </h1>
-  
-
-        
-        <a href="/2021/08/16/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E5%8F%AF%E8%83%BD%E9%9C%80%E8%A6%81%E7%9A%84%E7%9F%A5%E8%AF%86%E7%82%B9%E2%80%94%E2%80%94java%E7%AF%87/" class="archive-article-date">
-  	<time datetime="2021-08-16T09:39:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>看看一年能够积攒多少有用的<strong>java</strong>知识  </p>
-        
-          <a class="article-more-a" href="/2021/08/16/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E5%8F%AF%E8%83%BD%E9%9C%80%E8%A6%81%E7%9A%84%E7%9F%A5%E8%AF%86%E7%82%B9%E2%80%94%E2%80%94java%E7%AF%87/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">java - 知识点</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/08/16/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E5%8F%AF%E8%83%BD%E9%9C%80%E8%A6%81%E7%9A%84%E7%9F%A5%E8%AF%86%E7%82%B9%E2%80%94%E2%80%94java%E7%AF%87/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-一起来学shiro——常见问题及解决办法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/08/16/%E4%B8%80%E8%B5%B7%E6%9D%A5%E5%AD%A6shiro%E2%80%94%E2%80%94%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/">一起来学shiro——常见问题及解决办法</a>
-    </h1>
-  
-
-        
-        <a href="/2021/08/16/%E4%B8%80%E8%B5%B7%E6%9D%A5%E5%AD%A6shiro%E2%80%94%E2%80%94%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2021-08-16T08:58:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>我们在学习shiro框架的时候总会遇到这样那样的小问题，我把我学习过程中的遇到的常见的关于shiro问题进行汇总并提供解决办法，为以后的学习提供帮助（不定期更新）</p>
-        
-          <a class="article-more-a" href="/2021/08/16/%E4%B8%80%E8%B5%B7%E6%9D%A5%E5%AD%A6shiro%E2%80%94%E2%80%94%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">shiro</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/08/16/%E4%B8%80%E8%B5%B7%E6%9D%A5%E5%AD%A6shiro%E2%80%94%E2%80%94%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
@@ -1070,15 +1116,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">-Kafka</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Mybatis-plus</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">client server</a>
+                <a href="javascript:void(0)" class="js-tag color2">-Kafka</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1087,6 +1129,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">tf2 ROS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">client server</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1099,10 +1145,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">ROS c++ Publisher</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ROS 机械臂</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1122,7 +1164,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
+                <a href="javascript:void(0)" class="js-tag color3">ROS 机械臂</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1130,11 +1172,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">shiro</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">java - 知识点</a>
+                <a href="javascript:void(0)" class="js-tag color4">MarkDown hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1142,11 +1188,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">微信小程序；教育管理系统</a>
+                <a href="javascript:void(0)" class="js-tag color1">java - 知识点</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MarkDown hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">微信小程序；教育管理系统</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1167,6 +1213,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">最近点对</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">视觉里程计</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">特征点法</a>
               </li>
              
               <li class="article-tag-list-item">
